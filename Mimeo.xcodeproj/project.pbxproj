@@ -1,0 +1,648 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F1E2341138D006656E4 /* AppDelegate.swift */; };
+		04789F212341138E006656E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F202341138E006656E4 /* SceneDelegate.swift */; };
+		04789F242341138E006656E4 /* Mimeo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04789F222341138E006656E4 /* Mimeo.xcdatamodeld */; };
+		04789F262341138E006656E4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F252341138E006656E4 /* ContentView.swift */; };
+		04789F2823411393006656E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04789F2723411393006656E4 /* Assets.xcassets */; };
+		04789F2B23411393006656E4 /* Preview.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04789F2A23411393006656E4 /* Preview.xcassets */; };
+		04789F2E23411393006656E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04789F2C23411393006656E4 /* LaunchScreen.storyboard */; };
+		04789F3923411393006656E4 /* MimeoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F3823411393006656E4 /* MimeoTests.swift */; };
+		04789F4423411393006656E4 /* MimeoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F4323411393006656E4 /* MimeoUITests.swift */; };
+		049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049842FB2341199C0002AB6D /* CameraViewController.swift */; };
+		049842FE23411BD00002AB6D /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049842FD23411BD00002AB6D /* CameraView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04789F3523411393006656E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04789F132341138D006656E4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04789F1A2341138D006656E4;
+			remoteInfo = Mimeo;
+		};
+		04789F4023411393006656E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04789F132341138D006656E4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04789F1A2341138D006656E4;
+			remoteInfo = Mimeo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04789F1B2341138D006656E4 /* Mimeo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mimeo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04789F1E2341138D006656E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		04789F202341138E006656E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		04789F232341138E006656E4 /* Mimeo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mimeo.xcdatamodel; sourceTree = "<group>"; };
+		04789F252341138E006656E4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		04789F2723411393006656E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		04789F2A23411393006656E4 /* Preview.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Preview.xcassets; sourceTree = "<group>"; };
+		04789F2D23411393006656E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		04789F2F23411393006656E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04789F3423411393006656E4 /* MimeoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimeoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04789F3823411393006656E4 /* MimeoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoTests.swift; sourceTree = "<group>"; };
+		04789F3A23411393006656E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04789F3F23411393006656E4 /* MimeoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimeoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04789F4323411393006656E4 /* MimeoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoUITests.swift; sourceTree = "<group>"; };
+		04789F4523411393006656E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		049842FB2341199C0002AB6D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		049842FD23411BD00002AB6D /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		04789F182341138D006656E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04789F3123411393006656E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04789F3C23411393006656E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04789F122341138D006656E4 = {
+			isa = PBXGroup;
+			children = (
+				04789F1D2341138D006656E4 /* Mimeo */,
+				04789F3723411393006656E4 /* MimeoTests */,
+				04789F4223411393006656E4 /* MimeoUITests */,
+				04789F1C2341138D006656E4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		04789F1C2341138D006656E4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04789F1B2341138D006656E4 /* Mimeo.app */,
+				04789F3423411393006656E4 /* MimeoTests.xctest */,
+				04789F3F23411393006656E4 /* MimeoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04789F1D2341138D006656E4 /* Mimeo */ = {
+			isa = PBXGroup;
+			children = (
+				04789F2F23411393006656E4 /* Info.plist */,
+				04E92D8E234114CC00877507 /* Main */,
+				049842FA2341195E0002AB6D /* Camera */,
+				04E92D902341150C00877507 /* Store */,
+				04E92D8F234114D600877507 /* Assets */,
+			);
+			path = Mimeo;
+			sourceTree = "<group>";
+		};
+		04789F3723411393006656E4 /* MimeoTests */ = {
+			isa = PBXGroup;
+			children = (
+				04789F3A23411393006656E4 /* Info.plist */,
+				04789F3823411393006656E4 /* MimeoTests.swift */,
+			);
+			path = MimeoTests;
+			sourceTree = "<group>";
+		};
+		04789F4223411393006656E4 /* MimeoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				04789F4523411393006656E4 /* Info.plist */,
+				04789F4323411393006656E4 /* MimeoUITests.swift */,
+			);
+			path = MimeoUITests;
+			sourceTree = "<group>";
+		};
+		049842FA2341195E0002AB6D /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				049842FD23411BD00002AB6D /* CameraView.swift */,
+				049842FB2341199C0002AB6D /* CameraViewController.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		04E92D8E234114CC00877507 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				04789F1E2341138D006656E4 /* AppDelegate.swift */,
+				04789F202341138E006656E4 /* SceneDelegate.swift */,
+				04789F252341138E006656E4 /* ContentView.swift */,
+				04789F2C23411393006656E4 /* LaunchScreen.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		04E92D8F234114D600877507 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				04789F2723411393006656E4 /* Assets.xcassets */,
+				04789F2A23411393006656E4 /* Preview.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		04E92D902341150C00877507 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				04789F222341138E006656E4 /* Mimeo.xcdatamodeld */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		04789F1A2341138D006656E4 /* Mimeo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04789F4823411393006656E4 /* Build configuration list for PBXNativeTarget "Mimeo" */;
+			buildPhases = (
+				04789F172341138D006656E4 /* Sources */,
+				04789F182341138D006656E4 /* Frameworks */,
+				04789F192341138D006656E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mimeo;
+			productName = Mimeo;
+			productReference = 04789F1B2341138D006656E4 /* Mimeo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		04789F3323411393006656E4 /* MimeoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04789F4B23411393006656E4 /* Build configuration list for PBXNativeTarget "MimeoTests" */;
+			buildPhases = (
+				04789F3023411393006656E4 /* Sources */,
+				04789F3123411393006656E4 /* Frameworks */,
+				04789F3223411393006656E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04789F3623411393006656E4 /* PBXTargetDependency */,
+			);
+			name = MimeoTests;
+			productName = MimeoTests;
+			productReference = 04789F3423411393006656E4 /* MimeoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		04789F3E23411393006656E4 /* MimeoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04789F4E23411393006656E4 /* Build configuration list for PBXNativeTarget "MimeoUITests" */;
+			buildPhases = (
+				04789F3B23411393006656E4 /* Sources */,
+				04789F3C23411393006656E4 /* Frameworks */,
+				04789F3D23411393006656E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04789F4123411393006656E4 /* PBXTargetDependency */,
+			);
+			name = MimeoUITests;
+			productName = MimeoUITests;
+			productReference = 04789F3F23411393006656E4 /* MimeoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		04789F132341138D006656E4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1110;
+				LastUpgradeCheck = 1110;
+				ORGANIZATIONNAME = "Jack Mousseau";
+				TargetAttributes = {
+					04789F1A2341138D006656E4 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					04789F3323411393006656E4 = {
+						CreatedOnToolsVersion = 11.1;
+						TestTargetID = 04789F1A2341138D006656E4;
+					};
+					04789F3E23411393006656E4 = {
+						CreatedOnToolsVersion = 11.1;
+						TestTargetID = 04789F1A2341138D006656E4;
+					};
+				};
+			};
+			buildConfigurationList = 04789F162341138D006656E4 /* Build configuration list for PBXProject "Mimeo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 04789F122341138D006656E4;
+			productRefGroup = 04789F1C2341138D006656E4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04789F1A2341138D006656E4 /* Mimeo */,
+				04789F3323411393006656E4 /* MimeoTests */,
+				04789F3E23411393006656E4 /* MimeoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		04789F192341138D006656E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04789F2E23411393006656E4 /* LaunchScreen.storyboard in Resources */,
+				04789F2B23411393006656E4 /* Preview.xcassets in Resources */,
+				04789F2823411393006656E4 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04789F3223411393006656E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04789F3D23411393006656E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		04789F172341138D006656E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */,
+				049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */,
+				04789F212341138E006656E4 /* SceneDelegate.swift in Sources */,
+				049842FE23411BD00002AB6D /* CameraView.swift in Sources */,
+				04789F262341138E006656E4 /* ContentView.swift in Sources */,
+				04789F242341138E006656E4 /* Mimeo.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04789F3023411393006656E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04789F3923411393006656E4 /* MimeoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04789F3B23411393006656E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04789F4423411393006656E4 /* MimeoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04789F3623411393006656E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04789F1A2341138D006656E4 /* Mimeo */;
+			targetProxy = 04789F3523411393006656E4 /* PBXContainerItemProxy */;
+		};
+		04789F4123411393006656E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04789F1A2341138D006656E4 /* Mimeo */;
+			targetProxy = 04789F4023411393006656E4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		04789F2C23411393006656E4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04789F2D23411393006656E4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		04789F4623411393006656E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		04789F4723411393006656E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		04789F4923411393006656E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = Mimeo/Assets/Preview.xcassets;
+				DEVELOPMENT_TEAM = LVFKAL5KFM;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Mimeo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.Mimeo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04789F4A23411393006656E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = Mimeo/Assets/Preview.xcassets;
+				DEVELOPMENT_TEAM = LVFKAL5KFM;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Mimeo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.Mimeo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		04789F4C23411393006656E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LVFKAL5KFM;
+				INFOPLIST_FILE = MimeoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.MimeoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mimeo.app/Mimeo";
+			};
+			name = Debug;
+		};
+		04789F4D23411393006656E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LVFKAL5KFM;
+				INFOPLIST_FILE = MimeoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.MimeoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mimeo.app/Mimeo";
+			};
+			name = Release;
+		};
+		04789F4F23411393006656E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LVFKAL5KFM;
+				INFOPLIST_FILE = MimeoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.MimeoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Mimeo;
+			};
+			name = Debug;
+		};
+		04789F5023411393006656E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LVFKAL5KFM;
+				INFOPLIST_FILE = MimeoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.MimeoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Mimeo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04789F162341138D006656E4 /* Build configuration list for PBXProject "Mimeo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04789F4623411393006656E4 /* Debug */,
+				04789F4723411393006656E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04789F4823411393006656E4 /* Build configuration list for PBXNativeTarget "Mimeo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04789F4923411393006656E4 /* Debug */,
+				04789F4A23411393006656E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04789F4B23411393006656E4 /* Build configuration list for PBXNativeTarget "MimeoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04789F4C23411393006656E4 /* Debug */,
+				04789F4D23411393006656E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04789F4E23411393006656E4 /* Build configuration list for PBXNativeTarget "MimeoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04789F4F23411393006656E4 /* Debug */,
+				04789F5023411393006656E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		04789F222341138E006656E4 /* Mimeo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				04789F232341138E006656E4 /* Mimeo.xcdatamodel */,
+			);
+			currentVersion = 04789F232341138E006656E4 /* Mimeo.xcdatamodel */;
+			path = Mimeo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 04789F132341138D006656E4 /* Project object */;
+}
