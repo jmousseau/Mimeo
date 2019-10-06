@@ -10,14 +10,13 @@
 		04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F1E2341138D006656E4 /* AppDelegate.swift */; };
 		04789F212341138E006656E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F202341138E006656E4 /* SceneDelegate.swift */; };
 		04789F242341138E006656E4 /* Mimeo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04789F222341138E006656E4 /* Mimeo.xcdatamodeld */; };
-		04789F262341138E006656E4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F252341138E006656E4 /* ContentView.swift */; };
 		04789F2823411393006656E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04789F2723411393006656E4 /* Assets.xcassets */; };
 		04789F2B23411393006656E4 /* Preview.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04789F2A23411393006656E4 /* Preview.xcassets */; };
 		04789F2E23411393006656E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04789F2C23411393006656E4 /* LaunchScreen.storyboard */; };
 		04789F3923411393006656E4 /* MimeoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F3823411393006656E4 /* MimeoTests.swift */; };
 		04789F4423411393006656E4 /* MimeoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F4323411393006656E4 /* MimeoUITests.swift */; };
+		048183012349674200379B52 /* MimeoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048183002349674200379B52 /* MimeoViewController.swift */; };
 		049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049842FB2341199C0002AB6D /* CameraViewController.swift */; };
-		049842FE23411BD00002AB6D /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049842FD23411BD00002AB6D /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +41,6 @@
 		04789F1E2341138D006656E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04789F202341138E006656E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		04789F232341138E006656E4 /* Mimeo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mimeo.xcdatamodel; sourceTree = "<group>"; };
-		04789F252341138E006656E4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		04789F2723411393006656E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04789F2A23411393006656E4 /* Preview.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Preview.xcassets; sourceTree = "<group>"; };
 		04789F2D23411393006656E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,8 +51,8 @@
 		04789F3F23411393006656E4 /* MimeoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimeoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04789F4323411393006656E4 /* MimeoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoUITests.swift; sourceTree = "<group>"; };
 		04789F4523411393006656E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		048183002349674200379B52 /* MimeoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoViewController.swift; sourceTree = "<group>"; };
 		049842FB2341199C0002AB6D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		049842FD23411BD00002AB6D /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +133,6 @@
 		049842FA2341195E0002AB6D /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				049842FD23411BD00002AB6D /* CameraView.swift */,
 				049842FB2341199C0002AB6D /* CameraViewController.swift */,
 			);
 			path = Camera;
@@ -146,8 +143,8 @@
 			children = (
 				04789F1E2341138D006656E4 /* AppDelegate.swift */,
 				04789F202341138E006656E4 /* SceneDelegate.swift */,
-				04789F252341138E006656E4 /* ContentView.swift */,
 				04789F2C23411393006656E4 /* LaunchScreen.storyboard */,
+				048183002349674200379B52 /* MimeoViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -303,9 +300,8 @@
 				04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */,
 				049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */,
 				04789F212341138E006656E4 /* SceneDelegate.swift in Sources */,
-				049842FE23411BD00002AB6D /* CameraView.swift in Sources */,
-				04789F262341138E006656E4 /* ContentView.swift in Sources */,
 				04789F242341138E006656E4 /* Mimeo.xcdatamodeld in Sources */,
+				048183012349674200379B52 /* MimeoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

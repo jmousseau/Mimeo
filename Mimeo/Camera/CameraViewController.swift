@@ -7,11 +7,27 @@
 //
 
 import AVFoundation
-import SwiftUI
 import UIKit
+
+/// The camera view controller delegate.
+public protocol CameraViewControllerDelegate {
+
+    /// The camera view controller captured a photo.
+    /// - Parameter cameraViewController: The camera view controller which
+    /// captured the `photo`.
+    /// - Parameter photo: The captured photo.
+    func cameraViewController(
+        _ cameraViewController: CameraViewController,
+        didCapturePhoto photo: AVCapturePhoto
+    )
+
+}
 
 /// A camera view controller.
 public final class CameraViewController: UIViewController {
+
+    /// The camera view controller's delegate.
+    public var delegate: CameraViewControllerDelegate?
 
     // MARK: - View Controller Lifecycle`
 
@@ -280,23 +296,6 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
         // TODO: Some how get the data back to CameraView component. Delegate
         // pattern did not work because in order for the delegate to be weak it
         // must be a class. However, SwiftUI views are structs.
-    }
-
-}
-
-// MARK: - SwiftUI
-
-extension CameraViewController: UIViewControllerRepresentable {
-
-    public func makeUIViewController(context: Context) -> CameraViewController {
-        return CameraViewController()
-    }
-
-    public func updateUIViewController(
-        _ cameraViewController: CameraViewController,
-        context: Context
-    ) {
-        // no-op
     }
 
 }
