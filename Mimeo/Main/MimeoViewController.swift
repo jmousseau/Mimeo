@@ -23,6 +23,14 @@ public final class MimeoViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.cameraViewController.capturePhoto()
+        }
+    }
+
     private func addCameraViewController() {
         cameraViewController.delegate = self
 
@@ -48,8 +56,18 @@ extension MimeoViewController: CameraViewControllerDelegate {
         _ cameraViewController: CameraViewController,
         didCapturePhoto photo: AVCapturePhoto
     ) {
-        // TODO: Run text recognition on the captured image and display the text
-        // on a guassian blur view.
+        guard let image = photo.cgImageRepresentation(),
+            let orientationRawValue = photo.metadata[kCGImagePropertyOrientation as String] as? UInt32,
+            let orientation = CGImagePropertyOrientation(rawValue: orientationRawValue) else {
+            return
+        }
+
+        try! TextRecognizer.text(
+            in: image.takeUnretainedValue(),
+            orientation: orientation
+        ) { text in
+            print(text)
+        }
     }
 
 }

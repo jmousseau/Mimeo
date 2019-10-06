@@ -278,9 +278,11 @@ public final class CameraViewController: UIViewController {
     // MARK: - Photo Capture
 
     public func capturePhoto() {
-        let photoSettings = AVCapturePhotoSettings()
-        photoSettings.isHighResolutionPhotoEnabled = true
-        photoOutput.capturePhoto(with: photoSettings, delegate: self)
+        captureSessionQueue.async {
+            let photoSettings = AVCapturePhotoSettings()
+            photoSettings.isHighResolutionPhotoEnabled = true
+            self.photoOutput.capturePhoto(with: photoSettings, delegate: self)
+        }
     }
 }
 
@@ -293,9 +295,8 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
         didFinishProcessingPhoto photo: AVCapturePhoto,
         error: Error?
     ) {
-        // TODO: Some how get the data back to CameraView component. Delegate
-        // pattern did not work because in order for the delegate to be weak it
-        // must be a class. However, SwiftUI views are structs.
+        guard error == nil else { return }
+        delegate?.cameraViewController(self, didCapturePhoto: photo)
     }
 
 }
