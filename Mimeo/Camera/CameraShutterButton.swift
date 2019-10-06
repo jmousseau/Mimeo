@@ -32,6 +32,19 @@ final class CameraShutterButton: UIControl {
         return outerRingLayer
     }()
 
+    private lazy var imageLayer: CALayer = {
+        let imageLayer = CALayer()
+        imageLayer.backgroundColor = UIColor.clear.cgColor
+        imageLayer.contentsGravity = .resizeAspect
+        return imageLayer
+    }()
+
+    public var image: UIImage? {
+        didSet {
+            imageLayer.contents = image?.cgImage
+        }
+    }
+
     override var isHighlighted: Bool {
         didSet {
             if oldValue != isHighlighted {
@@ -44,6 +57,7 @@ final class CameraShutterButton: UIControl {
         super.init(frame: frame)
 
         layer.addSublayer(innerCircleLayer)
+        layer.addSublayer(imageLayer)
         layer.addSublayer(outerRingLayer)
 
         backgroundColor = .clear
@@ -61,6 +75,8 @@ final class CameraShutterButton: UIControl {
 
         innerCircleLayer.frame = rect
         innerCircleLayer.path = innerCirclePath(in: rect).cgPath
+
+        imageLayer.frame = rect.scaleAndCenter(withRatio: 0.3)
     }
 
     private func animateInnerCircleLayer() {

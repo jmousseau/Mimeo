@@ -29,7 +29,9 @@ public final class ResultsTextView: UIView {
         didSet {
             switch recognitionState {
             case .notStarted:
-                break;
+                activityIndicator.alpha = 0
+                activityIndicator.stopAnimating()
+                text = nil  
 
             case .inProgress:
                 activityIndicator.alpha = 1

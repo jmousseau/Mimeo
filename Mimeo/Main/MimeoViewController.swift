@@ -8,6 +8,7 @@
 
 import AVFoundation
 import UIKit
+import Vision
 
 public final class MimeoViewController: UIViewController {
 
@@ -19,10 +20,15 @@ public final class MimeoViewController: UIViewController {
         return cameraViewController
     }()
 
+    private lazy var cancelImage: UIImage? = {
+        let configuration = UIImage.SymbolConfiguration(weight: .regular)
+        return UIImage(systemName: "multiply", withConfiguration: configuration)
+    }()
+
     private lazy var cameraShutterButton: CameraShutterButton = {
         let button = CameraShutterButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(detectText), for: .touchUpInside)
+        button.addTarget(self, action: #selector(recognizeText), for: .touchUpInside)
         return button
     }()
 
@@ -31,6 +37,8 @@ public final class MimeoViewController: UIViewController {
         resultsViewController.view.translatesAutoresizingMaskIntoConstraints = false
         return resultsViewController
     }()
+
+    private var recognizeTextRequest: VNRecognizeTextRequest?
 
     public init() {
         super.init(nibName: nil, bundle: nil)
@@ -41,6 +49,8 @@ public final class MimeoViewController: UIViewController {
         addCameraViewController()
         addShutterButton()
         addResultsViewController()
+
+        view.bringSubviewToFront(cameraShutterButton)
     }
 
     public required init?(coder: NSCoder) {
@@ -86,8 +96,15 @@ public final class MimeoViewController: UIViewController {
         resultsViewController.recognitionState = .notStarted
     }
 
-    @objc func detectText() {
+    @objc func recognizeText() {
         cameraViewController.capturePhoto()
+    }
+
+    @objc func cancelRecognizeTextRequest() {
+        recognizeTextRequest?.cancel()
+        cameraShutterButton.image = nil
+        cameraShutterButton.addTarget(self, action: #selector(recognizeText), for: .touchUpInside)
+        resultsViewController.recognitionState = .notStarted
     }
 }
 
@@ -105,9 +122,9 @@ extension MimeoViewController: CameraViewControllerDelegate {
             return
         }
 
-        cameraShutterButton.isEnabled = false
+        cameraShutterButton.image = cancelImage
 
-        try! textRecognizer.recognizeText(
+        recognizeTextRequest = try! textRecognizer.recognizeText(
             in: image.takeUnretainedValue(),
             orientation: orientation
         )
@@ -123,8 +140,18 @@ extension MimeoViewController: TextRecognizerDelegate {
         _ textRecognizer: TextRecognizer,
         didUpdateRecognitionState recognitionState: TextRecognizer.RecognitionState
     ) {
+        switch recognitionState {
+        case .notStarted:
+            cameraShutterButton.image = nil
+            cameraShutterButton.addTarget(self, action: #selector(recognizeText), for: .touchUpInside)
+
+        case .inProgress, .complete:
+            cameraShutterButton.image = cancelImage
+            cameraShutterButton.removeTarget(self, action: #selector(recognizeText), for: .touchUpInside)
+            cameraShutterButton.addTarget(self, action: #selector(cancelRecognizeTextRequest), for: .touchUpInside)
+        }
+
         resultsViewController.recognitionState = recognitionState
-        cameraShutterButton.isEnabled = recognitionState != .inProgress
     }
 
 }

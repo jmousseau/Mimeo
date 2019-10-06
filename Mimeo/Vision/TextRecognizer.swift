@@ -59,7 +59,7 @@ public final class TextRecognizer {
         in image: CGImage,
         orientation: CGImagePropertyOrientation,
         minimumConfidence: Float = 0.8
-    ) throws {
+    ) throws -> VNRecognizeTextRequest {
         let handler = VNImageRequestHandler(cgImage: image, orientation: orientation)
         let request = VNRecognizeTextRequest { request, error in
             guard error == nil else {
@@ -96,8 +96,10 @@ public final class TextRecognizer {
 
         self.didUpdateRecognitionState(.inProgress)
         textRecognitionQueue.async {
-            try! handler.perform([request])
+            try? handler.perform([request])
         }
+
+        return request
     }
 
     private func didUpdateRecognitionState(_ recognitionState: RecognitionState) {
