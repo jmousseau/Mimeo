@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04161B32234A502B001F8555 /* ResultsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04161B31234A502B001F8555 /* ResultsTextView.swift */; };
+		04161B34234A5609001F8555 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04161B33234A5609001F8555 /* ResultsViewController.swift */; };
 		04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F1E2341138D006656E4 /* AppDelegate.swift */; };
 		04789F212341138E006656E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F202341138E006656E4 /* SceneDelegate.swift */; };
 		04789F242341138E006656E4 /* Mimeo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04789F222341138E006656E4 /* Mimeo.xcdatamodeld */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04161B31234A502B001F8555 /* ResultsTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTextView.swift; sourceTree = "<group>"; };
+		04161B33234A5609001F8555 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		04789F1B2341138D006656E4 /* Mimeo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mimeo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04789F1E2341138D006656E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04789F202341138E006656E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +92,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04161B30234A4FE4001F8555 /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				04161B31234A502B001F8555 /* ResultsTextView.swift */,
+				04161B33234A5609001F8555 /* ResultsViewController.swift */,
+			);
+			path = Results;
+			sourceTree = "<group>";
+		};
 		04789F122341138D006656E4 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +126,7 @@
 			children = (
 				04789F2F23411393006656E4 /* Info.plist */,
 				04E92D8E234114CC00877507 /* Main */,
+				04161B30234A4FE4001F8555 /* Results */,
 				049842FA2341195E0002AB6D /* Camera */,
 				0481830223496D0600379B52 /* Vision */,
 				04E92D902341150C00877507 /* Store */,
@@ -325,9 +339,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04161B34234A5609001F8555 /* ResultsViewController.swift in Sources */,
 				04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */,
 				04B1C3002349B72D005193EF /* UIDevice.swift in Sources */,
 				049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */,
+				04161B32234A502B001F8555 /* ResultsTextView.swift in Sources */,
 				04818306234987CB00379B52 /* CameraShutterButton.swift in Sources */,
 				04789F212341138E006656E4 /* SceneDelegate.swift in Sources */,
 				04789F242341138E006656E4 /* Mimeo.xcdatamodeld in Sources */,

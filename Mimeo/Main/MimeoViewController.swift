@@ -26,6 +26,12 @@ public final class MimeoViewController: UIViewController {
         return button
     }()
 
+    private lazy var resultsViewController: ResultsViewController = {
+        let resultsViewController = ResultsViewController()
+        resultsViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        return resultsViewController
+    }()
+
     public init() {
         super.init(nibName: nil, bundle: nil)
 
@@ -34,6 +40,7 @@ public final class MimeoViewController: UIViewController {
 
         addCameraViewController()
         addShutterButton()
+        addResultsViewController()
     }
 
     public required init?(coder: NSCoder) {
@@ -62,6 +69,21 @@ public final class MimeoViewController: UIViewController {
             cameraShutterButton.widthAnchor.constraint(equalToConstant: 70),
             cameraShutterButton.heightAnchor.constraint(equalToConstant: 70)
         ])
+    }
+
+    private func addResultsViewController() {
+        addChild(resultsViewController)
+        view.addSubview(resultsViewController.view)
+        resultsViewController.didMove(toParent: self)
+
+        NSLayoutConstraint.activate([
+            resultsViewController.view.leftAnchor.constraint(equalTo: view.leftAnchor),
+            resultsViewController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            resultsViewController.view.rightAnchor.constraint(equalTo: view.rightAnchor),
+            resultsViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+
+        resultsViewController.recognitionState = .notStarted
     }
 
     @objc func detectText() {
@@ -99,11 +121,10 @@ extension MimeoViewController: TextRecognizerDelegate {
 
     public func textRecognizer(
         _ textRecognizer: TextRecognizer,
-        didRecognizeText recognizedText: String
+        didUpdateRecognitionState recognitionState: TextRecognizer.RecognitionState
     ) {
-        cameraShutterButton.isEnabled = true
-
-        print(recognizedText)
+        resultsViewController.recognitionState = recognitionState
+        cameraShutterButton.isEnabled = recognitionState != .inProgress
     }
 
 }

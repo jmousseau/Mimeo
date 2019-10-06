@@ -13,12 +13,12 @@ import Vision
 /// The text recognizer delegate.
 public protocol TextRecognizerDelegate: class {
 
-    /// The text recognizer successfully recognized text.
+    /// The text recognizer did update the recognition state.
     /// - Parameter textRecognizer: The text recognizer.
-    /// - Parameter recognizedText: The recognized text.
+    /// - Parameter recognitionState: The recognition state.
     func textRecognizer(
         _ textRecognizer: TextRecognizer,
-        didRecognizeText recognizedText: String
+        didUpdateRecognitionState recognitionState: TextRecognizer.RecognitionState
     )
 
 }
@@ -26,8 +26,25 @@ public protocol TextRecognizerDelegate: class {
 /// A text recognizer.
 public final class TextRecognizer {
 
+    /// A text recognition state.
+    public enum RecognitionState: Equatable {
+
+        /// Recognition has not started.
+        case notStarted
+
+        /// The recognition algorithm is in progress.
+        case inProgress
+
+        /// The recognition process completed.
+        case complete(recognizedText: String)
+
+    }
+
     /// The text recognizer's delegate.
     public weak var delegate: TextRecognizerDelegate?
+
+    /// The text recognizer's recognition queue.
+    private let textRecognitionQueue = DispatchQueue(label: "Text Recognition Queue")
 
     /// Returns the text recognized in the specified `image` as a concatination
     /// of all recognized strings with a confidence greater than
@@ -70,12 +87,23 @@ public final class TextRecognizer {
                 return recognizedText.string
             })
 
-            self.delegate?.textRecognizer(self, didRecognizeText: recognizedStrings.reduce(into: "", { string, recognizedText in
+            let allRecognizedText = recognizedStrings.reduce(into: "", { string, recognizedText in
                 string.append(" \(recognizedText)")
-            }))
+            })
+
+            self.didUpdateRecognitionState(.complete(recognizedText: allRecognizedText))
         }
 
-        try handler.perform([request])
+        self.didUpdateRecognitionState(.inProgress)
+        textRecognitionQueue.async {
+            try! handler.perform([request])
+        }
+    }
+
+    private func didUpdateRecognitionState(_ recognitionState: RecognitionState) {
+        DispatchQueue.main.async {
+            self.delegate?.textRecognizer(self, didUpdateRecognitionState: recognitionState)
+        }
     }
 
 }
