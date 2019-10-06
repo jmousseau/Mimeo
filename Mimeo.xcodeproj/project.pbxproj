@@ -17,7 +17,10 @@
 		04789F4423411393006656E4 /* MimeoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F4323411393006656E4 /* MimeoUITests.swift */; };
 		048183012349674200379B52 /* MimeoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048183002349674200379B52 /* MimeoViewController.swift */; };
 		0481830423496D4D00379B52 /* TextRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481830323496D4D00379B52 /* TextRecognizer.swift */; };
+		04818306234987CB00379B52 /* CameraShutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04818305234987CB00379B52 /* CameraShutterButton.swift */; };
 		049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049842FB2341199C0002AB6D /* CameraViewController.swift */; };
+		04B1C2FE23499F75005193EF /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1C2FD23499F75005193EF /* CGRect.swift */; };
+		04B1C3002349B72D005193EF /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1C2FF2349B72D005193EF /* UIDevice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +57,10 @@
 		04789F4523411393006656E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		048183002349674200379B52 /* MimeoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoViewController.swift; sourceTree = "<group>"; };
 		0481830323496D4D00379B52 /* TextRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizer.swift; sourceTree = "<group>"; };
+		04818305234987CB00379B52 /* CameraShutterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraShutterButton.swift; sourceTree = "<group>"; };
 		049842FB2341199C0002AB6D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		04B1C2FD23499F75005193EF /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
+		04B1C2FF2349B72D005193EF /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,7 @@
 				049842FA2341195E0002AB6D /* Camera */,
 				0481830223496D0600379B52 /* Vision */,
 				04E92D902341150C00877507 /* Store */,
+				04B1C2FC23499F59005193EF /* Extensions */,
 				04E92D8F234114D600877507 /* Assets */,
 			);
 			path = Mimeo;
@@ -145,8 +152,18 @@
 			isa = PBXGroup;
 			children = (
 				049842FB2341199C0002AB6D /* CameraViewController.swift */,
+				04818305234987CB00379B52 /* CameraShutterButton.swift */,
 			);
 			path = Camera;
+			sourceTree = "<group>";
+		};
+		04B1C2FC23499F59005193EF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				04B1C2FD23499F75005193EF /* CGRect.swift */,
+				04B1C2FF2349B72D005193EF /* UIDevice.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		04E92D8E234114CC00877507 /* Main */ = {
@@ -309,11 +326,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */,
+				04B1C3002349B72D005193EF /* UIDevice.swift in Sources */,
 				049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */,
+				04818306234987CB00379B52 /* CameraShutterButton.swift in Sources */,
 				04789F212341138E006656E4 /* SceneDelegate.swift in Sources */,
 				04789F242341138E006656E4 /* Mimeo.xcdatamodeld in Sources */,
 				0481830423496D4D00379B52 /* TextRecognizer.swift in Sources */,
 				048183012349674200379B52 /* MimeoViewController.swift in Sources */,
+				04B1C2FE23499F75005193EF /* CGRect.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,7 +510,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.Mimeo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -510,7 +530,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.Mimeo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

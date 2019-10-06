@@ -10,13 +10,38 @@ import Foundation
 import UIKit
 import Vision
 
-public struct TextRecognizer {
+/// The text recognizer delegate.
+public protocol TextRecognizerDelegate: class {
 
-    public static func text(
+    /// The text recognizer successfully recognized text.
+    /// - Parameter textRecognizer: The text recognizer.
+    /// - Parameter recognizedText: The recognized text.
+    func textRecognizer(
+        _ textRecognizer: TextRecognizer,
+        didRecognizeText recognizedText: String
+    )
+
+}
+
+/// A text recognizer.
+public final class TextRecognizer {
+
+    /// The text recognizer's delegate.
+    public weak var delegate: TextRecognizerDelegate?
+
+    /// Returns the text recognized in the specified `image` as a concatination
+    /// of all recognized strings with a confidence greater than
+    /// `minimumConfidence`, sorted left to right, top to bottom.
+    /// - Parameter image: The image in which to recognize text.
+    /// - Parameter orientation: The `image`'s orientation
+    /// - Parameter minimumConfidence: The minimum confidence required for a
+    /// text recognition result to be included in the output.
+    /// - Parameter completion: The completion handler called when recognition
+    /// is finished.
+    public func recognizeText(
         in image: CGImage,
         orientation: CGImagePropertyOrientation,
-        minimumConfidence: Float = 0.8,
-        completion: @escaping (String) -> Void
+        minimumConfidence: Float = 0.8
     ) throws {
         let handler = VNImageRequestHandler(cgImage: image, orientation: orientation)
         let request = VNRecognizeTextRequest { request, error in
@@ -37,6 +62,7 @@ public struct TextRecognizer {
             })
 
             let recognizedStrings = topCandidates.compactMap({ recognizedText -> String? in
+                print(recognizedText.string)
                 guard recognizedText.confidence > minimumConfidence else {
                     return nil
                 }
@@ -44,7 +70,7 @@ public struct TextRecognizer {
                 return recognizedText.string
             })
 
-            completion(recognizedStrings.reduce(into: "", { string, recognizedText in
+            self.delegate?.textRecognizer(self, didRecognizeText: recognizedStrings.reduce(into: "", { string, recognizedText in
                 string.append(" \(recognizedText)")
             }))
         }

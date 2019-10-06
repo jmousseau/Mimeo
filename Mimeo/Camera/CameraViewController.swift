@@ -10,7 +10,7 @@ import AVFoundation
 import UIKit
 
 /// The camera view controller delegate.
-public protocol CameraViewControllerDelegate {
+public protocol CameraViewControllerDelegate: class {
 
     /// The camera view controller captured a photo.
     /// - Parameter cameraViewController: The camera view controller which
@@ -27,9 +27,37 @@ public protocol CameraViewControllerDelegate {
 public final class CameraViewController: UIViewController {
 
     /// The camera view controller's delegate.
-    public var delegate: CameraViewControllerDelegate?
+    public weak var delegate: CameraViewControllerDelegate?
 
-    // MARK: - View Controller Lifecycle`
+    /// The last known device orientation that maps to a given user interface
+    /// orientation.
+    private var lastKnownDeviceOrientation: UIDeviceOrientation = .portrait {
+        didSet {
+            guard oldValue != lastKnownDeviceOrientation,
+                let photoOutputConnection = photoOutput.connection(with: .video) else {
+                return
+            }
+
+            photoOutputConnection.videoOrientation = lastKnownDeviceOrientation.videoOrientation
+        }
+    }
+
+    // MARK: - View Controller Lifecycle
+
+    public init() {
+        super.init(nibName: nil, bundle: nil)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(deviceOrientationDidChange(_:)),
+            name: UIDevice.orientationDidChangeNotification,
+            object: nil
+        )
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +79,8 @@ public final class CameraViewController: UIViewController {
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
 
         videoPreviewLayer?.frame = view.bounds
 
@@ -77,7 +107,25 @@ public final class CameraViewController: UIViewController {
             captureSession.stopRunning()
         }
 
+        UIDevice.current.endGeneratingDeviceOrientationNotifications()
+
         super.viewWillDisappear(animated)
+    }
+
+    // MARK: - Orientation Change
+
+    @objc public func deviceOrientationDidChange(_ notification: Notification) {
+        guard let device = notification.object as? UIDevice else {
+            return
+        }
+
+        switch device.orientation {
+        case .portrait, .portraitUpsideDown, .landscapeLeft, .landscapeRight:
+            lastKnownDeviceOrientation = device.orientation
+
+        default:
+            break
+        }
     }
 
     // MARK: - Capture Session
