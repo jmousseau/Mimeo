@@ -16,15 +16,47 @@ public final class ResultsTextView: UIView {
         return blurView
     }()
 
+    private var activityIndicator = UIActivityIndicatorView(style: .large)
+
     private lazy var label: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
+        label.alpha = 0
         return label
     }()
 
-    public var text: String? {
+    public var recognitionState: TextRecognizer.RecognitionState = .notStarted {
+        didSet {
+            switch recognitionState {
+            case .notStarted:
+                break;
+
+            case .inProgress:
+                activityIndicator.alpha = 1
+                activityIndicator.startAnimating()
+
+            case .complete(let recognizedText):
+                text = recognizedText
+            }
+        }
+    }
+
+    private var text: String? {
         didSet {
             label.text = text
+
+            if (label.text != nil) {
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.activityIndicator.alpha = 0
+                    self.label.alpha = 1
+                }) { isFinished in
+                    if (isFinished) {
+                        self.activityIndicator.stopAnimating()
+                    }
+                }
+            } else {
+                label.alpha = 0
+            }
         }
     }
 
@@ -32,6 +64,7 @@ public final class ResultsTextView: UIView {
         super.init(frame: .zero)
 
         addBlurView()
+        addActivityIndicator()
         addLabel()
     }
 
@@ -48,6 +81,16 @@ public final class ResultsTextView: UIView {
             topAnchor.constraint(equalTo: blurView.topAnchor),
             trailingAnchor.constraint(equalTo: blurView.trailingAnchor),
             bottomAnchor.constraint(equalTo: blurView.bottomAnchor)
+        ])
+    }
+
+    private func addActivityIndicator() {
+        addSubview(activityIndicator)
+
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            centerXAnchor.constraint(equalTo: activityIndicator.centerXAnchor),
+            centerYAnchor.constraint(equalTo: activityIndicator.centerYAnchor)
         ])
     }
 

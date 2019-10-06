@@ -27,9 +27,11 @@ public final class ResultsViewController: UIViewController {
                     self.view.alpha = 1
                 }
 
-            case .complete(let recognizedText):
-                resultsTextView.text = recognizedText
+            case .complete:
+                break;
             }
+
+            resultsTextView.recognitionState = recognitionState
         }
     }
 
