@@ -42,6 +42,10 @@ final class CameraShutterButton: UIControl {
     public var image: UIImage? {
         didSet {
             imageLayer.contents = image?.cgImage
+
+            UIView.animate(withDuration: 0.25) {
+                self.outerRingLayer.opacity = self.image == nil ? 1 : 0
+            }
         }
     }
 
