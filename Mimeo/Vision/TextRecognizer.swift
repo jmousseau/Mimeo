@@ -70,12 +70,10 @@ public final class TextRecognizer {
                 return
             }
 
-            let resultsLeftToRightTopToBottom = results.sorted(by: { lhs, rhs -> Bool in
-                return lhs.topLeft.x < rhs.topLeft.x && lhs.topLeft.y > rhs.topLeft.y
-            })
+            let resultsLeftToRightTopToBottom = results.sortedLeftToRightTopToBottom()
 
             let topCandidates = resultsLeftToRightTopToBottom.map({ recognizedTextObservation in
-                return recognizedTextObservation.topCandidates(1).first!
+                return recognizedTextObservation.topCandidate!
             })
 
             let recognizedStrings = topCandidates.compactMap({ recognizedText -> String? in

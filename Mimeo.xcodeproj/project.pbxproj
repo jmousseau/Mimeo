@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04161B32234A502B001F8555 /* ResultsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04161B31234A502B001F8555 /* ResultsTextView.swift */; };
 		04161B34234A5609001F8555 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04161B33234A5609001F8555 /* ResultsViewController.swift */; };
+		045098FF234A7A0000A632F6 /* Vision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045098FE234A7A0000A632F6 /* Vision.swift */; };
 		04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F1E2341138D006656E4 /* AppDelegate.swift */; };
 		04789F212341138E006656E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F202341138E006656E4 /* SceneDelegate.swift */; };
 		04789F242341138E006656E4 /* Mimeo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04789F222341138E006656E4 /* Mimeo.xcdatamodeld */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		04161B31234A502B001F8555 /* ResultsTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTextView.swift; sourceTree = "<group>"; };
 		04161B33234A5609001F8555 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		045098FE234A7A0000A632F6 /* Vision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vision.swift; sourceTree = "<group>"; };
 		04789F1B2341138D006656E4 /* Mimeo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mimeo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04789F1E2341138D006656E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04789F202341138E006656E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				04B1C2FD23499F75005193EF /* CGRect.swift */,
 				04B1C2FF2349B72D005193EF /* UIDevice.swift */,
+				045098FE234A7A0000A632F6 /* Vision.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				04B1C3002349B72D005193EF /* UIDevice.swift in Sources */,
 				049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */,
 				04161B32234A502B001F8555 /* ResultsTextView.swift in Sources */,
+				045098FF234A7A0000A632F6 /* Vision.swift in Sources */,
 				04818306234987CB00379B52 /* CameraShutterButton.swift in Sources */,
 				04789F212341138E006656E4 /* SceneDelegate.swift in Sources */,
 				04789F242341138E006656E4 /* Mimeo.xcdatamodeld in Sources */,
