@@ -11,8 +11,6 @@ import Vision
 
 public final class ResultsTextView: UIView {
 
-    private var activityIndicator = UIActivityIndicatorView(style: .large)
-
     private lazy var label: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -24,13 +22,10 @@ public final class ResultsTextView: UIView {
         didSet {
             switch recognitionState {
             case .notStarted:
-                activityIndicator.alpha = 0
-                activityIndicator.stopAnimating()
                 text = nil  
 
             case .inProgress:
-                activityIndicator.alpha = 1
-                activityIndicator.startAnimating()
+                break
 
             case .complete(let recognizedTextObservations):
                 text = recognizedTextObservations.clustered().map({ cluster -> String in
@@ -50,13 +45,8 @@ public final class ResultsTextView: UIView {
 
             if (label.text != nil) {
                 UIView.animate(withDuration: 0.25, animations: {
-                    self.activityIndicator.alpha = 0
                     self.label.alpha = 1
-                }) { isFinished in
-                    if (isFinished) {
-                        self.activityIndicator.stopAnimating()
-                    }
-                }
+                })
             } else {
                 label.alpha = 0
             }
@@ -66,22 +56,11 @@ public final class ResultsTextView: UIView {
     public init() {
         super.init(frame: .zero)
 
-        addActivityIndicator()
         addLabel()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    private func addActivityIndicator() {
-        addSubview(activityIndicator)
-
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            centerXAnchor.constraint(equalTo: activityIndicator.centerXAnchor),
-            centerYAnchor.constraint(equalTo: activityIndicator.centerYAnchor)
-        ])
     }
 
     private func addLabel() {

@@ -16,6 +16,8 @@ public final class ResultsViewController: UIViewController {
         return blurView
     }()
 
+    private var activityIndicator = UIActivityIndicatorView(style: .large)
+
     private lazy var resultsTextView = ResultsTextView()
 
     public var recognitionState: TextRecognizer.RecognitionState = .notStarted {
@@ -23,14 +25,25 @@ public final class ResultsViewController: UIViewController {
             switch recognitionState {
             case .notStarted:
                 view.alpha = 0
+                activityIndicator.alpha = 0
+                activityIndicator.stopAnimating()
 
             case .inProgress:
                 UIView.animate(withDuration: 0.15) {
                     self.view.alpha = 1
                 }
 
+                activityIndicator.alpha = 1
+                activityIndicator.startAnimating()
+
             case .complete:
-                break;
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.activityIndicator.alpha = 0
+                }) { isFinished in
+                    if (isFinished) {
+                        self.activityIndicator.stopAnimating()
+                    }
+                }
             }
 
             resultsTextView.recognitionState = recognitionState
@@ -41,6 +54,7 @@ public final class ResultsViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
 
         addBlurView()
+        addActivityIndicator()
         addResultsView()
     }
 
@@ -60,6 +74,15 @@ public final class ResultsViewController: UIViewController {
         ])
     }
 
+    private func addActivityIndicator() {
+        view.addSubview(activityIndicator)
+
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            view.centerXAnchor.constraint(equalTo: activityIndicator.centerXAnchor),
+            view.centerYAnchor.constraint(equalTo: activityIndicator.centerYAnchor)
+        ])
+    }
 
     private func addResultsView() {
         view.addSubview(resultsTextView)
