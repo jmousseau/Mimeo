@@ -28,18 +28,17 @@ public final class ResultsTextView: UIView {
                 break
 
             case .complete(let recognizedTextObservations):
-                text = recognizedTextObservations.clustered().map({ cluster -> String in
-                    cluster.observations.sortedLeftToRightTopToBottom().reduce("", { text, observation -> String in
-                        return "\(text) \(observation.topCandidate!.string)"
+                text = recognizedTextObservations
+                    .sortedLeftToRightTopToBottom()
+                    .reduce("", { allText, observation -> String in
+                        let string = observation.topCandidate!.string
+                        return allText.isEmpty ? string : "\(allText) \(string)"
                     })
-                }).reduce("", { existingPargraphs, paragraph in
-                    existingPargraphs + "\n\n" + paragraph
-                })
             }
         }
     }
 
-    private var text: String? {
+    public private(set) var text: String? {
         didSet {
             label.text = text
 

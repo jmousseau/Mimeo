@@ -27,7 +27,9 @@ public final class MimeoViewController: UIViewController {
         return button
     }()
 
-    private lazy var resultsViewController = ResultsViewController()
+    private lazy var resultsViewController: ResultsViewController = {
+        return ResultsViewController(cameraShutterView: cameraShutterButton)
+    }()
 
     private var recognizeTextRequest: VNRecognizeTextRequest?
 
