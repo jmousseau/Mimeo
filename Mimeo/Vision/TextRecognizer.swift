@@ -36,7 +36,7 @@ public final class TextRecognizer {
         case inProgress
 
         /// The recognition process completed.
-        case complete(recognizedText: String)
+        case complete(recognizedTextObservations: [VNRecognizedTextObservation])
 
     }
 
@@ -58,7 +58,7 @@ public final class TextRecognizer {
     public func recognizeText(
         in image: CGImage,
         orientation: CGImagePropertyOrientation,
-        minimumConfidence: Float = 0.8
+        minimumConfidence: Float = 0.49
     ) throws -> VNRecognizeTextRequest {
         let handler = VNImageRequestHandler(cgImage: image, orientation: orientation)
         let request = VNRecognizeTextRequest { request, error in
@@ -70,26 +70,17 @@ public final class TextRecognizer {
                 return
             }
 
-            let resultsLeftToRightTopToBottom = results.sortedLeftToRightTopToBottom()
-
-            let topCandidates = resultsLeftToRightTopToBottom.map({ recognizedTextObservation in
-                return recognizedTextObservation.topCandidate!
-            })
-
-            let recognizedStrings = topCandidates.compactMap({ recognizedText -> String? in
-                print(recognizedText.string)
-                guard recognizedText.confidence > minimumConfidence else {
-                    return nil
+            let recognizedTextObservations = results.filter({ recognizedTextObservation in
+                guard let topCandidate = recognizedTextObservation.topCandidate else {
+                    return false
                 }
 
-                return recognizedText.string
+                return topCandidate.confidence > minimumConfidence
             })
 
-            let allRecognizedText = recognizedStrings.reduce(into: "", { string, recognizedText in
-                string.append(" \(recognizedText)")
-            })
-
-            self.didUpdateRecognitionState(.complete(recognizedText: allRecognizedText))
+            self.didUpdateRecognitionState(.complete(
+                recognizedTextObservations: recognizedTextObservations
+            ))
         }
 
         self.didUpdateRecognitionState(.inProgress)

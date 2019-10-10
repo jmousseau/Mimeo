@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Vision
 
 public final class ResultsTextView: UIView {
 
@@ -37,8 +38,14 @@ public final class ResultsTextView: UIView {
                 activityIndicator.alpha = 1
                 activityIndicator.startAnimating()
 
-            case .complete(let recognizedText):
-                text = recognizedText
+            case .complete(let recognizedTextObservations):
+                text = recognizedTextObservations.clustered().map({ cluster -> String in
+                    cluster.observations.sortedLeftToRightTopToBottom().reduce("", { text, observation -> String in
+                        return "\(text) \(observation.topCandidate!.string)"
+                    })
+                }).reduce("", { existingPargraphs, paragraph in
+                    existingPargraphs + "\n\n" + paragraph
+                })
             }
         }
     }
