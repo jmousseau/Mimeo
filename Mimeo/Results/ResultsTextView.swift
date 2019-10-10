@@ -11,12 +11,6 @@ import Vision
 
 public final class ResultsTextView: UIView {
 
-    private var blurView: UIVisualEffectView = {
-        let blurView = UIVisualEffectView()
-        blurView.effect = UIBlurEffect(style: .systemMaterial)
-        return blurView
-    }()
-
     private var activityIndicator = UIActivityIndicatorView(style: .large)
 
     private lazy var label: UILabel = {
@@ -72,25 +66,12 @@ public final class ResultsTextView: UIView {
     public init() {
         super.init(frame: .zero)
 
-        addBlurView()
         addActivityIndicator()
         addLabel()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    private func addBlurView() {
-        addSubview(blurView)
-
-        blurView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            leadingAnchor.constraint(equalTo: blurView.leadingAnchor),
-            topAnchor.constraint(equalTo: blurView.topAnchor),
-            trailingAnchor.constraint(equalTo: blurView.trailingAnchor),
-            bottomAnchor.constraint(equalTo: blurView.bottomAnchor)
-        ])
     }
 
     private func addActivityIndicator() {

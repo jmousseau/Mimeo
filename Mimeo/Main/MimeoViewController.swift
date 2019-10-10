@@ -14,11 +14,7 @@ public final class MimeoViewController: UIViewController {
 
     private let textRecognizer = TextRecognizer()
 
-    private lazy var cameraViewController: CameraViewController = {
-        let cameraViewController = CameraViewController()
-        cameraViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        return cameraViewController
-    }()
+    private let cameraViewController = CameraViewController()
 
     private lazy var cancelImage: UIImage? = {
         let configuration = UIImage.SymbolConfiguration(weight: .regular)
@@ -27,16 +23,11 @@ public final class MimeoViewController: UIViewController {
 
     private lazy var cameraShutterButton: CameraShutterButton = {
         let button = CameraShutterButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(recognizeText), for: .touchUpInside)
         return button
     }()
 
-    private lazy var resultsViewController: ResultsViewController = {
-        let resultsViewController = ResultsViewController()
-        resultsViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        return resultsViewController
-    }()
+    private lazy var resultsViewController = ResultsViewController()
 
     private var recognizeTextRequest: VNRecognizeTextRequest?
 
@@ -62,6 +53,7 @@ public final class MimeoViewController: UIViewController {
         view.addSubview(cameraViewController.view)
         cameraViewController.didMove(toParent: self)
 
+        cameraViewController.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cameraViewController.view.leftAnchor.constraint(equalTo: view.leftAnchor),
             cameraViewController.view.topAnchor.constraint(equalTo: view.topAnchor),
@@ -73,6 +65,7 @@ public final class MimeoViewController: UIViewController {
     private func addShutterButton() {
         view.addSubview(cameraShutterButton)
 
+        cameraShutterButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cameraShutterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: cameraShutterButton.bottomAnchor, constant: 20.0),
@@ -86,6 +79,7 @@ public final class MimeoViewController: UIViewController {
         view.addSubview(resultsViewController.view)
         resultsViewController.didMove(toParent: self)
 
+        resultsViewController.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             resultsViewController.view.leftAnchor.constraint(equalTo: view.leftAnchor),
             resultsViewController.view.topAnchor.constraint(equalTo: view.topAnchor),

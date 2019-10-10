@@ -10,11 +10,13 @@ import UIKit
 
 public final class ResultsViewController: UIViewController {
 
-    private lazy var resultsTextView: ResultsTextView = {
-        let resultsView = ResultsTextView()
-        resultsView.translatesAutoresizingMaskIntoConstraints = false
-        return resultsView
+    private var blurView: UIVisualEffectView = {
+        let blurView = UIVisualEffectView()
+        blurView.effect = UIBlurEffect(style: .systemMaterial)
+        return blurView
     }()
+
+    private lazy var resultsTextView = ResultsTextView()
 
     public var recognitionState: TextRecognizer.RecognitionState = .notStarted {
         didSet {
@@ -38,6 +40,7 @@ public final class ResultsViewController: UIViewController {
     public init() {
         super.init(nibName: nil, bundle: nil)
 
+        addBlurView()
         addResultsView()
     }
 
@@ -45,14 +48,28 @@ public final class ResultsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private func addBlurView() {
+        view.addSubview(blurView)
+
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            view.leadingAnchor.constraint(equalTo: blurView.leadingAnchor),
+            view.topAnchor.constraint(equalTo: blurView.topAnchor),
+            view.trailingAnchor.constraint(equalTo: blurView.trailingAnchor),
+            view.bottomAnchor.constraint(equalTo: blurView.bottomAnchor)
+        ])
+    }
+
+
     private func addResultsView() {
         view.addSubview(resultsTextView)
 
+        resultsTextView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            resultsTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            resultsTextView.topAnchor.constraint(equalTo: view.topAnchor),
-            resultsTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            resultsTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            view.leadingAnchor.constraint(equalTo: resultsTextView.leadingAnchor),
+            view.topAnchor.constraint(equalTo: resultsTextView.topAnchor),
+            view.trailingAnchor.constraint(equalTo: resultsTextView.trailingAnchor),
+            view.bottomAnchor.constraint(equalTo: resultsTextView.bottomAnchor)
         ])
     }
 
