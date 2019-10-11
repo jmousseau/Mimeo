@@ -37,20 +37,12 @@ public final class MimeoViewController: UIViewController {
     }()
 
     private lazy var cameraShutterButtonStackView: UIStackView = {
-        let cameraShutterButtonVerticalStackView = UIStackView()
-        cameraShutterButtonVerticalStackView.axis = .vertical
-        cameraShutterButtonVerticalStackView.distribution = .equalCentering
-        cameraShutterButtonVerticalStackView.addArrangedSubview(UIView())
-        cameraShutterButtonVerticalStackView.addArrangedSubview(cameraShutterButton)
-        cameraShutterButtonVerticalStackView.addArrangedSubview(UIView())
-
         let cameraShutterButtonStackView = UIStackView()
-        cameraShutterButtonStackView.axis = .horizontal
+        cameraShutterButtonStackView.axis = .vertical
         cameraShutterButtonStackView.distribution = .equalCentering
         cameraShutterButtonStackView.addArrangedSubview(UIView())
-        cameraShutterButtonStackView.addArrangedSubview(cameraShutterButtonVerticalStackView)
+        cameraShutterButtonStackView.addArrangedSubview(cameraShutterButton)
         cameraShutterButtonStackView.addArrangedSubview(UIView())
-
         return cameraShutterButtonStackView
     }()
 
@@ -140,8 +132,7 @@ public final class MimeoViewController: UIViewController {
         cameraShutterButton.translatesAutoresizingMaskIntoConstraints = false
         cameraShutterButtonStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cameraShutterButtonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            cameraShutterButtonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            cameraShutterButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             cameraShutterButtonStackView.topAnchor.constraint(equalTo: cameraOverlayView.bottomAnchor),
             cameraShutterButtonStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             cameraShutterButton.heightAnchor.constraint(equalToConstant: 70),
