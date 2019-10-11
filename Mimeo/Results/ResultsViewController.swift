@@ -8,18 +8,6 @@
 
 import UIKit
 
-public enum ResultsLayout: String, CaseIterable, PreferenceStorable {
-
-    public static let preferenceKey = "resultsLayout"
-
-    public static let defaultPreferenceValue = Self.plain.rawValue
-
-    case plain = "plain"
-
-    case clustered = "clustered"
-
-}
-
 public final class ResultsViewController: UIViewController {
 
     private let preferencesStore = PreferencesStore.default()
@@ -42,7 +30,7 @@ public final class ResultsViewController: UIViewController {
                     animated: false
                 )
 
-            case .clustered:
+            case .grouped:
                 resultsLayoutSegmentedControl.insertSegment(
                     withTitle: "Grouped",
                     at: index,
@@ -86,18 +74,17 @@ public final class ResultsViewController: UIViewController {
 
     private var activityIndicator = UIActivityIndicatorView(style: .large)
 
-    private var resultsTextView = ResultsTextView()
+    private var resultsCollectionView = ResultsCollectionView()
 
     public var resultsLayout: ResultsLayout = .plain {
         didSet {
             preferencesStore.set(resultsLayout)
 
-            switch resultsLayout {
-            case .plain:
-                addResultsTextView()
-            case .clustered:
-                resultsTextView.removeFromSuperview()
+            if resultsCollectionView.superview == nil {
+                addResultsCollectionView()
             }
+
+            resultsCollectionView.state = (recognitionState, resultsLayout)
         }
     }
 
@@ -134,7 +121,7 @@ public final class ResultsViewController: UIViewController {
                 }
             }
 
-            resultsTextView.recognitionState = recognitionState
+            resultsCollectionView.state = (recognitionState, resultsLayout)
         }
     }
 
@@ -186,15 +173,21 @@ public final class ResultsViewController: UIViewController {
         ])
     }
 
-    private func addResultsTextView() {
-        view.addSubview(resultsTextView)
+    private func addResultsCollectionView() {
+        view.addSubview(resultsCollectionView)
 
-        resultsTextView.translatesAutoresizingMaskIntoConstraints = false
+        resultsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            view.leadingAnchor.constraint(equalTo: resultsTextView.leadingAnchor),
-            resultsLayoutSegmentedControl.bottomAnchor.constraint(equalTo: resultsTextView.topAnchor),
-            view.trailingAnchor.constraint(equalTo: resultsTextView.trailingAnchor),
-            resultsTextView.bottomAnchor.constraint(equalTo: (cameraShutterView?.topAnchor ?? view.bottomAnchor))
+            view.leadingAnchor.constraint(equalTo: resultsCollectionView.leadingAnchor),
+            resultsLayoutSegmentedControl.bottomAnchor.constraint(
+                equalTo: resultsCollectionView.topAnchor,
+                constant: -32
+            ),
+            view.trailingAnchor.constraint(equalTo: resultsCollectionView.trailingAnchor),
+            resultsCollectionView.bottomAnchor.constraint(
+                equalTo: (cameraShutterView?.topAnchor ?? view.bottomAnchor),
+                constant: -32
+            )
         ])
     }
 
@@ -224,6 +217,6 @@ public final class ResultsViewController: UIViewController {
     }
 
     @objc private func copyTextToPasteboard() {
-        UIPasteboard.general.string = resultsTextView.text
+        UIPasteboard.general.string = resultsCollectionView.allRecognizedText
     }
 }
