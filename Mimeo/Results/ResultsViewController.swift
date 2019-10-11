@@ -198,7 +198,7 @@ public final class ResultsViewController: UIViewController {
 
         if let cameraShutterView = cameraShutterView {
             NSLayoutConstraint.activate([
-                copyAllButton.leadingAnchor.constraint(equalTo: cameraShutterView.trailingAnchor),
+                copyAllButton.leadingAnchor.constraint(equalTo: view.centerXAnchor),
                 copyAllButton.centerYAnchor.constraint(equalTo: cameraShutterView.centerYAnchor),
                 copyAllButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
             ])
