@@ -36,16 +36,6 @@ public final class MimeoViewController: UIViewController {
         return UIImage(systemName: "multiply", withConfiguration: configuration)
     }()
 
-    private lazy var cameraShutterButtonStackView: UIStackView = {
-        let cameraShutterButtonStackView = UIStackView()
-        cameraShutterButtonStackView.axis = .vertical
-        cameraShutterButtonStackView.distribution = .equalCentering
-        cameraShutterButtonStackView.addArrangedSubview(UIView())
-        cameraShutterButtonStackView.addArrangedSubview(cameraShutterButton)
-        cameraShutterButtonStackView.addArrangedSubview(UIView())
-        return cameraShutterButtonStackView
-    }()
-
     private lazy var cameraShutterButton: CameraShutterButton = {
         let button = CameraShutterButton()
         button.addTarget(self, action: #selector(recognizeText), for: .touchUpInside)
@@ -71,7 +61,7 @@ public final class MimeoViewController: UIViewController {
         addShutterButton()
         addResultsViewController()
 
-        view.bringSubviewToFront(cameraShutterButtonStackView)
+        view.bringSubviewToFront(cameraShutterButton)
     }
 
     public required init?(coder: NSCoder) {
@@ -127,14 +117,22 @@ public final class MimeoViewController: UIViewController {
     }
 
     private func addShutterButton() {
-        view.addSubview(cameraShutterButtonStackView)
+        let topLayoutGuide = UILayoutGuide()
+        let bottomLayoutGuide = UILayoutGuide()
+
+        cameraShutterButton.addLayoutGuide(topLayoutGuide)
+        cameraShutterButton.addLayoutGuide(bottomLayoutGuide)
+
+        view.addSubview(cameraShutterButton)
 
         cameraShutterButton.translatesAutoresizingMaskIntoConstraints = false
-        cameraShutterButtonStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cameraShutterButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            cameraShutterButtonStackView.topAnchor.constraint(equalTo: cameraOverlayView.bottomAnchor),
-            cameraShutterButtonStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            topLayoutGuide.heightAnchor.constraint(equalTo: bottomLayoutGuide.heightAnchor),
+            topLayoutGuide.topAnchor.constraint(equalTo: cameraOverlayView.bottomAnchor),
+            topLayoutGuide.bottomAnchor.constraint(equalTo: cameraShutterButton.topAnchor),
+            bottomLayoutGuide.topAnchor.constraint(equalTo: cameraShutterButton.bottomAnchor),
+            bottomLayoutGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            cameraShutterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             cameraShutterButton.heightAnchor.constraint(equalToConstant: 70),
             cameraShutterButton.widthAnchor.constraint(equalToConstant: 70)
         ])
