@@ -26,4 +26,14 @@ public enum ResultsLayout: String, CaseIterable, PreferenceStorable {
     /// with spaces.
     case grouped = "grouped"
 
+    /// Is the results layout in beta?
+    public var isBeta: Bool {
+        switch self {
+        case .plain:
+            return false
+
+        case .grouped:
+            return true
+        }
+    }
 }

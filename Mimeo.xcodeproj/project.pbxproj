@@ -26,6 +26,7 @@
 		048183012349674200379B52 /* MimeoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048183002349674200379B52 /* MimeoViewController.swift */; };
 		0481830423496D4D00379B52 /* TextRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481830323496D4D00379B52 /* TextRecognizer.swift */; };
 		04818306234987CB00379B52 /* CameraShutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04818305234987CB00379B52 /* CameraShutterButton.swift */; };
+		04855D7E2354245B00ACB0A2 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04855D7D2354245B00ACB0A2 /* InsetLabel.swift */; };
 		049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049842FB2341199C0002AB6D /* CameraViewController.swift */; };
 		04B1C2FE23499F75005193EF /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1C2FD23499F75005193EF /* CGRect.swift */; };
 		04B1C3002349B72D005193EF /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1C2FF2349B72D005193EF /* UIDevice.swift */; };
@@ -74,6 +75,7 @@
 		048183002349674200379B52 /* MimeoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoViewController.swift; sourceTree = "<group>"; };
 		0481830323496D4D00379B52 /* TextRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizer.swift; sourceTree = "<group>"; };
 		04818305234987CB00379B52 /* CameraShutterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraShutterButton.swift; sourceTree = "<group>"; };
+		04855D7D2354245B00ACB0A2 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		049842FB2341199C0002AB6D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		04B1C2FD23499F75005193EF /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		04B1C2FF2349B72D005193EF /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				049842FA2341195E0002AB6D /* Camera */,
 				0481830223496D0600379B52 /* Vision */,
 				04E92D902341150C00877507 /* Store */,
+				04855D7C2354244A00ACB0A2 /* Views */,
 				04B1C2FC23499F59005193EF /* Extensions */,
 				04E92D8F234114D600877507 /* Assets */,
 			);
@@ -183,6 +186,14 @@
 				0481830323496D4D00379B52 /* TextRecognizer.swift */,
 			);
 			path = Vision;
+			sourceTree = "<group>";
+		};
+		04855D7C2354244A00ACB0A2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				04855D7D2354245B00ACB0A2 /* InsetLabel.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		049842FA2341195E0002AB6D /* Camera */ = {
@@ -375,6 +386,7 @@
 				041370A7234EC96D000BC316 /* PreferencesStore.swift in Sources */,
 				045098FF234A7A0000A632F6 /* Vision.swift in Sources */,
 				040F59BC2350000E00740E91 /* ResultsCollectionView.swift in Sources */,
+				04855D7E2354245B00ACB0A2 /* InsetLabel.swift in Sources */,
 				04818306234987CB00379B52 /* CameraShutterButton.swift in Sources */,
 				04789F212341138E006656E4 /* SceneDelegate.swift in Sources */,
 				04789F242341138E006656E4 /* Mimeo.xcdatamodeld in Sources */,
