@@ -32,7 +32,6 @@ public final class ResultsCollectionView: UICollectionView {
             copyButton.setImage(copyImage, for: .normal)
             copyButton.setTitle(" Copy", for: .normal)
             copyButton.setTitleColor(.systemYellow, for: .normal)
-            // copyButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
             copyButton.addTarget(
                 self,
                 action: #selector(didPressCopyButton),

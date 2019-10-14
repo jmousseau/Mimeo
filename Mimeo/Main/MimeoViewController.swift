@@ -19,8 +19,9 @@ public final class MimeoViewController: UIViewController {
     private lazy var instructionsLabel: UILabel = {
         let instructionsLabel = UILabel()
         instructionsLabel.numberOfLines = 0
-        instructionsLabel.text = "Take a photo of printed text."
+        instructionsLabel.text = "Photograph printed text."
         instructionsLabel.textAlignment = .center
+        instructionsLabel.textColor = .white
         return instructionsLabel
     }()
 
