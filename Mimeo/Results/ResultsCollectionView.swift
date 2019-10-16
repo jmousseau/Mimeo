@@ -6,6 +6,7 @@
 //  Copyright © 2019 Jack Mousseau. All rights reserved.
 //
 
+import SpriteKit
 import UIKit
 
 public final class ResultsCollectionView: UICollectionView {
@@ -18,6 +19,15 @@ public final class ResultsCollectionView: UICollectionView {
             let label = UILabel()
             label.numberOfLines = 0
             return label
+        }()
+
+        private lazy var dissolvingTextView: DissolvingTextView = {
+            let dissolvingTextView = DissolvingTextView()
+            dissolvingTextView.presentScene(SKScene())
+            dissolvingTextView.allowsTransparency = true
+            dissolvingTextView.scene?.scaleMode = .resizeFill
+            dissolvingTextView.scene?.backgroundColor = .clear
+            return dissolvingTextView
         }()
 
         private lazy var copyButton: UIButton = {
@@ -63,6 +73,10 @@ public final class ResultsCollectionView: UICollectionView {
         public var text: String? {
             didSet {
                 label.text = text
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.dissolvingTextView.preload(view: self.label)
+                }
             }
         }
 
@@ -76,6 +90,7 @@ public final class ResultsCollectionView: UICollectionView {
             super.init(frame: frame)
 
             addStackView()
+            addDissolvingTextView()
         }
 
         public required init?(coder: NSCoder) {
@@ -94,13 +109,29 @@ public final class ResultsCollectionView: UICollectionView {
             ])
         }
 
+        private func addDissolvingTextView() {
+            addSubview(dissolvingTextView)
+
+            dissolvingTextView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                dissolvingTextView.leadingAnchor.constraint(equalTo: label.leadingAnchor),
+                dissolvingTextView.topAnchor.constraint(equalTo: label.topAnchor),
+                dissolvingTextView.trailingAnchor.constraint(equalTo: label.trailingAnchor),
+                dissolvingTextView.bottomAnchor.constraint(equalTo: label.bottomAnchor)
+            ])
+        }
 
         @objc private func didPressCopyButton() {
             guard let text = label.text else {
                 return
             }
 
+            dissolveText()
             didCopy?(text)
+        }
+
+        public func dissolveText() {
+            dissolvingTextView.dissolveText()
         }
 
     }
@@ -156,10 +187,6 @@ public final class ResultsCollectionView: UICollectionView {
         }
     }
 
-    public var allRecognizedText: String {
-        recognizedText.joined(separator: " ")
-    }
-
     public convenience init(frame: CGRect) {
         let size = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
@@ -181,6 +208,18 @@ public final class ResultsCollectionView: UICollectionView {
         alwaysBounceVertical = true
 
         register(Cell.classForCoder(), forCellWithReuseIdentifier: Cell.identifier)
+    }
+
+    public func copyAllRecognizedText() -> String {
+        visibleCells.forEach { cell in
+            guard let cell = cell as? Cell else {
+                return
+            }
+
+            cell.dissolveText()
+        }
+
+        return recognizedText.joined(separator: " ")
     }
 
 }
