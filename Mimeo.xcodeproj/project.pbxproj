@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,6 +30,8 @@
 		049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049842FB2341199C0002AB6D /* CameraViewController.swift */; };
 		04B1C2FE23499F75005193EF /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1C2FD23499F75005193EF /* CGRect.swift */; };
 		04B1C3002349B72D005193EF /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1C2FF2349B72D005193EF /* UIDevice.swift */; };
+		04D0EA012356B68C00B1BD95 /* SwiftImage in Frameworks */ = {isa = PBXBuildFile; productRef = 04D0EA002356B68C00B1BD95 /* SwiftImage */; };
+		04FAF7732354BFBE007AD518 /* DissolvingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAF7722354BFBE007AD518 /* DissolvingTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,7 @@
 		049842FB2341199C0002AB6D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		04B1C2FD23499F75005193EF /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		04B1C2FF2349B72D005193EF /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
+		04FAF7722354BFBE007AD518 /* DissolvingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DissolvingTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D0EA012356B68C00B1BD95 /* SwiftImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +122,7 @@
 		04161B30234A4FE4001F8555 /* Results */ = {
 			isa = PBXGroup;
 			children = (
+				04FAF7722354BFBE007AD518 /* DissolvingTextView.swift */,
 				040F59BB2350000E00740E91 /* ResultsCollectionView.swift */,
 				04161B33234A5609001F8555 /* ResultsViewController.swift */,
 				040F59BF2350004800740E91 /* ResultsLayout.swift */,
@@ -261,6 +266,9 @@
 			dependencies = (
 			);
 			name = Mimeo;
+			packageProductDependencies = (
+				04D0EA002356B68C00B1BD95 /* SwiftImage */,
+			);
 			productName = Mimeo;
 			productReference = 04789F1B2341138D006656E4 /* Mimeo.app */;
 			productType = "com.apple.product-type.application";
@@ -333,6 +341,9 @@
 				Base,
 			);
 			mainGroup = 04789F122341138D006656E4;
+			packageReferences = (
+				04D0E9FF2356B68C00B1BD95 /* XCRemoteSwiftPackageReference "swift-image" */,
+			);
 			productRefGroup = 04789F1C2341138D006656E4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -378,6 +389,7 @@
 			files = (
 				04722971234B8ABF001A6A4C /* Math.swift in Sources */,
 				041370AA234EC9EA000BC316 /* KeyValueStore.swift in Sources */,
+				04FAF7732354BFBE007AD518 /* DissolvingTextView.swift in Sources */,
 				040F59C02350004800740E91 /* ResultsLayout.swift in Sources */,
 				04161B34234A5609001F8555 /* ResultsViewController.swift in Sources */,
 				04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */,
@@ -718,6 +730,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		04D0E9FF2356B68C00B1BD95 /* XCRemoteSwiftPackageReference "swift-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/koher/swift-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		04D0EA002356B68C00B1BD95 /* SwiftImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04D0E9FF2356B68C00B1BD95 /* XCRemoteSwiftPackageReference "swift-image" */;
+			productName = SwiftImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		04789F222341138E006656E4 /* Mimeo.xcdatamodeld */ = {

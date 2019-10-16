@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SpriteKit
 
 public final class ResultsViewController: UIViewController {
 
@@ -88,12 +89,22 @@ public final class ResultsViewController: UIViewController {
 
     private var resultsCollectionView = ResultsCollectionView()
 
+    private var dissolvingTextView: DissolvingTextView = {
+        let dissolvingTextView = DissolvingTextView()
+        dissolvingTextView.presentScene(SKScene())
+        dissolvingTextView.allowsTransparency = true
+        dissolvingTextView.scene?.scaleMode = .resizeFill
+        dissolvingTextView.scene?.backgroundColor = .clear
+        return dissolvingTextView
+    }()
+
     public var resultsLayout: ResultsLayout = .plain {
         didSet {
             preferencesStore.set(resultsLayout)
 
             if resultsCollectionView.superview == nil {
                 addResultsCollectionView()
+                addDissolvingTextView()
             }
 
             UIView.animate(withDuration: 0.25) {
@@ -106,6 +117,8 @@ public final class ResultsViewController: UIViewController {
 
     public var recognitionState: TextRecognizer.RecognitionState = .notStarted {
         didSet {
+            resultsCollectionView.state = (recognitionState, resultsLayout)
+
             switch recognitionState {
             case .notStarted:
                 view.alpha = 0
@@ -133,13 +146,14 @@ public final class ResultsViewController: UIViewController {
                     if (isFinished) {
                         self.activityIndicator.stopAnimating()
                         self.copyAllButton.isEnabled = true
+                        self.dissolvingTextView.preload(view: self.resultsCollectionView)
                     }
                 }
             }
-
-            resultsCollectionView.state = (recognitionState, resultsLayout)
         }
     }
+
+    private let dispatchQueue = DispatchQueue(label: "jack")
 
     private weak var cameraShutterView: UIView?
 
@@ -218,6 +232,18 @@ public final class ResultsViewController: UIViewController {
         ])
     }
 
+    private func addDissolvingTextView() {
+        view.addSubview(dissolvingTextView)
+
+        dissolvingTextView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dissolvingTextView.leadingAnchor.constraint(equalTo: resultsCollectionView.leadingAnchor),
+            dissolvingTextView.topAnchor.constraint(equalTo: resultsCollectionView.topAnchor),
+            dissolvingTextView.trailingAnchor.constraint(equalTo: resultsCollectionView.trailingAnchor),
+            dissolvingTextView.bottomAnchor.constraint(equalTo: resultsCollectionView.bottomAnchor)
+        ])
+    }
+
     private func addCopyAllButton() {
         view.addSubview(copyAllButton)
 
@@ -244,6 +270,7 @@ public final class ResultsViewController: UIViewController {
     }
 
     @objc private func copyTextToPasteboard() {
+        dissolvingTextView.dissolveText()
         UIPasteboard.general.string = resultsCollectionView.allRecognizedText
     }
 }
