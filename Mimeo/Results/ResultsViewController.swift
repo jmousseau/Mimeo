@@ -62,6 +62,7 @@ public final class ResultsViewController: UIViewController {
         betaLabel.backgroundColor = .systemGreen
         betaLabel.clipsToBounds = true
         betaLabel.layer.cornerRadius = 6
+        betaLabel.alpha = resultsLayout.isBeta ? 1 : 0
         return betaLabel
     }()
 
@@ -89,7 +90,7 @@ public final class ResultsViewController: UIViewController {
 
     private var resultsCollectionView = ResultsCollectionView()
 
-    public var resultsLayout: ResultsLayout = .plain {
+    public var resultsLayout: ResultsLayout {
         didSet {
             preferencesStore.set(resultsLayout)
 
@@ -147,9 +148,10 @@ public final class ResultsViewController: UIViewController {
     private weak var cameraShutterView: UIView?
 
     public init(cameraShutterView: UIView) {
-        super.init(nibName: nil, bundle: nil)
-
+        self.resultsLayout = preferencesStore.get(ResultsLayout.self)
         self.cameraShutterView = cameraShutterView
+
+        super.init(nibName: nil, bundle: nil)
 
         addBlurView()
         addResultsLayoutSegmentedControl()
