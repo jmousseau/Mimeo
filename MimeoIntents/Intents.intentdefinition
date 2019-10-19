@@ -137,8 +137,28 @@
 						<true/>
 					</dict>
 					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>Unable to recognize text.</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>LZkOCq</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Unable to recognize text.</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>DWkc6d</string>
 						<key>INIntentResponseCodeName</key>
 						<string>failure</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>The image provided was too large. Try resizing the image before passing it to the Recognize Text action.</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>xbNnMQ</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>The image provided was too large. Try resizing the image before passing it to the Recognize Text action.</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>YZXeFK</string>
+						<key>INIntentResponseCodeName</key>
+						<string>largeImage</string>
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>

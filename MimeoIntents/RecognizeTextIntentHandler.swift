@@ -17,8 +17,12 @@ public final class RecognizeTextIntentHandler: NSObject, RecognizeTextIntentHand
         intent: RecognizeTextIntent,
         completion: @escaping (RecognizeTextIntentResponse) -> Void
     ) {
-        guard let data = intent.image?.data,
-            let image = UIImage(data: data),
+        guard let data = intent.image?.data, data.count <= 70_000 else {
+            completion(RecognizeTextIntentResponse(code: .largeImage, userActivity: nil))
+            return
+        }
+
+        guard let image = UIImage(data: data),
             let cgImage = image.cgImage else {
                 completion(RecognizeTextIntentResponse(code: .failure, userActivity: nil))
                 return
