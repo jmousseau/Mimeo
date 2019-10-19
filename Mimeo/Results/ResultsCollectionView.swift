@@ -151,26 +151,13 @@ public final class ResultsCollectionView: UICollectionView {
                 break
 
             case (.complete(let recognizedTextObservations), .plain):
-                recognizedText = [recognizedTextObservations
-                    .sortedLeftToRightTopToBottom()
-                    .compactMap({ observation in
-                        observation.topCandidate?.string
-                    })
-                    .joined(separator: " ")]
+                recognizedText = [recognizedTextObservations.plainText()]
 
             case (.complete(let recognizedTextObservations), .grouped):
                 if let groupedRecognizedText = cachedGroupedRecognizedText {
                     recognizedText = groupedRecognizedText
                 } else {
-                    cachedGroupedRecognizedText = recognizedTextObservations
-                        .clustered()
-                        .map({ cluster in
-                            cluster.observations
-                                .compactMap({ observation in
-                                    observation.topCandidate?.string
-                                })
-                                .joined(separator: " ")
-                        })
+                    cachedGroupedRecognizedText = recognizedTextObservations.groupedText()
                 }
             }
         }

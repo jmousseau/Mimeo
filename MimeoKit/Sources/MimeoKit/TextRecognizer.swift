@@ -6,23 +6,8 @@
 //  Copyright © 2019 Jack Mousseau. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import Vision
-
-/// The text recognizer delegate.
-@available(iOS 13.0, *)
-public protocol TextRecognizerDelegate: class {
-
-    /// The text recognizer did update the recognition state.
-    /// - Parameter textRecognizer: The text recognizer.
-    /// - Parameter recognitionState: The recognition state.
-    func textRecognizer(
-        _ textRecognizer: TextRecognizer,
-        didUpdateRecognitionState recognitionState: TextRecognizer.RecognitionState
-    )
-
-}
 
 /// A text recognizer.
 @available(iOS 13.0, *)
@@ -42,9 +27,6 @@ public final class TextRecognizer {
 
     }
 
-    /// The text recognizer's delegate.
-    public weak var delegate: TextRecognizerDelegate?
-
     /// The text recognizer's recognition queue.
     private let textRecognitionQueue = DispatchQueue(label: "Text Recognition Queue")
 
@@ -59,11 +41,14 @@ public final class TextRecognizer {
     /// - Parameter minimumConfidence: The minimum confidence required for a
     /// text recognition result to be included in the output.
     /// - Parameter completion: The completion handler called when recognition
-    /// is finished.
-    public func recognizeText(
+    /// state changes.
+    @discardableResult public func recognizeText(
         in image: CGImage,
         orientation: CGImagePropertyOrientation,
-        minimumConfidence: Float = 0.49
+        minimumConfidence: Float = 0.49,
+        recognitionLevel: VNRequestTextRecognitionLevel = .accurate,
+        usesLanguageCorrection: Bool = true,
+        completion: @escaping (RecognitionState) -> Void
     ) throws -> VNRecognizeTextRequest {
         let handler = VNImageRequestHandler(cgImage: image, orientation: orientation)
         let request = VNRecognizeTextRequest { request, error in
@@ -83,22 +68,50 @@ public final class TextRecognizer {
                 return topCandidate.confidence > minimumConfidence
             })
 
-            self.didUpdateRecognitionState(.complete(
+            completion(.complete(
                 recognizedTextObservations: recognizedTextObservations
             ))
         }
 
-        self.didUpdateRecognitionState(.inProgress)
+        request.recognitionLevel = recognitionLevel
+        request.usesLanguageCorrection = usesLanguageCorrection
+
+        completion(.inProgress)
+
         textRecognitionQueue.async {
             try? handler.perform([request])
         }
 
         return request
     }
+}
 
-    private func didUpdateRecognitionState(_ recognitionState: RecognitionState) {
-        DispatchQueue.main.async {
-            self.delegate?.textRecognizer(self, didUpdateRecognitionState: recognitionState)
+// MARK: - Image Orientation
+
+public extension CGImagePropertyOrientation {
+
+    /// Initialize a CGImage orientation for a given UIImage orientation.
+    /// - Parameter orientation: The UIImage orientation.
+    init(_ orientation: UIImage.Orientation) {
+        switch orientation {
+        case .up:
+            self = .up
+        case .upMirrored:
+            self = .upMirrored
+        case .down:
+            self = .down
+        case .downMirrored:
+            self = .downMirrored
+        case .left:
+            self = .left
+        case .leftMirrored:
+            self = .leftMirrored
+        case .right:
+            self = .right
+        case .rightMirrored:
+            self = .rightMirrored
+        @unknown default:
+            self = .up
         }
     }
 

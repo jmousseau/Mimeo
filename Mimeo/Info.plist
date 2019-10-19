@@ -22,6 +22,10 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Mimeo needs access to your camera to copy text in a captured image.</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>RecognizeTextIntent</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

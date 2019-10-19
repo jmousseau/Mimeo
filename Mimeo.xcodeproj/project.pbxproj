@@ -17,6 +17,12 @@
 		04193BE1235AAD3D00AD04F5 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BDD235AAD3D00AD04F5 /* ResultsViewController.swift */; };
 		04193BE5235AAD8700AD04F5 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BE3235AAD8700AD04F5 /* UIDevice.swift */; };
 		04193BE6235AAD8700AD04F5 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BE4235AAD8700AD04F5 /* CGRect.swift */; };
+		04193BEE235AB00E00AD04F5 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BED235AB00E00AD04F5 /* IntentHandler.swift */; };
+		04193BF2235AB00E00AD04F5 /* MimeoIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 04193BEB235AB00E00AD04F5 /* MimeoIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		04193BFE235AB7A300AD04F5 /* RecognizeTextIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BFD235AB7A300AD04F5 /* RecognizeTextIntentHandler.swift */; };
+		04193C00235AC37300AD04F5 /* MimeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 04193BFF235AC37300AD04F5 /* MimeoKit */; };
+		04193C01235B78A200AD04F5 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 04193BF7235AB07100AD04F5 /* Intents.intentdefinition */; settings = {ATTRIBUTES = (no_codegen, ); }; };
+		04193C02235B78B500AD04F5 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 04193BF7235AB07100AD04F5 /* Intents.intentdefinition */; };
 		04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F1E2341138D006656E4 /* AppDelegate.swift */; };
 		04789F212341138E006656E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F202341138E006656E4 /* SceneDelegate.swift */; };
 		04789F2823411393006656E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04789F2723411393006656E4 /* Assets.xcassets */; };
@@ -32,6 +38,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		04193BF0235AB00E00AD04F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04789F132341138D006656E4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04193BEA235AB00E00AD04F5;
+			remoteInfo = MimeoIntents;
+		};
 		04789F3523411393006656E4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 04789F132341138D006656E4 /* Project object */;
@@ -48,6 +61,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		04193BF6235AB00E00AD04F5 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				04193BF2235AB00E00AD04F5 /* MimeoIntents.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		04193BD2235AACD900AD04F5 /* KeyValueStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueStore.swift; sourceTree = "<group>"; };
 		04193BD4235AACD900AD04F5 /* Mimeo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mimeo.xcdatamodel; sourceTree = "<group>"; };
@@ -58,6 +85,12 @@
 		04193BDD235AAD3D00AD04F5 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		04193BE3235AAD8700AD04F5 /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		04193BE4235AAD8700AD04F5 /* CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
+		04193BEB235AB00E00AD04F5 /* MimeoIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MimeoIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		04193BED235AB00E00AD04F5 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		04193BEF235AB00E00AD04F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04193BF7235AB07100AD04F5 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
+		04193BF9235AB61100AD04F5 /* Mimeo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mimeo.entitlements; sourceTree = "<group>"; };
+		04193BFD235AB7A300AD04F5 /* RecognizeTextIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizeTextIntentHandler.swift; sourceTree = "<group>"; };
 		04789F1B2341138D006656E4 /* Mimeo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mimeo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04789F1E2341138D006656E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04789F202341138E006656E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +111,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		04193BE8235AB00E00AD04F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04193C00235AC37300AD04F5 /* MimeoKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04789F182341138D006656E4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -131,12 +172,24 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		04193BEC235AB00E00AD04F5 /* MimeoIntents */ = {
+			isa = PBXGroup;
+			children = (
+				04193BEF235AB00E00AD04F5 /* Info.plist */,
+				04193BF7235AB07100AD04F5 /* Intents.intentdefinition */,
+				04193BED235AB00E00AD04F5 /* IntentHandler.swift */,
+				04193BFD235AB7A300AD04F5 /* RecognizeTextIntentHandler.swift */,
+			);
+			path = MimeoIntents;
+			sourceTree = "<group>";
+		};
 		04789F122341138D006656E4 = {
 			isa = PBXGroup;
 			children = (
 				04789F1D2341138D006656E4 /* Mimeo */,
 				04789F3723411393006656E4 /* MimeoTests */,
 				04789F4223411393006656E4 /* MimeoUITests */,
+				04193BEC235AB00E00AD04F5 /* MimeoIntents */,
 				04789F1C2341138D006656E4 /* Products */,
 				04111E3C235AA9B000F73084 /* Frameworks */,
 			);
@@ -148,6 +201,7 @@
 				04789F1B2341138D006656E4 /* Mimeo.app */,
 				04789F3423411393006656E4 /* MimeoTests.xctest */,
 				04789F3F23411393006656E4 /* MimeoUITests.xctest */,
+				04193BEB235AB00E00AD04F5 /* MimeoIntents.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,6 +209,7 @@
 		04789F1D2341138D006656E4 /* Mimeo */ = {
 			isa = PBXGroup;
 			children = (
+				04193BF9235AB61100AD04F5 /* Mimeo.entitlements */,
 				04789F2F23411393006656E4 /* Info.plist */,
 				04E92D8E234114CC00877507 /* Main */,
 				049842FA2341195E0002AB6D /* Camera */,
@@ -235,6 +290,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		04193BEA235AB00E00AD04F5 /* MimeoIntents */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04193BF3235AB00E00AD04F5 /* Build configuration list for PBXNativeTarget "MimeoIntents" */;
+			buildPhases = (
+				04193BE7235AB00E00AD04F5 /* Sources */,
+				04193BE8235AB00E00AD04F5 /* Frameworks */,
+				04193BE9235AB00E00AD04F5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MimeoIntents;
+			packageProductDependencies = (
+				04193BFF235AC37300AD04F5 /* MimeoKit */,
+			);
+			productName = MimeoIntents;
+			productReference = 04193BEB235AB00E00AD04F5 /* MimeoIntents.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		04789F1A2341138D006656E4 /* Mimeo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04789F4823411393006656E4 /* Build configuration list for PBXNativeTarget "Mimeo" */;
@@ -242,10 +317,12 @@
 				04789F172341138D006656E4 /* Sources */,
 				04789F182341138D006656E4 /* Frameworks */,
 				04789F192341138D006656E4 /* Resources */,
+				04193BF6235AB00E00AD04F5 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				04193BF1235AB00E00AD04F5 /* PBXTargetDependency */,
 			);
 			name = Mimeo;
 			packageProductDependencies = (
@@ -302,6 +379,9 @@
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Jack Mousseau";
 				TargetAttributes = {
+					04193BEA235AB00E00AD04F5 = {
+						CreatedOnToolsVersion = 11.1;
+					};
 					04789F1A2341138D006656E4 = {
 						CreatedOnToolsVersion = 11.1;
 					};
@@ -334,11 +414,19 @@
 				04789F1A2341138D006656E4 /* Mimeo */,
 				04789F3323411393006656E4 /* MimeoTests */,
 				04789F3E23411393006656E4 /* MimeoUITests */,
+				04193BEA235AB00E00AD04F5 /* MimeoIntents */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		04193BE9235AB00E00AD04F5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04789F192341138D006656E4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -366,6 +454,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		04193BE7235AB00E00AD04F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04193C02235B78B500AD04F5 /* Intents.intentdefinition in Sources */,
+				04193BFE235AB7A300AD04F5 /* RecognizeTextIntentHandler.swift in Sources */,
+				04193BEE235AB00E00AD04F5 /* IntentHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04789F172341138D006656E4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -376,6 +474,7 @@
 				04193BE0235AAD3D00AD04F5 /* ResultsCollectionView.swift in Sources */,
 				04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */,
 				049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */,
+				04193C01235B78A200AD04F5 /* Intents.intentdefinition in Sources */,
 				04855D7E2354245B00ACB0A2 /* InsetLabel.swift in Sources */,
 				04193BE6235AAD8700AD04F5 /* CGRect.swift in Sources */,
 				04193BD8235AACD900AD04F5 /* PreferencesStore.swift in Sources */,
@@ -407,6 +506,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		04193BF1235AB00E00AD04F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04193BEA235AB00E00AD04F5 /* MimeoIntents */;
+			targetProxy = 04193BF0235AB00E00AD04F5 /* PBXContainerItemProxy */;
+		};
 		04789F3623411393006656E4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 04789F1A2341138D006656E4 /* Mimeo */;
@@ -431,6 +535,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		04193BF4235AB00E00AD04F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LVFKAL5KFM;
+				INFOPLIST_FILE = MimeoIntents/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.Mimeo.MimeoIntents;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		04193BF5235AB00E00AD04F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LVFKAL5KFM;
+				INFOPLIST_FILE = MimeoIntents/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.Mimeo.MimeoIntents;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		04789F4623411393006656E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -548,7 +690,9 @@
 		04789F4923411393006656E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Mimeo/Mimeo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = Mimeo/Assets/Preview.xcassets;
 				DEVELOPMENT_TEAM = LVFKAL5KFM;
@@ -569,7 +713,9 @@
 		04789F4A23411393006656E4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Mimeo/Mimeo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = Mimeo/Assets/Preview.xcassets;
 				DEVELOPMENT_TEAM = LVFKAL5KFM;
@@ -674,6 +820,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		04193BF3235AB00E00AD04F5 /* Build configuration list for PBXNativeTarget "MimeoIntents" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04193BF4235AB00E00AD04F5 /* Debug */,
+				04193BF5235AB00E00AD04F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		04789F162341138D006656E4 /* Build configuration list for PBXProject "Mimeo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -725,6 +880,10 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		04111E3D235AA9B000F73084 /* MimeoKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MimeoKit;
+		};
+		04193BFF235AC37300AD04F5 /* MimeoKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MimeoKit;
 		};

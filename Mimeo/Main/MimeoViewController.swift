@@ -53,7 +53,6 @@ public final class MimeoViewController: UIViewController {
     public init() {
         super.init(nibName: nil, bundle: nil)
 
-        textRecognizer.delegate = self
         cameraViewController.delegate = self
 
         addCameraViewController()
@@ -186,19 +185,23 @@ extension MimeoViewController: CameraViewControllerDelegate {
 
         recognizeTextRequest = try! textRecognizer.recognizeText(
             in: image.takeUnretainedValue(),
-            orientation: orientation
+            orientation: orientation,
+            completion: { recognitionState in
+                DispatchQueue.main.async {
+                    self.didUpdate(recognitionState: recognitionState)
+                }
+            }
         )
     }
 
 }
 
-// MARK: - Text Recognizer Delegate
+// MARK: - Text Recognition
 
-extension MimeoViewController: TextRecognizerDelegate {
+extension MimeoViewController {
 
-    public func textRecognizer(
-        _ textRecognizer: TextRecognizer,
-        didUpdateRecognitionState recognitionState: TextRecognizer.RecognitionState
+    fileprivate func didUpdate(
+        recognitionState: TextRecognizer.RecognitionState
     ) {
         switch recognitionState {
         case .notStarted:
