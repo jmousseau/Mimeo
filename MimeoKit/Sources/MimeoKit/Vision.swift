@@ -1,6 +1,6 @@
 //
 //  VNRecgonizedTextObservation.swift
-//  Mimeo
+//  MimeoKit
 //
 //  Created by Jack Mousseau on 10/6/19.
 //  Copyright © 2019 Jack Mousseau. All rights reserved.
@@ -8,6 +8,7 @@
 
 import Vision
 
+@available(iOS 13.0, *)
 extension VNRecognizedTextObservation {
 
     public var topCandidate: VNRecognizedText? {
@@ -16,6 +17,7 @@ extension VNRecognizedTextObservation {
 
 }
 
+@available(iOS 11.0, *)
 extension VNRectangleObservation: Clusterable {
 
     /// The rectangle observation's features used for algorithms such as
@@ -26,6 +28,7 @@ extension VNRectangleObservation: Clusterable {
 
 }
 
+@available(iOS 11.0, *)
 extension Collection where Element: VNRectangleObservation {
 
     /// The rectangle observation's sorted left to right, top to bottom.
@@ -37,6 +40,7 @@ extension Collection where Element: VNRectangleObservation {
 
 }
 
+@available(iOS 13.0, *)
 extension Array where Element: VNRecognizedTextObservation {
 
     /// The recognized text observations clustered by bounding box location and

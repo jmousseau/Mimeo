@@ -7,6 +7,7 @@
 //
 
 import AVFoundation
+import MimeoKit
 import UIKit
 import Vision
 

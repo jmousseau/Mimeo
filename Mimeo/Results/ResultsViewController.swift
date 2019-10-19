@@ -6,6 +6,7 @@
 //  Copyright © 2019 Jack Mousseau. All rights reserved.
 //
 
+import MimeoKit
 import UIKit
 
 public final class ResultsViewController: UIViewController {

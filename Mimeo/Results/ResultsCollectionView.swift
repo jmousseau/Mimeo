@@ -6,6 +6,7 @@
 //  Copyright © 2019 Jack Mousseau. All rights reserved.
 //
 
+import MimeoKit
 import SpriteKit
 import UIKit
 

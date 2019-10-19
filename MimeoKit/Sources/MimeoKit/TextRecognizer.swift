@@ -1,6 +1,6 @@
 //
 //  TextRecognizer.swift
-//  Mimeo
+//  MimeoKit
 //
 //  Created by Jack Mousseau on 10/5/19.
 //  Copyright © 2019 Jack Mousseau. All rights reserved.
@@ -11,6 +11,7 @@ import UIKit
 import Vision
 
 /// The text recognizer delegate.
+@available(iOS 13.0, *)
 public protocol TextRecognizerDelegate: class {
 
     /// The text recognizer did update the recognition state.
@@ -24,6 +25,7 @@ public protocol TextRecognizerDelegate: class {
 }
 
 /// A text recognizer.
+@available(iOS 13.0, *)
 public final class TextRecognizer {
 
     /// A text recognition state.
@@ -45,6 +47,9 @@ public final class TextRecognizer {
 
     /// The text recognizer's recognition queue.
     private let textRecognitionQueue = DispatchQueue(label: "Text Recognition Queue")
+
+    /// Initialize a new text recognizer.
+    public init() { }
 
     /// Returns the text recognized in the specified `image` as a concatination
     /// of all recognized strings with a confidence greater than

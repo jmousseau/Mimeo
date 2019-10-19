@@ -1,6 +1,6 @@
 //
 //  KMeans.swift
-//  Mimeo
+//  MimeoKit
 //
 //  Created by Jack Mousseau on 10/7/19.
 //  Copyright © 2019 Jack Mousseau. All rights reserved.
