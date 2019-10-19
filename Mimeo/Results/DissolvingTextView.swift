@@ -33,11 +33,17 @@ public final class DissolvingTextView: SKView {
 
             for x in stride(from: 0, to: fastImage.width, by: 4) {
                 for y in stride(from: 0, to: fastImage.height, by: 4) {
-                    if fastImage[x, y].alpha == 0 {
+                    let pixel = fastImage[x, y]
+
+                    if pixel.alpha == 0 {
                         continue
                     }
 
-                    let pixelNode = SKSpriteNode(color: .white, size: CGSize(width: 1, height: 1))
+                    let pixelNode = SKSpriteNode(
+                        color: pixel.color,
+                        size: CGSize(width: 1, height: 1)
+                    )
+
                     pixelNode.alpha = 0
                     pixelNode.position = CGPoint(
                         x: CGFloat(x) / UIScreen.main.scale,
@@ -82,6 +88,19 @@ public final class DissolvingTextView: SKView {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
+    }
+
+}
+
+extension RGBA where Channel == UInt8 {
+
+    public var color: UIColor {
+        UIColor(
+            red: CGFloat(red) / 255,
+            green: CGFloat(green) / 255,
+            blue: CGFloat(blue) / 255,
+            alpha: CGFloat(alpha) / 255
+        )
     }
 
 }
