@@ -17,6 +17,12 @@ public final class MimeoViewController: UIViewController {
 
     private let cameraViewController = CameraViewController()
 
+    private lazy var imagePickerViewController: UIImagePickerController = {
+        let imagePickerViewController = UIImagePickerController()
+        imagePickerViewController.delegate = self
+        return imagePickerViewController
+    }()
+
     private lazy var instructionsLabel: UILabel = {
         let instructionsLabel = UILabel()
         instructionsLabel.numberOfLines = 0
@@ -40,7 +46,23 @@ public final class MimeoViewController: UIViewController {
 
     private lazy var cameraShutterButton: CameraShutterButton = {
         let button = CameraShutterButton()
-        button.addTarget(self, action: #selector(recognizeText), for: .touchUpInside)
+        button.addTarget(self, action: #selector(capturePhoto), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var importImage: UIImage? = {
+        let configuration = UIImage.SymbolConfiguration(scale: .large)
+        return UIImage(
+            systemName: "square.and.arrow.down",
+            withConfiguration: configuration
+        )
+    }()
+
+    private lazy var importButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .systemYellow
+        button.setImage(importImage, for: .normal)
+        button.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
         return button
     }()
 
@@ -60,6 +82,7 @@ public final class MimeoViewController: UIViewController {
 
         addInstructionsLabel()
         addShutterButton()
+        addImportButton()
         addResultsViewController()
 
         view.bringSubviewToFront(cameraShutterButton)
@@ -68,6 +91,12 @@ public final class MimeoViewController: UIViewController {
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+}
+
+// MARK: - View Layout
+
+extension MimeoViewController {
 
     private func addCameraViewController() {
         addChild(cameraViewController)
@@ -139,6 +168,27 @@ public final class MimeoViewController: UIViewController {
         ])
     }
 
+    private func addImportButton() {
+        let leftLayoutGuide = UILayoutGuide()
+        let rightLayoutGuide = UILayoutGuide()
+
+        importButton.addLayoutGuide(leftLayoutGuide)
+        importButton.addLayoutGuide(rightLayoutGuide)
+
+        view.addSubview(importButton)
+
+        importButton.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            leftLayoutGuide.widthAnchor.constraint(equalTo: rightLayoutGuide.widthAnchor),
+            leftLayoutGuide.leadingAnchor.constraint(equalTo: cameraShutterButton.trailingAnchor),
+            leftLayoutGuide.trailingAnchor.constraint(equalTo: importButton.leadingAnchor),
+            rightLayoutGuide.leadingAnchor.constraint(equalTo: importButton.trailingAnchor),
+            rightLayoutGuide.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            importButton.centerYAnchor.constraint(equalTo: cameraShutterButton.centerYAnchor)
+        ])
+    }
+
     private func addResultsViewController() {
         addChild(resultsViewController)
         view.addSubview(resultsViewController.view)
@@ -155,36 +205,88 @@ public final class MimeoViewController: UIViewController {
         resultsViewController.recognitionState = .notStarted
     }
 
-    @objc func recognizeText() {
-        cameraViewController.capturePhoto()
-    }
-
-    @objc func cancelRecognizeTextRequest() {
-        recognizeTextRequest?.cancel()
-        cameraShutterButton.image = nil
-        cameraShutterButton.addTarget(self, action: #selector(recognizeText), for: .touchUpInside)
-        resultsViewController.recognitionState = .notStarted
-    }
 }
 
 // MARK: - Camera View Controller Delegate
 
 extension MimeoViewController: CameraViewControllerDelegate {
 
+    @objc private func capturePhoto() {
+        cameraViewController.capturePhoto()
+    }
+
+    @objc private func cancelRecognizeTextRequest() {
+        recognizeTextRequest?.cancel()
+        cameraShutterButton.image = nil
+        cameraShutterButton.addTarget(self, action: #selector(capturePhoto), for: .touchUpInside)
+        resultsViewController.recognitionState = .notStarted
+    }
+
     public func cameraViewController(
         _ cameraViewController: CameraViewController,
         didCapturePhoto photo: AVCapturePhoto
     ) {
+        recognizeText(in: photo)
+    }
+
+}
+
+// MARK: - Image Picker View Controller Delegate
+
+extension MimeoViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+
+    @objc private func pickImage() {
+        present(imagePickerViewController, animated: true)
+    }
+
+    public func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        defer {
+            imagePickerViewController.dismiss(animated: true, completion: nil)
+        }
+
+        guard let image = info[.originalImage] as? UIImage else {
+            return
+        }
+
+        recognizeText(in: image)
+    }
+
+}
+
+// MARK: - Text Recognition
+
+extension MimeoViewController {
+
+    private func recognizeText(in photo: AVCapturePhoto) {
         guard let image = photo.cgImageRepresentation(),
             let orientationRawValue = photo.metadata[kCGImagePropertyOrientation as String] as? UInt32,
             let orientation = CGImagePropertyOrientation(rawValue: orientationRawValue) else {
             return
         }
 
+        recognizeText(in: image.takeUnretainedValue(), withOrientation: orientation)
+    }
+
+    private func recognizeText(in image: UIImage) {
+        let orientation = CGImagePropertyOrientation(image.imageOrientation)
+        guard let image = image.cgImage else {
+            return
+        }
+
+        recognizeText(in: image, withOrientation: orientation)
+    }
+
+    private func recognizeText(
+        in image: CGImage,
+        withOrientation orientation: CGImagePropertyOrientation
+    ) {
         cameraShutterButton.image = cancelImage
 
         recognizeTextRequest = try! textRecognizer.recognizeText(
-            in: image.takeUnretainedValue(),
+            in: image,
             orientation: orientation,
             completion: { recognitionState in
                 DispatchQueue.main.async {
@@ -194,23 +296,17 @@ extension MimeoViewController: CameraViewControllerDelegate {
         )
     }
 
-}
-
-// MARK: - Text Recognition
-
-extension MimeoViewController {
-
     fileprivate func didUpdate(
         recognitionState: TextRecognizer.RecognitionState
     ) {
         switch recognitionState {
         case .notStarted:
             cameraShutterButton.image = nil
-            cameraShutterButton.addTarget(self, action: #selector(recognizeText), for: .touchUpInside)
+            cameraShutterButton.addTarget(self, action: #selector(capturePhoto), for: .touchUpInside)
 
         case .inProgress, .complete:
             cameraShutterButton.image = cancelImage
-            cameraShutterButton.removeTarget(self, action: #selector(recognizeText), for: .touchUpInside)
+            cameraShutterButton.removeTarget(self, action: #selector(capturePhoto), for: .touchUpInside)
             cameraShutterButton.addTarget(self, action: #selector(cancelRecognizeTextRequest), for: .touchUpInside)
         }
 

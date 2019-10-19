@@ -34,7 +34,7 @@ public final class ResultsCollectionView: UICollectionView {
         private lazy var copyButton: UIButton = {
             let symbolConfiguration = UIImage.SymbolConfiguration(scale: .small)
             let copyImage = UIImage(
-                systemName: "doc.on.doc.fill",
+                systemName: "doc.on.doc",
                 withConfiguration: symbolConfiguration
             )
 

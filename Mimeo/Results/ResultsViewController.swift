@@ -69,7 +69,7 @@ public final class ResultsViewController: UIViewController {
     private lazy var copyAllButton: UIButton = {
         let symbolConfiguration = UIImage.SymbolConfiguration(scale: .large)
         let copyImage = UIImage(
-            systemName: "doc.on.doc.fill",
+            systemName: "doc.on.doc",
             withConfiguration: symbolConfiguration
         )
 
@@ -230,7 +230,7 @@ public final class ResultsViewController: UIViewController {
 
         if let cameraShutterView = cameraShutterView {
             NSLayoutConstraint.activate([
-                copyAllButton.leadingAnchor.constraint(equalTo: view.centerXAnchor),
+                copyAllButton.leadingAnchor.constraint(equalTo: cameraShutterView.trailingAnchor),
                 copyAllButton.centerYAnchor.constraint(equalTo: cameraShutterView.centerYAnchor),
                 copyAllButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
             ])
