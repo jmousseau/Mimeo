@@ -13,7 +13,7 @@
 		04193BD8235AACD900AD04F5 /* PreferencesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BD5235AACD900AD04F5 /* PreferencesStore.swift */; };
 		04193BDE235AAD3D00AD04F5 /* DissolvingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BDA235AAD3D00AD04F5 /* DissolvingTextView.swift */; };
 		04193BDF235AAD3D00AD04F5 /* ResultsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BDB235AAD3D00AD04F5 /* ResultsLayout.swift */; };
-		04193BE0235AAD3D00AD04F5 /* ResultsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BDC235AAD3D00AD04F5 /* ResultsCollectionView.swift */; };
+		04193BE0235AAD3D00AD04F5 /* ResultsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BDC235AAD3D00AD04F5 /* ResultsTableView.swift */; };
 		04193BE1235AAD3D00AD04F5 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BDD235AAD3D00AD04F5 /* ResultsViewController.swift */; };
 		04193BE5235AAD8700AD04F5 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BE3235AAD8700AD04F5 /* UIDevice.swift */; };
 		04193BE6235AAD8700AD04F5 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BE4235AAD8700AD04F5 /* CGRect.swift */; };
@@ -84,7 +84,7 @@
 		04193BD5235AACD900AD04F5 /* PreferencesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesStore.swift; sourceTree = "<group>"; };
 		04193BDA235AAD3D00AD04F5 /* DissolvingTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DissolvingTextView.swift; sourceTree = "<group>"; };
 		04193BDB235AAD3D00AD04F5 /* ResultsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsLayout.swift; sourceTree = "<group>"; };
-		04193BDC235AAD3D00AD04F5 /* ResultsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsCollectionView.swift; sourceTree = "<group>"; };
+		04193BDC235AAD3D00AD04F5 /* ResultsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableView.swift; sourceTree = "<group>"; };
 		04193BDD235AAD3D00AD04F5 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		04193BE3235AAD8700AD04F5 /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		04193BE4235AAD8700AD04F5 /* CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				04193BDA235AAD3D00AD04F5 /* DissolvingTextView.swift */,
-				04193BDC235AAD3D00AD04F5 /* ResultsCollectionView.swift */,
+				04193BDC235AAD3D00AD04F5 /* ResultsTableView.swift */,
 				04193BDB235AAD3D00AD04F5 /* ResultsLayout.swift */,
 				04193BDD235AAD3D00AD04F5 /* ResultsViewController.swift */,
 			);
@@ -488,7 +488,7 @@
 				04193BD6235AACD900AD04F5 /* KeyValueStore.swift in Sources */,
 				04193BDF235AAD3D00AD04F5 /* ResultsLayout.swift in Sources */,
 				04193BD7235AACD900AD04F5 /* Mimeo.xcdatamodeld in Sources */,
-				04193BE0235AAD3D00AD04F5 /* ResultsCollectionView.swift in Sources */,
+				04193BE0235AAD3D00AD04F5 /* ResultsTableView.swift in Sources */,
 				04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */,
 				049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */,
 				04193C01235B78A200AD04F5 /* Intents.intentdefinition in Sources */,

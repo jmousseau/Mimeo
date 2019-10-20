@@ -88,27 +88,27 @@ public final class ResultsViewController: UIViewController {
 
     private var activityIndicator = UIActivityIndicatorView(style: .large)
 
-    private var resultsCollectionView = ResultsCollectionView()
+    private var resultsTableView = ResultsTableView()
 
     public var resultsLayout: ResultsLayout {
         didSet {
             preferencesStore.set(resultsLayout)
 
-            if resultsCollectionView.superview == nil {
-                addResultsCollectionView()
+            if resultsTableView.superview == nil {
+                addResultsTableView()
             }
 
             UIView.animate(withDuration: 0.25) {
                 self.betaLabel.alpha = self.resultsLayout.isBeta ? 1 : 0
             }
 
-            resultsCollectionView.state = (recognitionState, resultsLayout)
+            resultsTableView.state = (recognitionState, resultsLayout)
         }
     }
 
     public var recognitionState: TextRecognizer.RecognitionState = .notStarted {
         didSet {
-            resultsCollectionView.state = (recognitionState, resultsLayout)
+            resultsTableView.state = (recognitionState, resultsLayout)
 
             switch recognitionState {
             case .notStarted:
@@ -205,18 +205,18 @@ public final class ResultsViewController: UIViewController {
         ])
     }
 
-    private func addResultsCollectionView() {
-        view.addSubview(resultsCollectionView)
+    private func addResultsTableView() {
+        view.addSubview(resultsTableView)
 
-        resultsCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        resultsTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            view.leadingAnchor.constraint(equalTo: resultsCollectionView.leadingAnchor),
+            view.leadingAnchor.constraint(equalTo: resultsTableView.leadingAnchor),
             resultsLayoutSegmentedControl.bottomAnchor.constraint(
-                equalTo: resultsCollectionView.topAnchor,
+                equalTo: resultsTableView.topAnchor,
                 constant: -32
             ),
-            view.trailingAnchor.constraint(equalTo: resultsCollectionView.trailingAnchor),
-            resultsCollectionView.bottomAnchor.constraint(
+            view.trailingAnchor.constraint(equalTo: resultsTableView.trailingAnchor),
+            resultsTableView.bottomAnchor.constraint(
                 equalTo: (cameraShutterView?.topAnchor ?? view.bottomAnchor),
                 constant: -32
             )
@@ -249,6 +249,6 @@ public final class ResultsViewController: UIViewController {
     }
 
     @objc private func copyTextToPasteboard() {
-        UIPasteboard.general.string = resultsCollectionView.copyAllRecognizedText()
+        UIPasteboard.general.string = resultsTableView.copyAllRecognizedText()
     }
 }

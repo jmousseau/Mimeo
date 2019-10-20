@@ -1,5 +1,5 @@
 //
-//  ResultsCollectionView.swift
+//  ResultsTableView.swift
 //  Mimeo
 //
 //  Created by Jack Mousseau on 10/10/19.
@@ -10,11 +10,11 @@ import MimeoKit
 import SpriteKit
 import UIKit
 
-public final class ResultsCollectionView: UICollectionView {
+public final class ResultsTableView: UITableView {
 
-    public final class Cell: UICollectionViewCell {
+    public final class Cell: UITableViewCell {
 
-        fileprivate static let identifier = "results-collection-view-cell"
+        fileprivate static let identifier = "results-cell"
 
         private lazy var label: UILabel = {
             let label = UILabel()
@@ -71,9 +71,9 @@ public final class ResultsCollectionView: UICollectionView {
 
         public fileprivate(set) var didCopy: ((String) -> Void)?
 
-        public var text: String? {
+        public var recognizedText: String? {
             didSet {
-                label.text = text
+                label.text = recognizedText
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     self.dissolvingTextView.preload(view: self.label)
@@ -87,8 +87,13 @@ public final class ResultsCollectionView: UICollectionView {
             }
         }
 
-        public override init(frame: CGRect) {
-            super.init(frame: frame)
+        public override init(
+            style: UITableViewCell.CellStyle,
+            reuseIdentifier: String?
+        ) {
+            super.init(style: .default, reuseIdentifier: reuseIdentifier)
+
+            backgroundColor = .clear
 
             addStackView()
             addDissolvingTextView()
@@ -110,7 +115,7 @@ public final class ResultsCollectionView: UICollectionView {
                 stackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
                 stackView.topAnchor.constraint(equalTo: topAnchor),
                 stackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-                stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+                stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
             ])
         }
 
@@ -180,26 +185,15 @@ public final class ResultsCollectionView: UICollectionView {
     }
 
     public convenience init(frame: CGRect) {
-        let size = NSCollectionLayoutSize(
-            widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-            heightDimension: NSCollectionLayoutDimension.estimated(44)
-        )
-
-        let item = NSCollectionLayoutItem(layoutSize: size)
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 32
-
-        let layout = UICollectionViewCompositionalLayout(section: section)
-
-        self.init(frame: frame, collectionViewLayout: layout)
+        self.init(frame: .zero, style: .plain)
 
         backgroundColor = .clear
-        dataSource = self
-
+        separatorStyle = .none
         alwaysBounceVertical = true
 
-        register(Cell.classForCoder(), forCellWithReuseIdentifier: Cell.identifier)
+        dataSource = self
+
+        register(Cell.classForCoder(), forCellReuseIdentifier: Cell.identifier)
     }
 
     public func copyAllRecognizedText() -> String {
@@ -216,27 +210,27 @@ public final class ResultsCollectionView: UICollectionView {
 
 }
 
-extension ResultsCollectionView: UICollectionViewDataSource {
+extension ResultsTableView: UITableViewDataSource {
 
-    public func collectionView(
-        _ collectionView: UICollectionView,
-        numberOfItemsInSection section: Int
+    public func tableView(
+        _ tableView: UITableView,
+        numberOfRowsInSection section: Int
     ) -> Int {
-        return recognizedText.count
+        recognizedText.count
     }
 
-    public func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: Cell.identifier,
+    public func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: Cell.identifier,
             for: indexPath
         ) as? Cell else {
             fatalError("Dequeue resuable cell failed with identifier: \(Cell.identifier)")
         }
 
-        cell.text = recognizedText[indexPath.row]
+        cell.recognizedText = recognizedText[indexPath.row]
         cell.isCopyButtonVisible = state.resultsLayout == .grouped
         cell.didCopy = { text in
             UIPasteboard.general.string = text
@@ -244,4 +238,5 @@ extension ResultsCollectionView: UICollectionViewDataSource {
 
         return cell
     }
+
 }
