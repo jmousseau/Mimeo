@@ -43,6 +43,7 @@ public final class MimeoViewController: UIViewController {
     private lazy var imagePickerViewController: UIImagePickerController = {
         let imagePickerViewController = UIImagePickerController()
         imagePickerViewController.delegate = self
+        imagePickerViewController.view.tintColor = .systemYellow
         return imagePickerViewController
     }()
 
