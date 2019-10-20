@@ -23,6 +23,9 @@
 		04193C00235AC37300AD04F5 /* MimeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 04193BFF235AC37300AD04F5 /* MimeoKit */; };
 		04193C01235B78A200AD04F5 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 04193BF7235AB07100AD04F5 /* Intents.intentdefinition */; settings = {ATTRIBUTES = (no_codegen, ); }; };
 		04193C02235B78B500AD04F5 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 04193BF7235AB07100AD04F5 /* Intents.intentdefinition */; };
+		04193C2E235BD15A00AD04F5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193C2D235BD15A00AD04F5 /* SettingsViewController.swift */; };
+		04193C30235BD57D00AD04F5 /* BooleanSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193C2F235BD57D00AD04F5 /* BooleanSettingCell.swift */; };
+		04193C32235BD8DE00AD04F5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193C31235BD8DE00AD04F5 /* Settings.swift */; };
 		04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F1E2341138D006656E4 /* AppDelegate.swift */; };
 		04789F212341138E006656E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F202341138E006656E4 /* SceneDelegate.swift */; };
 		04789F2823411393006656E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04789F2723411393006656E4 /* Assets.xcassets */; };
@@ -91,6 +94,9 @@
 		04193BF7235AB07100AD04F5 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		04193BF9235AB61100AD04F5 /* Mimeo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mimeo.entitlements; sourceTree = "<group>"; };
 		04193BFD235AB7A300AD04F5 /* RecognizeTextIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizeTextIntentHandler.swift; sourceTree = "<group>"; };
+		04193C2D235BD15A00AD04F5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		04193C2F235BD57D00AD04F5 /* BooleanSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooleanSettingCell.swift; sourceTree = "<group>"; };
+		04193C31235BD8DE00AD04F5 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		04789F1B2341138D006656E4 /* Mimeo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mimeo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04789F1E2341138D006656E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04789F202341138E006656E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -183,6 +189,16 @@
 			path = MimeoIntents;
 			sourceTree = "<group>";
 		};
+		04193C2C235BD14100AD04F5 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				04193C2F235BD57D00AD04F5 /* BooleanSettingCell.swift */,
+				04193C31235BD8DE00AD04F5 /* Settings.swift */,
+				04193C2D235BD15A00AD04F5 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		04789F122341138D006656E4 = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +230,7 @@
 				04E92D8E234114CC00877507 /* Main */,
 				049842FA2341195E0002AB6D /* Camera */,
 				04193BD9235AAD3200AD04F5 /* Results */,
+				04193C2C235BD14100AD04F5 /* Settings */,
 				04E92D902341150C00877507 /* Store */,
 				04855D7C2354244A00ACB0A2 /* Views */,
 				04193BE2235AAD7100AD04F5 /* Extensions */,
@@ -480,10 +497,13 @@
 				04193BD8235AACD900AD04F5 /* PreferencesStore.swift in Sources */,
 				04818306234987CB00379B52 /* CameraShutterButton.swift in Sources */,
 				04193BDE235AAD3D00AD04F5 /* DissolvingTextView.swift in Sources */,
+				04193C2E235BD15A00AD04F5 /* SettingsViewController.swift in Sources */,
+				04193C30235BD57D00AD04F5 /* BooleanSettingCell.swift in Sources */,
 				04193BE1235AAD3D00AD04F5 /* ResultsViewController.swift in Sources */,
 				04789F212341138E006656E4 /* SceneDelegate.swift in Sources */,
 				048183012349674200379B52 /* MimeoViewController.swift in Sources */,
 				04193BE5235AAD8700AD04F5 /* UIDevice.swift in Sources */,
+				04193C32235BD8DE00AD04F5 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

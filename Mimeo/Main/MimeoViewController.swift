@@ -13,9 +13,32 @@ import Vision
 
 public final class MimeoViewController: UIViewController {
 
+    private let preferenceStore = PreferencesStore.default()
+
     private let textRecognizer = TextRecognizer()
 
     private let cameraViewController = CameraViewController()
+
+    private let settingsViewController = SettingsViewController()
+
+    private lazy var settingsDoneButton: UIBarButtonItem = {
+        let settingsDoneButton = UIBarButtonItem(
+            title: "Done",
+            style: .done,
+            target: self,
+            action: #selector(dismissSettings)
+        )
+        settingsDoneButton.tintColor = .systemYellow
+        return settingsDoneButton
+    }()
+
+    private lazy var settingsNavigationViewController: UINavigationController = {
+        let settingsNavigationViewController = UINavigationController(rootViewController: settingsViewController)
+        settingsNavigationViewController.navigationBar.prefersLargeTitles = true
+        settingsNavigationViewController.navigationBar.topItem?.title = "Settings"
+        settingsNavigationViewController.navigationBar.topItem?.rightBarButtonItem = settingsDoneButton
+        return settingsNavigationViewController
+    }()
 
     private lazy var imagePickerViewController: UIImagePickerController = {
         let imagePickerViewController = UIImagePickerController()
@@ -50,6 +73,22 @@ public final class MimeoViewController: UIViewController {
         return button
     }()
 
+    private lazy var settingsImage: UIImage? = {
+        let configuration = UIImage.SymbolConfiguration(scale: .large)
+        return UIImage(
+            systemName: "gear",
+            withConfiguration: configuration
+        )
+    }()
+
+    private lazy var settingsButton: UIButton = {
+        let settingsButton = UIButton()
+        settingsButton.tintColor = .systemYellow
+        settingsButton.setImage(settingsImage, for: .normal)
+        settingsButton.addTarget(self, action: #selector(presentSettings), for: .touchUpInside)
+        return settingsButton
+    }()
+
     private lazy var importImage: UIImage? = {
         let configuration = UIImage.SymbolConfiguration(scale: .large)
         return UIImage(
@@ -59,11 +98,11 @@ public final class MimeoViewController: UIViewController {
     }()
 
     private lazy var importButton: UIButton = {
-        let button = UIButton()
-        button.tintColor = .systemYellow
-        button.setImage(importImage, for: .normal)
-        button.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
-        return button
+        let importButton = UIButton()
+        importButton.tintColor = .systemYellow
+        importButton.setImage(importImage, for: .normal)
+        importButton.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
+        return importButton
     }()
 
     private lazy var resultsViewController: ResultsViewController = {
@@ -82,6 +121,7 @@ public final class MimeoViewController: UIViewController {
 
         addInstructionsLabel()
         addShutterButton()
+        addSettingsButton()
         addImportButton()
         addResultsViewController()
 
@@ -168,6 +208,26 @@ extension MimeoViewController {
         ])
     }
 
+    private func addSettingsButton() {
+        let leftLayoutGuide = UILayoutGuide()
+        let rightLayoutGuide = UILayoutGuide()
+
+        settingsButton.addLayoutGuide(leftLayoutGuide)
+        settingsButton.addLayoutGuide(rightLayoutGuide)
+
+        view.addSubview(settingsButton)
+
+        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            leftLayoutGuide.widthAnchor.constraint(equalTo: rightLayoutGuide.widthAnchor),
+            leftLayoutGuide.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            leftLayoutGuide.trailingAnchor.constraint(equalTo: settingsButton.leadingAnchor),
+            rightLayoutGuide.leadingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
+            rightLayoutGuide.trailingAnchor.constraint(equalTo: cameraShutterButton.leadingAnchor),
+            settingsButton.centerYAnchor.constraint(equalTo: cameraShutterButton.centerYAnchor)
+        ])
+    }
+
     private func addImportButton() {
         let leftLayoutGuide = UILayoutGuide()
         let rightLayoutGuide = UILayoutGuide()
@@ -178,7 +238,6 @@ extension MimeoViewController {
         view.addSubview(importButton)
 
         importButton.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
             leftLayoutGuide.widthAnchor.constraint(equalTo: rightLayoutGuide.widthAnchor),
             leftLayoutGuide.leadingAnchor.constraint(equalTo: cameraShutterButton.trailingAnchor),
@@ -207,7 +266,7 @@ extension MimeoViewController {
 
 }
 
-// MARK: - Camera View Controller Delegate
+// MARK: - Camera View Controller
 
 extension MimeoViewController: CameraViewControllerDelegate {
 
@@ -231,7 +290,21 @@ extension MimeoViewController: CameraViewControllerDelegate {
 
 }
 
-// MARK: - Image Picker View Controller Delegate
+// MARK: - Settings
+
+extension MimeoViewController {
+
+    @objc private func presentSettings() {
+        present(settingsNavigationViewController, animated: true, completion: nil)
+    }
+
+    @objc private func dismissSettings() {
+        settingsNavigationViewController.dismiss(animated: true, completion: nil)
+    }
+
+}
+
+// MARK: - Image Picker
 
 extension MimeoViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
@@ -285,9 +358,12 @@ extension MimeoViewController {
     ) {
         cameraShutterButton.image = cancelImage
 
+        let isQuickRecognitionEnabled = preferenceStore.get(QuickRecognitionSetting.self) == .on
+
         recognizeTextRequest = try! textRecognizer.recognizeText(
             in: image,
             orientation: orientation,
+            recognitionLevel: isQuickRecognitionEnabled ? .fast : .accurate,
             completion: { recognitionState in
                 DispatchQueue.main.async {
                     self.didUpdate(recognitionState: recognitionState)

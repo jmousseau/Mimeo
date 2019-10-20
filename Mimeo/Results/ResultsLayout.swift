@@ -12,7 +12,7 @@ import Foundation
 public enum ResultsLayout: String, CaseIterable, PreferenceStorable {
 
     /// The results layout preference key.
-    public static let preferenceKey = "resultsLayout"
+    public static let preferenceKey = "results-layout"
 
     /// The default results layout preference value.
     public static let defaultPreferenceValue = Self.plain.rawValue

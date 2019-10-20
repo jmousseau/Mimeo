@@ -53,7 +53,7 @@ public struct PreferencesStore {
     /// Get a preference.
     /// - Parameter preference: The preference type.
     public func get<P: PreferenceStorable>(_ preference: P.Type) -> P {
-        P(rawValue: try! getValue(for: P.preferenceKey) ?? P.defaultPreferenceValue)!
+        P(rawValue: (try? getValue(for: P.preferenceKey)) ?? P.defaultPreferenceValue)!
     }
 
     /// Set a preference.
