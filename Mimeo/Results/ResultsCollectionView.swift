@@ -98,6 +98,10 @@ public final class ResultsCollectionView: UICollectionView {
             fatalError("init(coder:) has not been implemented")
         }
 
+        public override func prepareForReuse() {
+            label.text = nil
+        }
+
         private func addStackView() {
             addSubview(stackView)
 
