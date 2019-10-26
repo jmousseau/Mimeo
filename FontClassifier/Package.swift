@@ -3,14 +3,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "MimeoKit",
+    name: "FontClassifier",
     platforms: [
         .iOS(.v13),
     ],
     products: [
         .library(
-            name: "MimeoKit",
-            targets: ["MimeoKit"]
+            name: "FontClassifier",
+            targets: ["FontClassifier"]
         )
     ],
     dependencies: [
@@ -18,7 +18,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "MimeoKit",
+            name: "FontClassifier",
             dependencies: ["Iris"]
         )
     ]

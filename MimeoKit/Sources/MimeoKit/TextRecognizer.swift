@@ -6,6 +6,7 @@
 //  Copyright © 2019 Jack Mousseau. All rights reserved.
 //
 
+import Iris
 import UIKit
 import Vision
 
@@ -84,35 +85,4 @@ public final class TextRecognizer {
 
         return request
     }
-}
-
-// MARK: - Image Orientation
-
-public extension CGImagePropertyOrientation {
-
-    /// Initialize a CGImage orientation for a given UIImage orientation.
-    /// - Parameter orientation: The UIImage orientation.
-    init(_ orientation: UIImage.Orientation) {
-        switch orientation {
-        case .up:
-            self = .up
-        case .upMirrored:
-            self = .upMirrored
-        case .down:
-            self = .down
-        case .downMirrored:
-            self = .downMirrored
-        case .left:
-            self = .left
-        case .leftMirrored:
-            self = .leftMirrored
-        case .right:
-            self = .right
-        case .rightMirrored:
-            self = .rightMirrored
-        @unknown default:
-            self = .up
-        }
-    }
-
 }

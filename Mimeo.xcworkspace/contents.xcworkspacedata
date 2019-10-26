@@ -7,4 +7,10 @@
    <FileRef
       location = "group:MimeoKit">
    </FileRef>
+   <FileRef
+      location = "group:FontClassifier">
+   </FileRef>
+   <FileRef
+      location = "group:Iris">
+   </FileRef>
 </Workspace>
