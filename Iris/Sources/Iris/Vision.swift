@@ -1,8 +1,10 @@
+#if targetEnvironment(macCatalyst) || os(iOS)
+
 import Vision
 
 // MARK: - Recognized Text Observation
 
-@available(iOS 13.0, *)
+@available(iOS 13.0, macOS 10.15, *)
 extension VNRecognizedTextObservation {
 
     public var topCandidate: VNRecognizedText? {
@@ -13,7 +15,7 @@ extension VNRecognizedTextObservation {
 
 // MARK: - VNRectangleObservation Collection
 
-@available(iOS 11.0, *)
+@available(iOS 11.0, macOS 10.15, *)
 extension Collection where Element: VNRectangleObservation {
 
     /// The bounding box that bounds every bounding box in the collection.
@@ -61,3 +63,5 @@ extension Collection where Element: VNRectangleObservation {
     }
 
 }
+
+#endif

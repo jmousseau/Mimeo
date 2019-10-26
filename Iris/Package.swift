@@ -6,6 +6,7 @@ let package = Package(
     name: "Iris",
     platforms: [
         .iOS(.v10),
+        .macOS(.v10_15)
     ],
     products: [
         .library(

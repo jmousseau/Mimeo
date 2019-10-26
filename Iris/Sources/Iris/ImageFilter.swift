@@ -1,3 +1,5 @@
+#if targetEnvironment(macCatalyst) || os(iOS)
+
 import UIKit
 
 // MARK: - Image Filter
@@ -193,3 +195,5 @@ public enum ImageFilter {
     }
 
 }
+
+#endif

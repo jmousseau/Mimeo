@@ -1,3 +1,5 @@
+#if targetEnvironment(macCatalyst) || os(iOS)
+
 import AVFoundation
 import UIKit
 
@@ -104,3 +106,5 @@ extension CGImagePropertyOrientation {
     }
 
 }
+
+#endif

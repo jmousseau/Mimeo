@@ -1,3 +1,5 @@
+#if targetEnvironment(macCatalyst) || os(iOS)
+
 import UIKit
 
 // MARK: - CGRect
@@ -121,3 +123,5 @@ extension CGRect {
     }
 
 }
+
+#endif

@@ -1,3 +1,5 @@
+#if targetEnvironment(macCatalyst) || os(iOS)
+
 import UIKit
 
 // MARK: - UIColor
@@ -62,3 +64,5 @@ extension Collection where Element == UIColor {
     }
 
 }
+
+#endif

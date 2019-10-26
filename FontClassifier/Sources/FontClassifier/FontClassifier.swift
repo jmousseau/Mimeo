@@ -1,8 +1,10 @@
+#if targetEnvironment(macCatalyst) || os(iOS)
+
 import Iris
 import UIKit
 import Vision
 
-@available(iOS 11.0, *)
+@available(iOS 11.0, macOS 10.15, *)
 public struct FontClassifier {
 
     /// Create a character image for every character box found inside the given
@@ -157,3 +159,5 @@ public struct FontClassifier {
     }
 
 }
+
+#endif
