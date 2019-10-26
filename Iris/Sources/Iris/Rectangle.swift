@@ -1,6 +1,4 @@
-#if targetEnvironment(macCatalyst) || os(iOS)
-
-import UIKit
+import CoreGraphics
 
 // MARK: - CGRect
 
@@ -21,7 +19,7 @@ extension CGRect {
 
     /// Expand the rectangle by given insets.
     /// - Parameter insets: The insets by which to expand the rectangle.
-    public func expanded(by insets: UIEdgeInsets) -> CGRect {
+    public func expanded(by insets: EdgeInsets) -> CGRect {
         CGRect(
             x: origin.x - insets.left,
             y: origin.y - insets.top,
@@ -32,7 +30,7 @@ extension CGRect {
 
     /// Contract the rectangle by given insets.
     /// - Parameter insets: The insets by which to contract the rectangle.
-    public func contracted(by insets: UIEdgeInsets) -> CGRect {
+    public func contracted(by insets: EdgeInsets) -> CGRect {
         CGRect(
             x: origin.x + insets.left,
             y: origin.y + insets.top,
@@ -123,5 +121,3 @@ extension CGRect {
     }
 
 }
-
-#endif

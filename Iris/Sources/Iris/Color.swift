@@ -1,10 +1,20 @@
-#if targetEnvironment(macCatalyst) || os(iOS)
+#if os(iOS) || os(tvOS) || os(watchOS)
 
 import UIKit
 
+public typealias Color = UIColor
+
+#elseif os(macOS)
+
+import Cocoa
+
+public typealias Color = NSColor
+
+#endif
+
 // MARK: - UIColor
 
-extension UIColor {
+extension Color {
 
     /// The color's red, green, blue, and alpha components.
     public var rgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
@@ -34,10 +44,10 @@ extension UIColor {
 
 // MARK: - UIColor Collection
 
-extension Collection where Element == UIColor {
+extension Collection where Element == Color {
 
     /// The average colors.
-    public func average() -> UIColor? {
+    public func average() -> Color? {
         guard count > 0 else {
             return nil
         }
@@ -55,7 +65,7 @@ extension Collection where Element == UIColor {
             alpha += rgba.alpha
         }
 
-        return UIColor(
+        return Color(
             red: red / CGFloat(count),
             green: green / CGFloat(count),
             blue: blue / CGFloat(count),
@@ -64,5 +74,3 @@ extension Collection where Element == UIColor {
     }
 
 }
-
-#endif

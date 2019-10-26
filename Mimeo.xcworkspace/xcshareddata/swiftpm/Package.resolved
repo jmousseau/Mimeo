@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "SDWebImage",
+        "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
+        "state": {
+          "branch": null,
+          "revision": "a42a22ff88ae300d888942ffd801e9744a11027e",
+          "version": "5.2.3"
+        }
+      },
+      {
         "package": "SwiftImage",
         "repositoryURL": "https://github.com/koher/swift-image",
         "state": {

@@ -14,10 +14,13 @@ let package = Package(
             targets: ["Iris"]
         )
     ],
+    dependencies: [
+        .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.1.0")
+    ],
     targets: [
         .target(
             name: "Iris",
-            dependencies: []
+            dependencies: ["SDWebImage"]
         )
     ]
 )

@@ -1,6 +1,6 @@
-#if targetEnvironment(macCatalyst) || os(iOS)
-
-import UIKit
+import CoreGraphics
+import CoreImage
+import Foundation
 
 // MARK: - Image Filter
 
@@ -23,7 +23,7 @@ public enum ImageFilter {
     /// Subtract a rectangular area from an image.
     case subtract(rect: CGRect)
 
-    public func apply(to image: UIImage) -> UIImage? {
+    public func apply(to image: Image) -> Image? {
         guard let image = image.cgImage else {
             return nil
         }
@@ -52,7 +52,7 @@ public enum ImageFilter {
 
     // MARK: - Average Color Filter
 
-    func applyAverageColorFilter(to image: CGImage) -> UIImage? {
+    func applyAverageColorFilter(to image: CGImage) -> Image? {
         guard let averageColorFilter = CIFilter(name: "CIAreaAverage") else {
             return nil
         }
@@ -73,7 +73,7 @@ public enum ImageFilter {
 
     // MARK: - Crop Filter
 
-    private func applyCropFilter(to image: CGImage, rect: CGRect) -> UIImage? {
+    private func applyCropFilter(to image: CGImage, rect: CGRect) -> Image? {
         guard let cropFilter = CIFilter(name: "CICrop") else {
             return nil
         }
@@ -96,7 +96,7 @@ public enum ImageFilter {
         to image: CGImage,
         contrast: CGFloat,
         brightness: CGFloat
-    ) -> UIImage? {
+    ) -> Image? {
         guard let monoFilter = CIFilter(name: "CIPhotoEffectMono") else {
             return nil
         }
@@ -125,7 +125,7 @@ public enum ImageFilter {
 
     // MARK: - Invert Color Filter
 
-    func applyInvertColorFilter(to image: CGImage) -> UIImage? {
+    func applyInvertColorFilter(to image: CGImage) -> Image? {
         guard let invertColorFilter = CIFilter(name: "CIColorInvert") else {
             return nil
         }
@@ -144,22 +144,22 @@ public enum ImageFilter {
     // MARK: - Subtract Filter
 
     @available(iOS 10.0, *)
-    private func applySubtractFilter(to image: CGImage, rect: CGRect) -> UIImage? {
+    private func applySubtractFilter(to image: CGImage, rect: CGRect) -> Image? {
         let backgroundImageSize = CGSize(
             width: image.width,
             height: image.height
         )
 
-        let backgroundImageRendererFormat = UIGraphicsImageRendererFormat()
+        let backgroundImageRendererFormat = GraphicsImageRendererFormat()
         backgroundImageRendererFormat.scale = 1
 
-        let backgroundImageRenderer = UIGraphicsImageRenderer(
+        let backgroundImageRenderer = GraphicsImageRenderer(
             size: backgroundImageSize,
             format: backgroundImageRendererFormat
         )
 
         guard let backgroundImage = backgroundImageRenderer.image(actions: { context in
-            UIColor.white.setFill()
+            Color.white.setFill()
             context.fill(rect)
         }).cgImage else {
             return nil
@@ -181,7 +181,7 @@ public enum ImageFilter {
         return self.image(for: subtractImage)
     }
 
-    private func image(for image: CIImage) -> UIImage? {
+    private func image(for image: CIImage) -> Image? {
         let context = CIContext()
 
         guard let cgImage = context.createCGImage(
@@ -191,9 +191,15 @@ public enum ImageFilter {
             return nil
         }
 
-        return UIImage(cgImage: cgImage)
+        #if os(iOS) || os(tvOS) || os(watchOS)
+
+        return Image(cgImage: cgImage)
+
+        #elseif os(macOS)
+
+        return Image(cgImage: cgImage, size: image.extent.size)
+
+        #endif
     }
 
 }
-
-#endif

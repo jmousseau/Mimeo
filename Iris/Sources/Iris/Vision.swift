@@ -1,5 +1,3 @@
-#if targetEnvironment(macCatalyst) || os(iOS)
-
 import Vision
 
 // MARK: - Recognized Text Observation
@@ -63,5 +61,3 @@ extension Collection where Element: VNRectangleObservation {
     }
 
 }
-
-#endif
