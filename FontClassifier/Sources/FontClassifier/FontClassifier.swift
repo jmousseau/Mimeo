@@ -1,7 +1,6 @@
-#if targetEnvironment(macCatalyst) || os(iOS)
-
+import CoreGraphics
+import Foundation
 import Iris
-import UIKit
 import Vision
 
 @available(iOS 11.0, macOS 10.15, *)
@@ -21,11 +20,11 @@ public struct FontClassifier {
     /// - Parameter completion: Completion handler called with all character
     ///   images.
     public static func characterImages(
-        in image: UIImage,
+        in image: Image,
         with observations: [VNTextObservation],
         characterImageSize: CGSize,
-        characterImageInsets: UIEdgeInsets = .zero,
-        completion: @escaping ([UIImage]) -> Void
+        characterImageInsets: EdgeInsets = .zero,
+        completion: @escaping ([Image]) -> Void
     ) {
         let allCharacterBoxes = observations.reduce([]) { characterBoxes, observation in
             characterBoxes + (observation.characterBoxes ?? [])
@@ -55,17 +54,17 @@ public struct FontClassifier {
     /// - Parameter completion: Completion handler called with all character
     ///   images.
     public static func characterImages(
-        in image: UIImage,
+        in image: Image,
         with observations: [VNTextObservation],
         characterBoxes: [VNRectangleObservation],
         characterImageSize: CGSize,
-        characterImageInsets: UIEdgeInsets = .zero,
-        completion: @escaping ([UIImage]) -> Void
+        characterImageInsets: EdgeInsets = .zero,
+        completion: @escaping ([Image]) -> Void
     ) {
         let color = monoBackgroundColor(of: image, observations: observations)
         let isDarkBackground = (color?.hsba.brightness ?? 1) < 0.35
 
-        var characterImages = [UIImage]()
+        var characterImages = [Image]()
 
         for characterBox in characterBoxes {
             guard let characterImage = image.crop(
@@ -112,16 +111,16 @@ public struct FontClassifier {
     ///   behind the text observations.
     /// - Parameter observations: The text observations for the given image.
     public static func monoBackgroundColor(
-        of image: UIImage,
+        of image: Image,
         observations: [VNRectangleObservation]
-    ) -> UIColor? {
+    ) -> Color? {
         let boundingBox = observations
             .boundingBox()
             .inNormalizedUIImageCooridnateSpace()
             .denormalize(for: image.size)
 
         let expandedBoundingBox = boundingBox.expanded(
-            by: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+            by: EdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         )
 
         guard let expandedImage = image.crop(to: expandedBoundingBox) else {
@@ -139,7 +138,7 @@ public struct FontClassifier {
 
         let colors = expandedBoundingBox.borderRects(
             to: boundingBox.inCoordinateSpace(of: expandedBoundingBox.origin)
-        ).compactMap({ borderRect -> UIColor? in
+        ).compactMap({ borderRect -> Color? in
             guard let borderImage = ImageFilter.crop(
                 rect: borderRect
             ).apply(to: highContrastImage) else {
@@ -159,5 +158,3 @@ public struct FontClassifier {
     }
 
 }
-
-#endif

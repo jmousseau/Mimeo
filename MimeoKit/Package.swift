@@ -14,7 +14,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(path: "./Iris")
+        .package(path: "../Iris")
     ],
     targets: [
         .target(

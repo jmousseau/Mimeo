@@ -15,12 +15,18 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(path: "./Iris")
+        .package(path: "../Iris"),
+        .package(url: "https://github.com/JohnSundell/Files", from: "4.0.0"),
+        .package(url: "https://github.com/jakeheis/SwiftCLI", from: "5.0.0")
     ],
     targets: [
         .target(
             name: "FontClassifier",
             dependencies: ["Iris"]
+        ),
+        .target(
+            name: "FontClassifierCLI",
+            dependencies: ["FontClassifier", "SwiftCLI", "Files"]
         )
     ]
 )
