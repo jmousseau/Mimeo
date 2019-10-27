@@ -6,6 +6,7 @@
 //  Copyright © 2019 Jack Mousseau. All rights reserved.
 //
 
+import FontClassifier
 import MimeoKit
 import SpriteKit
 import UIKit
@@ -16,9 +17,14 @@ public final class ResultsTableView: UITableView {
 
         fileprivate static let identifier = "results-cell"
 
+        private let serifFont = UIFont(name: "Times New Roman", size: 18)
+
+        private let sansSerifFont = UIFont.systemFont(ofSize: 17)
+
         private lazy var label: UILabel = {
             let label = UILabel()
             label.numberOfLines = 0
+            label.font = fontClassification == .serif ? serifFont : sansSerifFont
             return label
         }()
 
@@ -78,6 +84,12 @@ public final class ResultsTableView: UITableView {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     self.dissolvingTextView.preload(view: self.label)
                 }
+            }
+        }
+
+        public var fontClassification: FontClassifier.Classification = .serif {
+            didSet {
+                label.font = fontClassification == .serif ? serifFont : sansSerifFont
             }
         }
 
@@ -159,14 +171,17 @@ public final class ResultsTableView: UITableView {
             case (.inProgress, _):
                 break
 
-            case (.complete(let recognizedTextObservations), .plain):
-                recognizedText = [recognizedTextObservations.plainText()]
+            case (.complete(let result), .plain):
+                fontClassification = result.fontClassification ?? .serif
+                recognizedText = [result.observations.plainText()]
 
-            case (.complete(let recognizedTextObservations), .grouped):
+            case (.complete(let result), .grouped):
+                fontClassification = result.fontClassification ?? .serif
+
                 if let groupedRecognizedText = cachedGroupedRecognizedText {
                     recognizedText = groupedRecognizedText
                 } else {
-                    cachedGroupedRecognizedText = recognizedTextObservations.groupedText()
+                    cachedGroupedRecognizedText = result.observations.groupedText()
                 }
             }
         }
@@ -183,6 +198,8 @@ public final class ResultsTableView: UITableView {
             reloadData()
         }
     }
+
+    private var fontClassification: FontClassifier.Classification = .serif
 
     public convenience init(frame: CGRect) {
         self.init(frame: .zero, style: .plain)
@@ -231,6 +248,7 @@ extension ResultsTableView: UITableViewDataSource {
         }
 
         cell.recognizedText = recognizedText[indexPath.row]
+        cell.fontClassification = fontClassification
         cell.isCopyButtonVisible = state.resultsLayout == .grouped
         cell.didCopy = { text in
             UIPasteboard.general.string = text

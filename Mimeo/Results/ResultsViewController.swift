@@ -128,8 +128,14 @@ public final class ResultsViewController: UIViewController {
                 activityIndicator.alpha = 1
                 activityIndicator.startAnimating()
 
-            case .complete:
+            case .complete(let result):
                 resultsLayout = preferencesStore.get(ResultsLayout.self)
+
+                if let fontClassification = result.fontClassification {
+                    print("Font classification: \(fontClassification.rawValue)")
+                } else {
+                    print("No font classification")
+                }
 
                 UIView.animate(withDuration: 0.25, animations: {
                     self.activityIndicator.alpha = 0

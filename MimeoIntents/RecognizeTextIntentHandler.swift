@@ -42,14 +42,14 @@ public final class RecognizeTextIntentHandler: NSObject, RecognizeTextIntentHand
                 case (.notStarted, _), (.inProgress, _):
                     break
 
-                case (.complete(let recognizedTextObservations), false):
+                case (.complete(let result), false):
                     let response = RecognizeTextIntentResponse(code: .success, userActivity: nil)
-                    response.text = recognizedTextObservations.plainText()
+                    response.text = result.observations.plainText()
                     completion(response)
 
-                case (.complete(let recognizedTextObservations), true):
+                case (.complete(let result), true):
                     let response = RecognizeTextIntentResponse(code: .success, userActivity: nil)
-                    response.text = recognizedTextObservations.groupedText().joined(separator: "\n")
+                    response.text = result.observations.groupedText().joined(separator: "\n")
                     completion(response)
                 }
             }

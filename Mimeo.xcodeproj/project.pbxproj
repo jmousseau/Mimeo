@@ -26,10 +26,10 @@
 		04193C2E235BD15A00AD04F5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193C2D235BD15A00AD04F5 /* SettingsViewController.swift */; };
 		04193C30235BD57D00AD04F5 /* BooleanSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193C2F235BD57D00AD04F5 /* BooleanSettingCell.swift */; };
 		04193C32235BD8DE00AD04F5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193C31235BD8DE00AD04F5 /* Settings.swift */; };
+		045645D723663E5A00FB8F89 /* FontClassifierV1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 045645D623663E5900FB8F89 /* FontClassifierV1.mlmodel */; };
 		04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F1E2341138D006656E4 /* AppDelegate.swift */; };
 		04789F212341138E006656E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F202341138E006656E4 /* SceneDelegate.swift */; };
 		04789F2823411393006656E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04789F2723411393006656E4 /* Assets.xcassets */; };
-		04789F2B23411393006656E4 /* Preview.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04789F2A23411393006656E4 /* Preview.xcassets */; };
 		04789F2E23411393006656E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04789F2C23411393006656E4 /* LaunchScreen.storyboard */; };
 		04789F3923411393006656E4 /* MimeoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F3823411393006656E4 /* MimeoTests.swift */; };
 		04789F4423411393006656E4 /* MimeoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F4323411393006656E4 /* MimeoUITests.swift */; };
@@ -97,11 +97,11 @@
 		04193C2D235BD15A00AD04F5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		04193C2F235BD57D00AD04F5 /* BooleanSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooleanSettingCell.swift; sourceTree = "<group>"; };
 		04193C31235BD8DE00AD04F5 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		045645D623663E5900FB8F89 /* FontClassifierV1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FontClassifierV1.mlmodel; path = FontClassifier.mlproj/Models/FontClassifierV1.mlmodel; sourceTree = SOURCE_ROOT; };
 		04789F1B2341138D006656E4 /* Mimeo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mimeo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04789F1E2341138D006656E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04789F202341138E006656E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		04789F2723411393006656E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		04789F2A23411393006656E4 /* Preview.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Preview.xcassets; sourceTree = "<group>"; };
 		04789F2D23411393006656E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04789F2F23411393006656E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04789F3423411393006656E4 /* MimeoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimeoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -289,7 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				04789F2723411393006656E4 /* Assets.xcassets */,
-				04789F2A23411393006656E4 /* Preview.xcassets */,
+				045645D623663E5900FB8F89 /* FontClassifierV1.mlmodel */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -449,7 +449,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				04789F2E23411393006656E4 /* LaunchScreen.storyboard in Resources */,
-				04789F2B23411393006656E4 /* Preview.xcassets in Resources */,
 				04789F2823411393006656E4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,6 +503,7 @@
 				048183012349674200379B52 /* MimeoViewController.swift in Sources */,
 				04193BE5235AAD8700AD04F5 /* UIDevice.swift in Sources */,
 				04193C32235BD8DE00AD04F5 /* Settings.swift in Sources */,
+				045645D723663E5A00FB8F89 /* FontClassifierV1.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,7 +719,6 @@
 				CODE_SIGN_ENTITLEMENTS = Mimeo/Mimeo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_ASSET_PATHS = Mimeo/Assets/Preview.xcassets;
 				DEVELOPMENT_TEAM = LVFKAL5KFM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Mimeo/Info.plist;
@@ -743,7 +742,6 @@
 				CODE_SIGN_ENTITLEMENTS = Mimeo/Mimeo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_ASSET_PATHS = Mimeo/Assets/Preview.xcassets;
 				DEVELOPMENT_TEAM = LVFKAL5KFM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Mimeo/Info.plist;

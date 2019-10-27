@@ -3,8 +3,44 @@ import Foundation
 import Iris
 import Vision
 
-@available(iOS 11.0, macOS 10.15, *)
+@available(iOS 13, macOS 10.15, *)
 public struct FontClassifier {
+
+    /// Create a character image for a random set of character boxes found
+    /// inside the given text observations.
+    ///
+    /// Every character image will have dark text on a white background.
+    ///
+    /// - Parameter image: The image in which the observations and character
+    ///   boxes exist.
+    /// - Parameter observations: The text observations in the image.
+    /// - Parameter characterImageSize: The desired character image size.
+    /// - Parameter characterImageInsets: The desired character image insets.
+    /// - Parameter characterImageSampleCount: The number of character boxes to
+    ///   sample.
+    /// - Parameter completion: Completion handler called with the sampled
+    ///   character images.
+    public static func sampleCharacterImages(
+        in image: Image,
+        with observations: [VNTextObservation],
+        characterImageSize: CGSize,
+        characterImageInsets: EdgeInsets = .zero,
+        characterImageSampleCount: Int = .max,
+        completion: @escaping ([Image]) -> Void
+    ) {
+        let sampledCharacterBoxes = Array(observations.reduce([], { characterBoxes, observation in
+            characterBoxes + (observation.characterBoxes ?? [])
+        }).shuffled().prefix(characterImageSampleCount))
+
+        characterImages(
+            in: image,
+            with: observations,
+            characterBoxes: sampledCharacterBoxes,
+            characterImageSize: characterImageSize,
+            characterImageInsets: characterImageInsets,
+            completion: completion
+        )
+    }
 
     /// Create a character image for every character box found inside the given
     /// text obervations.
@@ -14,7 +50,6 @@ public struct FontClassifier {
     /// - Parameter image: The image in which the observations and character
     ///   boxes exist.
     /// - Parameter observations: The text observations in the image.
-    ///   character images.
     /// - Parameter characterImageSize: The desired character image size.
     /// - Parameter characterImageInsets: The desired character image insets.
     /// - Parameter completion: Completion handler called with all character
@@ -55,14 +90,14 @@ public struct FontClassifier {
     ///   images.
     public static func characterImages(
         in image: Image,
-        with observations: [VNTextObservation],
+        with observations: [VNRectangleObservation],
         characterBoxes: [VNRectangleObservation],
         characterImageSize: CGSize,
         characterImageInsets: EdgeInsets = .zero,
         completion: @escaping ([Image]) -> Void
     ) {
         let color = monoBackgroundColor(of: image, observations: observations)
-        let isDarkBackground = (color?.hsba.brightness ?? 1) < 0.35
+        let isDarkBackground = (color?.hsba.brightness ?? 1) < 0.5
 
         var characterImages = [Image]()
 
@@ -155,6 +190,44 @@ public struct FontClassifier {
         })
 
         return colors.average()
+    }
+
+    public enum Classification: String {
+
+        case serif = "serif"
+
+        case sansSerif = "sans-serif"
+
+    }
+
+    private let model: VNCoreMLModel
+
+    /// Initialize a font classifier.
+    /// - Parameter model: The font classifier's CoreML model.
+    public init(model: MLModel) throws {
+        self.model = try VNCoreMLModel(for: model)
+    }
+
+    public func classify(
+        characterImage: CGImage,
+        completion: @escaping (Classification) -> Void
+    ) throws {
+        let handler = VNImageRequestHandler(
+            cgImage: characterImage,
+            orientation: .up
+        )
+
+        let request = VNCoreMLRequest(model: model) { request, error in
+            guard let observation = request.results?.first as? VNClassificationObservation else {
+                return
+            }
+
+            completion(Classification(rawValue: observation.identifier) ?? .serif)
+        }
+
+        request.imageCropAndScaleOption = .scaleFit
+
+        try handler.perform([request])
     }
 
 }

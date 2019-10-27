@@ -15,7 +15,13 @@ public final class MimeoViewController: UIViewController {
 
     private let preferenceStore = PreferencesStore.default()
 
-    private let textRecognizer = TextRecognizer()
+    private lazy var textRecognizer: TextRecognizer = {
+        do {
+            return try TextRecognizer(fontClassifierModel: FontClassifierV1().model)
+        } catch {
+            return TextRecognizer()
+        }
+    }()
 
     private let cameraViewController = CameraViewController()
 
@@ -110,7 +116,7 @@ public final class MimeoViewController: UIViewController {
         return ResultsViewController(cameraShutterView: cameraShutterButton)
     }()
 
-    private var recognizeTextRequest: VNRecognizeTextRequest?
+    private var imageRequests = [VNImageBasedRequest]()
 
     public init() {
         super.init(nibName: nil, bundle: nil)
@@ -276,7 +282,10 @@ extension MimeoViewController: CameraViewControllerDelegate {
     }
 
     @objc private func cancelRecognizeTextRequest() {
-        recognizeTextRequest?.cancel()
+        imageRequests.forEach({ imageRequest in
+            imageRequest.cancel()
+        })
+        imageRequests = []
         cameraShutterButton.image = nil
         cameraShutterButton.addTarget(self, action: #selector(capturePhoto), for: .touchUpInside)
         resultsViewController.recognitionState = .notStarted
@@ -361,9 +370,11 @@ extension MimeoViewController {
 
         let isQuickRecognitionEnabled = preferenceStore.get(QuickRecognitionSetting.self) == .on
 
-        recognizeTextRequest = try! textRecognizer.recognizeText(
-            in: image,
-            orientation: orientation,
+        let uiImage = UIImage(cgImage: image, scale: 1, orientation: orientation.imageOrientation)
+
+        imageRequests = try! textRecognizer.recognizeText(
+            in: uiImage.fixedOrientation()!.cgImage!,
+            orientation: .up,
             recognitionLevel: isQuickRecognitionEnabled ? .fast : .accurate,
             completion: { recognitionState in
                 DispatchQueue.main.async {

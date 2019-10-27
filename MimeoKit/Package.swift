@@ -14,12 +14,13 @@ let package = Package(
         )
     ],
     dependencies: [
+        .package(path: "../FontClassifier"),
         .package(path: "../Iris")
     ],
     targets: [
         .target(
             name: "MimeoKit",
-            dependencies: ["Iris"]
+            dependencies: ["FontClassifier", "Iris"]
         )
     ]
 )
