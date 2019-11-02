@@ -12,6 +12,7 @@ public typealias EdgeInsets = NSEdgeInsets
 
 extension EdgeInsets {
 
+    /// Zero edge insets.
     public static var zero: EdgeInsets {
         EdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }

@@ -7,25 +7,43 @@ import UIKit
 public typealias Image = UIImage
 
 extension Image {
-    /// Fix image orientaton to protrait up
-    public func fixedOrientation() -> UIImage? {
-        guard imageOrientation != UIImage.Orientation.up else {
-            // This is default orientation, don't need to do anything
-            return self.copy() as? UIImage
+
+    /// The image oriented up.
+    public func orientedUp() -> Image? {
+        guard imageOrientation != .up else {
+            return self.copy() as? Image
         }
 
-        guard let cgImage = self.cgImage else {
-            // CGImage is not available
+        guard let cgImage = cgImage else {
             return nil
         }
 
-        guard let colorSpace = cgImage.colorSpace, let ctx = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: cgImage.bitsPerComponent, bytesPerRow: 0, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else {
-            return nil // Not able to create CGContext
+        guard let context = CGContext.emptyContext(
+            for: cgImage,
+            size: size
+        ) else {
+            return nil
         }
 
-        var transform: CGAffineTransform = CGAffineTransform.identity
+        context.concatenate(imageOrientation.upTransform(for: size))
+        context.draw(cgImage, in: imageOrientation.upTransformRect(for: size))
 
-        switch imageOrientation {
+        guard let image = context.makeImage() else {
+            return nil
+        }
+
+        return Image(cgImage: image, scale: 1, orientation: .up)
+    }
+
+}
+
+extension Image.Orientation {
+
+    /// The transform to up orientation.
+    public func upTransform(for size: CGSize) -> CGAffineTransform {
+        var transform: CGAffineTransform = .identity
+
+        switch self {
         case .down, .downMirrored:
             transform = transform.translatedBy(x: size.width, y: size.height)
             transform = transform.rotated(by: CGFloat.pi)
@@ -41,8 +59,7 @@ extension Image {
             break
         }
 
-        // Flip image one more time if needed to, this is to prevent flipped image
-        switch imageOrientation {
+        switch self {
         case .upMirrored, .downMirrored:
             transform = transform.translatedBy(x: size.width, y: 0)
             transform = transform.scaledBy(x: -1, y: 1)
@@ -55,18 +72,18 @@ extension Image {
             break
         }
 
-        ctx.concatenate(transform)
+        return transform
+    }
 
-        switch imageOrientation {
+    /// A rectangle into which an image transformed by `upTransform` can be
+    /// correctly drawn.
+    public func upTransformRect(for size: CGSize) -> CGRect {
+        switch self {
         case .left, .leftMirrored, .right, .rightMirrored:
-            ctx.draw(cgImage, in: CGRect(x: 0, y: 0, width: size.height, height: size.width))
+            return CGRect(x: 0, y: 0, width: size.height, height: size.width)
         default:
-            ctx.draw(cgImage, in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-            break
+            return CGRect(x: 0, y: 0, width: size.width, height: size.height)
         }
-
-        guard let newCGImage = ctx.makeImage() else { return nil }
-        return UIImage.init(cgImage: newCGImage, scale: 1, orientation: .up)
     }
 
 }
@@ -98,6 +115,7 @@ extension CGImagePropertyOrientation {
         }
     }
 
+    /// The image property orientation's image orientation equivalent.
     public var imageOrientation: Image.Orientation {
         switch self {
         case .up:
@@ -204,6 +222,31 @@ extension Image {
             green: CGFloat(bitmap[1]) / 255,
             blue: CGFloat(bitmap[2]) / 255,
             alpha: 1
+        )
+    }
+
+}
+
+extension CGContext {
+
+    /// Returns an empty context for a given image.
+    /// - Parameter image: The image for which to create an empty context.
+    public static func emptyContext(
+        for image: CGImage,
+        size: CGSize
+    ) -> CGContext? {
+        guard let colorSpace = image.colorSpace else {
+            return nil
+        }
+
+        return CGContext(
+            data: nil,
+            width: Int(size.width),
+            height: Int(size.height),
+            bitsPerComponent: image.bitsPerComponent,
+            bytesPerRow: 0,
+            space: colorSpace,
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
         )
     }
 

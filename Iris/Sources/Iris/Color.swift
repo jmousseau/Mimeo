@@ -12,12 +12,17 @@ public typealias Color = NSColor
 
 #endif
 
-// MARK: - UIColor
+// MARK: - Color
 
 extension Color {
 
     /// The color's red, green, blue, and alpha components.
-    public var rgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+    public var rgba: (
+        red: CGFloat,
+        green: CGFloat,
+        blue: CGFloat,
+        alpha: CGFloat
+    ) {
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
@@ -29,7 +34,12 @@ extension Color {
     }
 
     /// The color's hue, saturation, brightness, and alpha components.
-    public var hsba: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat) {
+    public var hsba: (
+        hue: CGFloat,
+        saturation: CGFloat,
+        brightness: CGFloat,
+        alpha: CGFloat
+    ) {
         var hue: CGFloat = 0
         var saturation: CGFloat = 0
         var brightness: CGFloat = 0
@@ -42,11 +52,11 @@ extension Color {
 
 }
 
-// MARK: - UIColor Collection
+// MARK: - Color Collection
 
 extension Collection where Element == Color {
 
-    /// The average colors.
+    /// The average of all the colors. `nil` if the collection is empty.
     public func average() -> Color? {
         guard count > 0 else {
             return nil

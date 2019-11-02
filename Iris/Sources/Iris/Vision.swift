@@ -5,6 +5,7 @@ import Vision
 @available(iOS 13.0, macOS 10.15, *)
 extension VNRecognizedTextObservation {
 
+    /// The top most candidate, if one exists.
     public var topCandidate: VNRecognizedText? {
         topCandidates(1).first
     }

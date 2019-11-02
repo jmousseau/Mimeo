@@ -373,7 +373,7 @@ extension MimeoViewController {
         let uiImage = UIImage(cgImage: image, scale: 1, orientation: orientation.imageOrientation)
 
         imageRequests = try! textRecognizer.recognizeText(
-            in: uiImage.fixedOrientation()!.cgImage!,
+            in: uiImage.orientedUp()!.cgImage!,
             orientation: .up,
             recognitionLevel: isQuickRecognitionEnabled ? .fast : .accurate,
             completion: { recognitionState in
