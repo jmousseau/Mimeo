@@ -55,8 +55,8 @@ extension CGRect {
     ///   transform the rectangle.
     public func inCoordinateSpace(of origin: CGPoint) -> CGRect {
         CGRect(
-            x: abs(origin.x - origin.x),
-            y: abs(origin.y - origin.y),
+            x: abs(self.origin.x - origin.x),
+            y: abs(self.origin.y - origin.y),
             width: width,
             height: height
         )
@@ -94,27 +94,27 @@ extension CGRect {
     public func borderRects(to rect: CGRect) -> [CGRect] {
         [
             CGRect(
-                x: origin.x,
-                y: origin.y,
+                x: rect.origin.x,
+                y: rect.origin.y,
                 width: abs(origin.x - rect.origin.x),
-                height: height
+                height: rect.height
             ),
             CGRect(
-                x: rect.origin.x,
-                y: origin.y,
-                width: rect.width,
+                x: origin.x,
+                y: rect.origin.y,
+                width: width,
                 height: abs(origin.y - rect.origin.y)
             ),
             CGRect(
-                x: rect.origin.x + rect.width,
-                y: origin.y,
+                x: origin.x + width,
+                y: rect.origin.y,
                 width: abs((rect.origin.x + rect.width) - (origin.x + width)),
-                height: height
+                height: rect.height
             ),
             CGRect(
-                x: rect.origin.x,
-                y: rect.origin.y + rect.height,
-                width: rect.width,
+                x: origin.x,
+                y: origin.y + height,
+                width: width,
                 height: abs((rect.origin.y + rect.height) - (origin.y + height))
             )
         ]

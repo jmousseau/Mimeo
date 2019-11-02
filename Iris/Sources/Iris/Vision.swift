@@ -19,31 +19,30 @@ extension Collection where Element: VNRectangleObservation {
 
     /// The bounding box that bounds every bounding box in the collection.
     public func boundingBox() -> CGRect {
-        reduce(CGRect(
-            x: CGFloat.infinity,
-            y: .infinity,
-            width: 0,
-            height: 0
-        )) { boundingBox, observation -> CGRect in
+        guard let initialBoundingBox = first?.boundingBox else {
+            return .zero
+        }
+
+        return reduce(initialBoundingBox) { boundingBox, observation -> CGRect in
             let topLeftX = [
                 boundingBox.topLeft.x,
                 observation.boundingBox.topLeft.x
-            ].min() ?? 0
+            ].min()!
 
             let topLeftY = [
                 boundingBox.topLeft.y,
                 observation.boundingBox.topLeft.y
-            ].min() ?? 0
+            ].min()!
 
             let bottomRightX = [
                 boundingBox.bottomRight.x,
                 observation.boundingBox.bottomRight.x
-            ].min() ?? 0
+            ].max()!
 
             let bottomRightY = [
                 boundingBox.bottomRight.y,
                 observation.boundingBox.bottomRight.y
-            ].min() ?? 0
+            ].max()!
 
             return CGRect(
                 x: topLeftX,
@@ -54,10 +53,14 @@ extension Collection where Element: VNRectangleObservation {
         }
     }
 
-    /// The rectangle observation's sorted left to right, top to bottom.
-    public func sortedLeftToRightTopToBottom() -> [Element] {
+    /// The rectangle observation's sorted top to bottom, left to right.
+    public func sortedTopToBottomLeftToRight() -> [Element] {
         sorted(by: { lhs, rhs in
-            lhs.topLeft.x < rhs.topLeft.x && lhs.topLeft.y > rhs.topLeft.y
+            if lhs.topLeft.y == rhs.topLeft.y {
+                return lhs.topLeft.x < rhs.topLeft.x
+            }
+
+            return lhs.topLeft.y < rhs.topLeft.y
         })
     }
 

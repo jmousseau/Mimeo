@@ -24,7 +24,7 @@ extension Array where Element: VNRecognizedTextObservation {
 
     /// The recognized text observations concatenated into a single string.
     public func plainText() -> String {
-        sortedLeftToRightTopToBottom()
+        sortedTopToBottomLeftToRight()
             .compactMap({ observation in
                 observation.topCandidate?.string
             })
@@ -54,14 +54,13 @@ extension Array where Element: VNRecognizedTextObservation {
                 maximumNumberOfGroups: 3
             ))
 
+            // TODO: [Performance] The bounding box can be cached for each
+            // cluster.
             return clusters.sorted(by: { lhs, rhs in
-                guard let lhsObservation = lhs.observations.sortedLeftToRightTopToBottom().first,
-                    let rhsObservation = rhs.observations.sortedLeftToRightTopToBottom().first else {
-                        return true
-                }
-
-                return lhsObservation.topLeft.x < rhsObservation.topLeft.x &&
-                    lhsObservation.topLeft.y > rhsObservation.topLeft.y
+                let lhsBoundingBox = lhs.observations.boundingBox()
+                let rhsBoundingBox = rhs.observations.boundingBox()
+                return lhsBoundingBox.topLeft.x < rhsBoundingBox.topLeft.x &&
+                    lhsBoundingBox.topLeft.y < rhsBoundingBox.topLeft.y
             })
         } catch {
             return []

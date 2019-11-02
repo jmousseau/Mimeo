@@ -21,6 +21,10 @@ let package = Package(
         .target(
             name: "Iris",
             dependencies: ["SDWebImage"]
+        ),
+        .testTarget(
+            name: "IrisTests",
+            dependencies: ["Iris"]
         )
     ]
 )
