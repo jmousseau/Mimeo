@@ -12,6 +12,15 @@ import MimeoKit
 import SpriteKit
 import UIKit
 
+public protocol ResultsTableViewDelegate: class {
+
+    func resultsTableView(
+        _ resultsTableView: ResultsTableView,
+        didCopyTextInLabel label: UILabel
+    )
+
+}
+
 public final class ResultsTableView: UITableView {
 
     public final class Cell: UITableViewCell {
@@ -128,6 +137,8 @@ public final class ResultsTableView: UITableView {
 
     }
 
+    public weak var resultsDelegate: ResultsTableViewDelegate?
+
     public var state: (
         recognitionState: TextRecognizer.RecognitionState,
         resultsLayout: ResultsLayout
@@ -223,7 +234,10 @@ extension ResultsTableView: UITableViewDataSource {
         cell.fontClassification = fontClassification
         cell.isCopyButtonVisible = state.resultsLayout == .grouped
         cell.didCopy = { text in
-            UIPasteboard.general.string = text
+            self.resultsDelegate?.resultsTableView(
+                self, didCopyTextInLabel:
+                cell.label
+            )
         }
 
         return cell

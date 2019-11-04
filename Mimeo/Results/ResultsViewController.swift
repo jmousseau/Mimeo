@@ -90,7 +90,11 @@ public final class ResultsViewController: UIViewController {
 
     private var activityIndicator = UIActivityIndicatorView(style: .large)
 
-    private var resultsTableView = ResultsTableView()
+    private lazy var resultsTableView: ResultsTableView = {
+        let resultsTableView = ResultsTableView()
+        resultsTableView.resultsDelegate = self
+        return resultsTableView
+    }()
 
     private var dissolver = Dissolver()
 
@@ -287,18 +291,25 @@ public final class ResultsViewController: UIViewController {
     }
 
     @objc private func copyTextToPasteboard() {
+        UIPasteboard.general.string = resultsTableView.copyAllRecognizedText()
+        dissolveText(in: resultsTableView.allReconizedTextLabels())
+    }
+
+    fileprivate func dissolveText(in labels: [UILabel]) {
         let tableViewOffset = CGPoint(
             x: resultsTableView.contentOffset.x,
             y: -1 * resultsTableView.contentOffset.y
         )
 
+        let rects = labels.map { label in
+            label
+                .convert(label.frame, to: resultsTableView)
+                .offset(by: tableViewOffset)
+                .scaled(by: UIScreen.main.scale)
+        }
+
         if let image = ImageFilter.subtract(
-            rects: resultsTableView.allReconizedTextLabels().map({ label in
-                label
-                    .convert(label.frame, to: resultsTableView)
-                    .offset(by: tableViewOffset)
-                    .scaled(by: UIScreen.main.scale)
-            }),
+            rects: rects,
             invert: true
         ).apply(to: image(
             of: resultsTableView,
@@ -306,8 +317,6 @@ public final class ResultsViewController: UIViewController {
         ))?.cgImage {
             dissolver.dissolve(image: image)
         }
-
-        UIPasteboard.general.string = resultsTableView.copyAllRecognizedText()
     }
 
     private func image(of view: UIView, offset: CGPoint) -> UIImage {
@@ -316,6 +325,18 @@ public final class ResultsViewController: UIViewController {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image!
+    }
+
+}
+
+extension ResultsViewController: ResultsTableViewDelegate  {
+
+    public func resultsTableView(
+        _ resultsTableView: ResultsTableView,
+        didCopyTextInLabel label: UILabel
+    ) {
+        UIPasteboard.general.string = label.text
+        dissolveText(in: [label])
     }
 
 }
