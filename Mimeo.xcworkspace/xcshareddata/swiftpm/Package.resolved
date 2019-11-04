@@ -20,15 +20,6 @@
         }
       },
       {
-        "package": "SwiftImage",
-        "repositoryURL": "https://github.com/koher/swift-image",
-        "state": {
-          "branch": null,
-          "revision": "377d71a9ce4404e255ab46166ad416c4d4871900",
-          "version": "0.7.0"
-        }
-      },
-      {
         "package": "SwiftCLI",
         "repositoryURL": "https://github.com/jakeheis/SwiftCLI",
         "state": {

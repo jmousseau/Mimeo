@@ -6,6 +6,7 @@
 //  Copyright © 2019 Jack Mousseau. All rights reserved.
 //
 
+import MetalKit
 import MimeoKit
 import UIKit
 
@@ -90,12 +91,28 @@ public final class ResultsViewController: UIViewController {
 
     private var resultsTableView = ResultsTableView()
 
+    private var viewDissolver = ViewDissolver()
+
+    private lazy var dissolvingTextView: MTKView = {
+        let dissolvingTextView = MTKView(
+            frame: .zero,
+            device: MTLCreateSystemDefaultDevice()!
+        )
+        dissolvingTextView.backgroundColor = .clear
+        dissolvingTextView.delegate = viewDissolver
+        dissolvingTextView.framebufferOnly = true
+        dissolvingTextView.colorPixelFormat = .bgra8Unorm
+        dissolvingTextView.contentScaleFactor = UIScreen.main.scale
+        return dissolvingTextView
+    }()
+
     public var resultsLayout: ResultsLayout {
         didSet {
             preferencesStore.set(resultsLayout)
 
             if resultsTableView.superview == nil {
                 addResultsTableView()
+                addDissolvingTextView()
             }
 
             UIView.animate(withDuration: 0.25) {
@@ -229,6 +246,18 @@ public final class ResultsViewController: UIViewController {
         ])
     }
 
+    private func addDissolvingTextView() {
+        view.addSubview(dissolvingTextView)
+
+        dissolvingTextView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dissolvingTextView.leftAnchor.constraint(equalTo: resultsTableView.leftAnchor),
+            dissolvingTextView.rightAnchor.constraint(equalTo: resultsTableView.rightAnchor),
+            dissolvingTextView.topAnchor.constraint(equalTo: resultsTableView.topAnchor),
+            dissolvingTextView.bottomAnchor.constraint(equalTo: resultsTableView.bottomAnchor)
+        ])
+    }
+
     private func addCopyAllButton() {
         view.addSubview(copyAllButton)
 
@@ -255,6 +284,7 @@ public final class ResultsViewController: UIViewController {
     }
 
     @objc private func copyTextToPasteboard() {
+        viewDissolver.dissolve(view: resultsTableView)
         UIPasteboard.general.string = resultsTableView.copyAllRecognizedText()
     }
 }
