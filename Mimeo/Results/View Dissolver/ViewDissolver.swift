@@ -73,12 +73,6 @@ public final class Dissolver: NSObject, MTKViewDelegate {
         super.init()
     }
 
-    /// Dissolve a given view. Only one item may be dissolved at a time.
-    /// - Parameter view: The view which to dissolve.
-    public func dissolve(view: UIView) {
-        dissolve(image: image(of: view).cgImage!)
-    }
-
     /// Dissolve a given image. Only one item may be dissolved at a time.
     /// - Parameter image: The image which to dissolve.
     public func dissolve(image: CGImage) {
@@ -267,14 +261,6 @@ public final class Dissolver: NSObject, MTKViewDelegate {
             bytes: &vertexUniforms,
             length: MemoryLayout<ViewDissolverVertexUniforms>.stride, options: []
         )
-    }
-
-    private func image(of view: UIView) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
-        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image!
     }
 
 }

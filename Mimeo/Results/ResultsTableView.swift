@@ -198,6 +198,7 @@ public final class ResultsTableView: UITableView {
         backgroundColor = .clear
         separatorStyle = .none
         alwaysBounceVertical = true
+        allowsSelection = false
 
         dataSource = self
 
