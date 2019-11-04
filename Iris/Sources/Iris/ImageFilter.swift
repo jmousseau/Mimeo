@@ -20,8 +20,9 @@ public enum ImageFilter {
     /// Invert color of image.
     case invertColor
 
-    /// Subtract a rectangular area from an image.
-    case subtract(rect: CGRect)
+    /// Subtract rectangular areas from an image. Inverting the filter will
+    /// subtract everything but the rectangular areas from the image.
+    case subtract(rects: [CGRect], invert: Bool = false)
 
     public func apply(to image: Image) -> Image? {
         guard let image = image.cgImage else {
@@ -45,8 +46,8 @@ public enum ImageFilter {
         case .invertColor:
             return applyInvertColorFilter(to: image)
 
-        case .subtract(let rect):
-            return applySubtractFilter(to: image, rect: rect)
+        case .subtract(let rects, let invert):
+            return applySubtractFilter(to: image, rects: rects, invert: invert)
         }
     }
 
@@ -144,7 +145,11 @@ public enum ImageFilter {
     // MARK: - Subtract Filter
 
     @available(iOS 10.0, *)
-    private func applySubtractFilter(to image: CGImage, rect: CGRect) -> Image? {
+    private func applySubtractFilter(
+        to image: CGImage,
+        rects: [CGRect],
+        invert: Bool
+    ) -> Image? {
         let backgroundImageSize = CGSize(
             width: image.width,
             height: image.height
@@ -159,26 +164,30 @@ public enum ImageFilter {
         )
 
         guard let backgroundImage = backgroundImageRenderer.image(actions: { context in
-            Color.white.setFill()
-            context.fill(rect)
+            rects.forEach({ rect in
+                Color.white.setFill()
+                context.fill(rect)
+            })
         }).cgImage else {
             return nil
         }
 
-        guard let subtractFilter = CIFilter(name: "CISourceOutCompositing") else {
+        guard let filter = CIFilter(
+            name: invert ? "CISourceInCompositing" : "CISourceOutCompositing"
+        ) else {
             return nil
         }
 
-        subtractFilter.setValuesForKeys([
+        filter.setValuesForKeys([
             kCIInputBackgroundImageKey: CIImage(cgImage: backgroundImage),
             kCIInputImageKey: CIImage(cgImage: image)
         ])
 
-        guard let subtractImage = subtractFilter.outputImage else {
+        guard let outputImage = filter.outputImage else {
             return nil
         }
 
-        return self.image(for: subtractImage)
+        return self.image(for: outputImage)
     }
 
     private func image(for image: CIImage) -> Image? {

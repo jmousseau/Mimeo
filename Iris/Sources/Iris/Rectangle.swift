@@ -120,4 +120,19 @@ extension CGRect {
         ]
     }
 
+    /// Scale the rectangle for a given scale.
+    /// - Parameter scale: The scale which to scale the rectangle with.
+    public func scaled(by scale: CGFloat) -> CGRect {
+        CGRect(
+            x: origin.x * scale,
+            y: origin.y * scale,
+            width: width * scale,
+            height: height * scale
+        )
+    }
+
+    public func offset(by offset: CGPoint) -> CGRect {
+        offsetBy(dx: offset.x, dy: offset.y)
+    }
+
 }

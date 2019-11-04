@@ -6,6 +6,7 @@
 //  Copyright © 2019 Jack Mousseau. All rights reserved.
 //
 
+import Iris
 import MetalKit
 import MimeoKit
 import UIKit
@@ -91,7 +92,7 @@ public final class ResultsViewController: UIViewController {
 
     private var resultsTableView = ResultsTableView()
 
-    private var viewDissolver = ViewDissolver()
+    private var dissolver = Dissolver()
 
     private lazy var dissolvingTextView: MTKView = {
         let dissolvingTextView = MTKView(
@@ -99,7 +100,7 @@ public final class ResultsViewController: UIViewController {
             device: MTLCreateSystemDefaultDevice()!
         )
         dissolvingTextView.backgroundColor = .clear
-        dissolvingTextView.delegate = viewDissolver
+        dissolvingTextView.delegate = dissolver
         dissolvingTextView.framebufferOnly = true
         dissolvingTextView.colorPixelFormat = .bgra8Unorm
         dissolvingTextView.contentScaleFactor = UIScreen.main.scale
@@ -113,6 +114,8 @@ public final class ResultsViewController: UIViewController {
             if resultsTableView.superview == nil {
                 addResultsTableView()
                 addDissolvingTextView()
+
+                view.bringSubviewToFront(resultsTableView)
             }
 
             UIView.animate(withDuration: 0.25) {
@@ -284,7 +287,35 @@ public final class ResultsViewController: UIViewController {
     }
 
     @objc private func copyTextToPasteboard() {
-        viewDissolver.dissolve(view: resultsTableView)
+        let tableViewOffset = CGPoint(
+            x: resultsTableView.contentOffset.x,
+            y: -1 * resultsTableView.contentOffset.y
+        )
+
+        if let image = ImageFilter.subtract(
+            rects: resultsTableView.allReconizedTextLabels().map({ label in
+                label
+                    .convert(label.frame, to: resultsTableView)
+                    .offset(by: tableViewOffset)
+                    .scaled(by: UIScreen.main.scale)
+            }),
+            invert: true
+        ).apply(to: image(
+            of: resultsTableView,
+            offset: tableViewOffset
+        ))?.cgImage {
+            dissolver.dissolve(image: image)
+        }
+
         UIPasteboard.general.string = resultsTableView.copyAllRecognizedText()
     }
+
+    private func image(of view: UIView, offset: CGPoint) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
+        view.drawHierarchy(in: view.bounds.offset(by: offset), afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
+
 }

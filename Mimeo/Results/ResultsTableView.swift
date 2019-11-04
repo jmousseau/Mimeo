@@ -7,6 +7,7 @@
 //
 
 import FontClassifier
+import Iris
 import MimeoKit
 import SpriteKit
 import UIKit
@@ -21,7 +22,7 @@ public final class ResultsTableView: UITableView {
 
         private let sansSerifFont = UIFont.systemFont(ofSize: 17)
 
-        private lazy var label: UILabel = {
+        fileprivate lazy var label: UILabel = {
             let label = UILabel()
             label.numberOfLines = 0
             label.font = fontClassification == .serif ? serifFont : sansSerifFont
@@ -165,6 +166,16 @@ public final class ResultsTableView: UITableView {
     public private(set) var recognizedText = [String]() {
         didSet {
             reloadData()
+        }
+    }
+
+    public func allReconizedTextLabels() -> [UILabel] {
+        visibleCells.compactMap { cell in
+            guard let label = (cell as? Cell)?.label else {
+                return nil
+            }
+
+            return label
         }
     }
 

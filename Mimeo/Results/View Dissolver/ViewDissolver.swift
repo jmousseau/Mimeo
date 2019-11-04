@@ -8,8 +8,8 @@
 
 import MetalKit
 
-/// A view dissolver.
-public final class ViewDissolver: NSObject, MTKViewDelegate {
+/// A dissolver.
+public final class Dissolver: NSObject, MTKViewDelegate {
 
     /// A view dissolver configuration.
     public struct Configuration {
@@ -29,7 +29,7 @@ public final class ViewDissolver: NSObject, MTKViewDelegate {
 
     }
 
-    /// The view dissolver's configuration.
+    /// The dissolver's configuration.
     private let configuration: Configuration
 
     /// The current dissolve animation frame.
@@ -49,22 +49,22 @@ public final class ViewDissolver: NSObject, MTKViewDelegate {
     /// The y delta seeds.
     private var yDeltaSeeds: vector_float2 = .zero
 
-    /// The view to be dissolved.
-    private var dissolvingView: UIView?
+    /// The image to be dissolved.
+    private var dissolvingImage: CGImage?
 
     /// The texture to be dissolved.
     private var dissolvingTexture: MTLTexture?
 
-    /// The view dissolver's render pipeline state.
+    /// The dissolver's render pipeline state.
     private var renderPipelineState: MTLRenderPipelineState?
 
-    /// The view dissolver's command queue.
+    /// The dissolver's command queue.
     private var commandQueue: MTLCommandQueue?
 
-    /// The view dissolver's fragment uniforms.
+    /// The dissolver's fragment uniforms.
     private var fragmentUniformsBuffer: MTLBuffer?
 
-    /// The view dissolver's vertex uniforms.
+    /// The dissolver's vertex uniforms.
     private var vertexUniformsBuffer: MTLBuffer?
 
     public init(configuration: Configuration = .default) {
@@ -73,11 +73,19 @@ public final class ViewDissolver: NSObject, MTKViewDelegate {
         super.init()
     }
 
-    /// Dissolve a given view. Only one view may be dissolved at a time.
+    /// Dissolve a given view. Only one item may be dissolved at a time.
     /// - Parameter view: The view which to dissolve.
     public func dissolve(view: UIView) {
+        dissolve(image: image(of: view).cgImage!)
+    }
+
+    /// Dissolve a given image. Only one item may be dissolved at a time.
+    /// - Parameter image: The image which to dissolve.
+    public func dissolve(image: CGImage) {
+        dissolvingImage = image
+
         currentAnimationFrame = 0
-        dissolvingView = view
+
         texelIntensitySeeds = makeRandomVector()
         xDeltaSeeds = makeRandomVector()
         yDeltaSeeds = makeRandomVector()
@@ -98,17 +106,17 @@ public final class ViewDissolver: NSObject, MTKViewDelegate {
     public func draw(in view: MTKView) {
         guard currentAnimationFrame < configuration.animationFrameCount else {
             currentAnimationFrame = 0
-            dissolvingView = nil
+            dissolvingImage = nil
             dissolvingTexture = nil
             return
         }
 
-        guard let dissolvingView = dissolvingView, let device = view.device else {
+        guard let dissolvingImage = dissolvingImage, let device = view.device else {
             return
         }
 
         guard let dissolvingTexture = dissolvingTexture ?? makeTexture(
-            for: dissolvingView,
+            for: dissolvingImage,
             using: device
         ) else {
             return
@@ -199,15 +207,11 @@ public final class ViewDissolver: NSObject, MTKViewDelegate {
     }
 
     private func makeTexture(
-        for view: UIView,
+        for image: CGImage,
         using device: MTLDevice
     ) -> MTLTexture? {
-        guard let cgImage = image(of: view).cgImage else {
-            return nil
-        }
-
         let textureLoader = MTKTextureLoader(device: device)
-        return try? textureLoader.newTexture(cgImage: cgImage, options: nil)
+        return try? textureLoader.newTexture(cgImage: image, options: nil)
     }
 
     private func makeRenderPipelineState(
