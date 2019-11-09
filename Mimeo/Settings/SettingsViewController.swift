@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 public final class SettingsViewController: UITableViewController {
 
@@ -57,9 +58,37 @@ public final class SettingsViewController: UITableViewController {
                         }
                     )
                 ]
+            ),
+            Section(
+                header: "Feedback",
+                cells: [
+                    RateAppCell(),
+                    SendFeedbackCell(presenter: self)
+                ]
             )
         ]
     }
+
+    fileprivate func deselectRowForSelectedIndexPath() {
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: true)
+        }
+    }
+}
+
+// MARK: - Mail Composer Delegate
+
+extension SettingsViewController : MFMailComposeViewControllerDelegate {
+
+    public func mailComposeController(
+        _ controller: MFMailComposeViewController,
+        didFinishWith result: MFMailComposeResult,
+        error: Error?
+    ) {
+        controller.dismiss(animated: true)
+        deselectRowForSelectedIndexPath()
+    }
+
 }
 
 // MARK: - Table View Data Source
@@ -96,6 +125,25 @@ extension SettingsViewController {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         sections[indexPath.section].cells[indexPath.row]
+    }
+
+}
+
+// MARK: - Table View Delegate
+
+extension SettingsViewController {
+
+    public override func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        if let cell = tableView.cellForRow(at: indexPath) as? NavigationSettingCell {
+            cell.action()
+
+            if cell.shouldDeselectCellOnSelection {
+                deselectRowForSelectedIndexPath()
+            }
+        }
     }
 
 }
