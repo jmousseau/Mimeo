@@ -14,7 +14,7 @@ extension VNRectangleObservation: Clusterable {
     /// The rectangle observation's features used for algorithms such as
     /// clustering.
     public func clusterFeatures() -> [Double] {
-        return [Double(topLeft.x), Double(topLeft.y)]
+        [Double(topLeft.x * 0.5), Double(topLeft.y * 2)]
     }
 
 }
