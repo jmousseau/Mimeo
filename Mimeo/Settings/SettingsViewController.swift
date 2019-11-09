@@ -36,6 +36,11 @@ public final class SettingsViewController: StaticTableViewController {
                     RateAppCell(),
                     SendFeedbackCell(presenter: self)
                 ]
+            ),
+            Section(
+                cells: [
+                    AboutNavigationCell(presenter: self)
+                ]
             )
         ]
     }

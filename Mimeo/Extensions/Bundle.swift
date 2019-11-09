@@ -15,4 +15,18 @@ extension Bundle {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
     }
 
+    /// The application's version.
+    public var applicationVersion: String {
+        Bundle.main.object(
+            forInfoDictionaryKey: "CFBundleShortVersionString"
+        ) as! String
+    }
+
+    /// The application's build number.
+    public var applicationBuildNumber: String {
+        Bundle.main.object(
+            forInfoDictionaryKey: "CFBundleVersion"
+        ) as? String ?? "0"
+    }
+
 }
