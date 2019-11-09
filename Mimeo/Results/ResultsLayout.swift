@@ -15,7 +15,7 @@ public enum ResultsLayout: String, CaseIterable, PreferenceStorable {
     public static let preferenceKey = "results-layout"
 
     /// The default results layout preference value.
-    public static let defaultPreferenceValue = Self.plain.rawValue
+    public static let defaultPreferenceValue: ResultsLayout = .plain
 
     /// The plain layout. All recognized text is sorted left to right, top to
     /// bottom and joined with spaces.

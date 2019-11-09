@@ -52,10 +52,8 @@ public final class SettingsViewController: UITableViewController {
                 cells: [
                     BooleanSettingCell(
                         title: "Quick Recognition",
-                        isOn: preferenceStore.get(QuickRecognitionSetting.self) == .on,
-                        onToggle: { isOn in
-                            self.preferenceStore.set(isOn ? QuickRecognitionSetting.on : .off)
-                        }
+                        preferenceStore: preferenceStore,
+                        preference: QuickRecognitionSetting.self
                     )
                 ]
             ),

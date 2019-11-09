@@ -12,6 +12,8 @@ public final class BooleanSettingCell: UITableViewCell {
 
     public static let identifier = "boolean-setting-cell"
 
+    private lazy var preferenceStore = PreferencesStore.default()
+
     private let title: String
 
     private let onToggle: (Bool) -> Void
@@ -29,11 +31,25 @@ public final class BooleanSettingCell: UITableViewCell {
         return toggle
     }()
 
+    convenience init<P: BooleanPreferenceStorable>(
+        title: String,
+        preferenceStore: PreferencesStore,
+        preference: P.Type,
+        onToggle: ((_ isOn: Bool) -> Void)? = nil
+    ) {
+        self.init(title: title, isOn: preferenceStore.get(preference).isEnabled, onToggle: { isOn in
+            preferenceStore.set(isOn ? P.enabledCase : P.disabledCase)
+            onToggle?(isOn)
+        })
+    }
+
     init(title: String, isOn: Bool, onToggle: @escaping (_ isOn: Bool) -> Void) {
         self.title = title
         self.onToggle = onToggle
 
         super.init(style: .default, reuseIdentifier: Self.identifier)
+
+        selectionStyle = .none
 
         toggle.isOn = isOn
 

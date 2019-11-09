@@ -13,10 +13,10 @@ import UIKit
 public protocol PreferenceStorable: RawRepresentable where RawValue == String {
 
     /// The key under which the preference is stored.
-    static var preferenceKey: RawValue { get }
+    static var preferenceKey: String { get }
 
     /// The default preference value.
-    static var defaultPreferenceValue: RawValue { get }
+    static var defaultPreferenceValue: Self { get }
 
 }
 
@@ -25,6 +25,26 @@ extension PreferenceStorable {
     /// The preference storable's preference value.
     public var preferenceValue: RawValue {
         rawValue
+    }
+
+}
+
+/// A protocol to mark a particular preference as boolean representable.
+public protocol BooleanPreferenceStorable: PreferenceStorable {
+
+    /// The preference's enabled case.
+    static var enabledCase: Self { get }
+
+    /// The preference's disabled case.
+    static var disabledCase: Self { get }
+
+}
+
+extension BooleanPreferenceStorable {
+
+    /// Is the preference enabled?
+    var isEnabled: Bool {
+        return self == Self.enabledCase
     }
 
 }
@@ -53,7 +73,7 @@ public struct PreferencesStore {
     /// Get a preference.
     /// - Parameter preference: The preference type.
     public func get<P: PreferenceStorable>(_ preference: P.Type) -> P {
-        P(rawValue: (try? getValue(for: P.preferenceKey)) ?? P.defaultPreferenceValue)!
+        P(rawValue: (try? getValue(for: P.preferenceKey)) ?? P.defaultPreferenceValue.rawValue)!
     }
 
     /// Set a preference.
