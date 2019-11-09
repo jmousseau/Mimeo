@@ -23,6 +23,8 @@ public final class AboutViewController: StaticTableViewController {
 
     public init() {
         super.init(style: .grouped)
+
+        navigationItem.largeTitleDisplayMode = .never
     }
 
     required init?(coder: NSCoder) {

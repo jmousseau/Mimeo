@@ -28,6 +28,8 @@ public final class RecognitionLanguageViewController: UITableViewController {
     public init() {
         super.init(style: .grouped)
 
+        navigationItem.largeTitleDisplayMode = .never
+
         tableView.register(
             RecognitionLanguageCell.self,
             forCellReuseIdentifier: RecognitionLanguageCell.identifier
