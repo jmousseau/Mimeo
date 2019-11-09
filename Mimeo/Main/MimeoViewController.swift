@@ -34,7 +34,7 @@ public final class MimeoViewController: UIViewController {
             target: self,
             action: #selector(dismissSettings)
         )
-        settingsDoneButton.tintColor = .systemYellow
+        settingsDoneButton.tintColor = .mimeoYellow
         return settingsDoneButton
     }()
 
@@ -49,7 +49,7 @@ public final class MimeoViewController: UIViewController {
     private lazy var imagePickerViewController: UIImagePickerController = {
         let imagePickerViewController = UIImagePickerController()
         imagePickerViewController.delegate = self
-        imagePickerViewController.view.tintColor = .systemYellow
+        imagePickerViewController.view.tintColor = .mimeoYellow
         return imagePickerViewController
     }()
 
@@ -90,7 +90,7 @@ public final class MimeoViewController: UIViewController {
 
     private lazy var settingsButton: UIButton = {
         let settingsButton = UIButton()
-        settingsButton.tintColor = .systemYellow
+        settingsButton.tintColor = .mimeoYellowDark
         settingsButton.setImage(settingsImage, for: .normal)
         settingsButton.addTarget(self, action: #selector(presentSettings), for: .touchUpInside)
         return settingsButton
@@ -106,7 +106,7 @@ public final class MimeoViewController: UIViewController {
 
     private lazy var importButton: UIButton = {
         let importButton = UIButton()
-        importButton.tintColor = .systemYellow
+        importButton.tintColor = .mimeoYellowDark
         importButton.setImage(importImage, for: .normal)
         importButton.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
         return importButton

@@ -25,6 +25,7 @@
 		04193C2E235BD15A00AD04F5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193C2D235BD15A00AD04F5 /* SettingsViewController.swift */; };
 		04193C30235BD57D00AD04F5 /* BooleanSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193C2F235BD57D00AD04F5 /* BooleanSettingCell.swift */; };
 		04193C32235BD8DE00AD04F5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193C31235BD8DE00AD04F5 /* Settings.swift */; };
+		041C542A23767F6100A6BFB8 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041C542923767F6100A6BFB8 /* UIColor.swift */; };
 		042AB4EB236FAB29003EE5FF /* ViewDissolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4EA236FAB29003EE5FF /* ViewDissolver.swift */; };
 		042AB4EE236FAB73003EE5FF /* ViewDissolverShaders.h in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4ED236FAB73003EE5FF /* ViewDissolverShaders.h */; };
 		042AB4F0236FABBB003EE5FF /* ViewDissolverShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4EF236FABBB003EE5FF /* ViewDissolverShaders.metal */; };
@@ -97,6 +98,7 @@
 		04193C2D235BD15A00AD04F5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		04193C2F235BD57D00AD04F5 /* BooleanSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooleanSettingCell.swift; sourceTree = "<group>"; };
 		04193C31235BD8DE00AD04F5 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		041C542923767F6100A6BFB8 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		042AB4EA236FAB29003EE5FF /* ViewDissolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDissolver.swift; sourceTree = "<group>"; };
 		042AB4EC236FAB72003EE5FF /* Mimeo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mimeo-Bridging-Header.h"; sourceTree = "<group>"; };
 		042AB4ED236FAB73003EE5FF /* ViewDissolverShaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewDissolverShaders.h; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				04193BE4235AAD8700AD04F5 /* CGRect.swift */,
+				041C542923767F6100A6BFB8 /* UIColor.swift */,
 				04193BE3235AAD8700AD04F5 /* UIDevice.swift */,
 			);
 			path = Extensions;
@@ -507,6 +510,7 @@
 				049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */,
 				04193C01235B78A200AD04F5 /* Intents.intentdefinition in Sources */,
 				04855D7E2354245B00ACB0A2 /* InsetLabel.swift in Sources */,
+				041C542A23767F6100A6BFB8 /* UIColor.swift in Sources */,
 				04193BE6235AAD8700AD04F5 /* CGRect.swift in Sources */,
 				04193BD8235AACD900AD04F5 /* PreferencesStore.swift in Sources */,
 				04818306234987CB00379B52 /* CameraShutterButton.swift in Sources */,

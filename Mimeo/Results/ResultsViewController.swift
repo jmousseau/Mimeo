@@ -76,7 +76,7 @@ public final class ResultsViewController: UIViewController {
         )
 
         let copyAllButton = UIButton()
-        copyAllButton.tintColor = .systemYellow
+        copyAllButton.tintColor = .mimeoYellow
         copyAllButton.isEnabled = false
         copyAllButton.setImage(copyImage, for: .normal)
         copyAllButton.addTarget(

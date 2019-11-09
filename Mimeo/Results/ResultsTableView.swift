@@ -46,10 +46,10 @@ public final class ResultsTableView: UITableView {
             )
 
             let copyButton = UIButton()
-            copyButton.tintColor = .systemYellow
+            copyButton.tintColor = .mimeoYellow
             copyButton.setImage(copyImage, for: .normal)
             copyButton.setTitle(" Copy", for: .normal)
-            copyButton.setTitleColor(.systemYellow, for: .normal)
+            copyButton.setTitleColor(.mimeoYellow, for: .normal)
             copyButton.addTarget(
                 self,
                 action: #selector(didPressCopyButton),

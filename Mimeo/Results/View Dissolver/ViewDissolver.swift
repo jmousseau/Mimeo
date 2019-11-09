@@ -21,7 +21,7 @@ public final class Dissolver: NSObject, MTKViewDelegate {
         public let animationFrameCount: Int = 24
 
         /// The dissolve animation intensity.
-        public let animationIntensity: Float = 0.75
+        public let animationIntensity: Float = 1
 
         /// The maximum x and y delta, in points, any particle may move over the
         /// duration of the dissolve animation.
