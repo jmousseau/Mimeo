@@ -18,13 +18,14 @@ public class NavigationSettingCell: UITableViewCell {
 
     public init(
         title: String,
+        style: UITableViewCell.CellStyle = .default,
         shouldDeselectCellOnSelection: Bool = false,
         action: @escaping () -> Void
     ) {
         self.action = action
         self.shouldDeselectCellOnSelection = shouldDeselectCellOnSelection
 
-        super.init(style: .default, reuseIdentifier: Self.identifier)
+        super.init(style: style, reuseIdentifier: Self.identifier)
 
         textLabel?.text = title
         accessoryType = .disclosureIndicator

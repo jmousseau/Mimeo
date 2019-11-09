@@ -9,44 +9,17 @@
 import UIKit
 import MessageUI
 
-public final class SettingsViewController: UITableViewController {
+public final class SettingsViewController: StaticTableViewController {
 
     private let preferenceStore = PreferencesStore.default()
 
-    public struct Section {
-
-        public let header: String?
-
-        public let footer: String?
-
-        public var cells: [UITableViewCell]
-
-        public init(
-            header: String? = nil,
-            footer: String? = nil,
-            cells: [UITableViewCell]
-        ) {
-            self.header = header
-            self.footer = footer
-            self.cells = cells
-        }
-
-    }
-
-    private var sections = [Section]()
-
-    public init() {
-        super.init(style: .grouped)
-
-        setUpSections()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private func setUpSections() {
-        sections = [
+    public override var sections: [StaticTableViewController.Section] {
+        [
+            Section(
+                cells: [
+                    RecognitionLanguageNavigationCell(presenter: self)
+                ]
+            ),
             Section(
                 footer: "Faster text recognition, but lower accuracy.",
                 cells: [
@@ -67,12 +40,31 @@ public final class SettingsViewController: UITableViewController {
         ]
     }
 
-    fileprivate func deselectRowForSelectedIndexPath() {
-        if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: selectedIndexPath, animated: true)
-        }
+    public init() {
+        super.init(style: .grouped)
+
+        tableView.delegate = self
     }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 }
+
+// MARK: - Recognition Language Delegate {
+
+extension SettingsViewController: RecognitionLanguageViewControllerDelegate {
+
+    public func recognitionLanguageViewController(
+        _ recognitionLanguageViewController: RecognitionLanguageViewController,
+        didSelectLanguage language: RecognitionLanguage
+    ) {
+        tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+    }
+
+}
+
 
 // MARK: - Mail Composer Delegate
 
@@ -85,44 +77,6 @@ extension SettingsViewController : MFMailComposeViewControllerDelegate {
     ) {
         controller.dismiss(animated: true)
         deselectRowForSelectedIndexPath()
-    }
-
-}
-
-// MARK: - Table View Data Source
-
-extension SettingsViewController {
-
-    public override func numberOfSections(in tableView: UITableView) -> Int {
-        sections.count
-    }
-
-    public override func tableView(
-        _ tableView: UITableView,
-        numberOfRowsInSection section: Int
-    ) -> Int {
-        sections[section].cells.count
-    }
-
-    public override func tableView(
-        _ tableView: UITableView,
-        titleForHeaderInSection section: Int
-    ) -> String? {
-        sections[section].header
-    }
-
-    public override func tableView(
-        _ tableView: UITableView,
-        titleForFooterInSection section: Int
-    ) -> String? {
-        sections[section].footer
-    }
-
-    public override func tableView(
-        _ tableView: UITableView,
-        cellForRowAt indexPath: IndexPath
-    ) -> UITableViewCell {
-        sections[indexPath.section].cells[indexPath.row]
     }
 
 }

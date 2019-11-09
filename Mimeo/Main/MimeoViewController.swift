@@ -368,14 +368,12 @@ extension MimeoViewController {
     ) {
         cameraShutterButton.image = cancelImage
 
-        let isQuickRecognitionEnabled = preferenceStore.get(QuickRecognitionSetting.self) == .on
-
         let uiImage = UIImage(cgImage: image, scale: 1, orientation: orientation.imageOrientation)
 
         imageRequests = try! textRecognizer.recognizeText(
             in: uiImage.orientedUp()!.cgImage!,
             orientation: .up,
-            recognitionLevel: isQuickRecognitionEnabled ? .fast : .accurate,
+            recognitionLevel: preferenceStore.get(QuickRecognitionSetting.self).recognitionLevel,
             completion: { recognitionState in
                 DispatchQueue.main.async {
                     self.didUpdate(recognitionState: recognitionState)

@@ -73,7 +73,16 @@ public struct PreferencesStore {
     /// Get a preference.
     /// - Parameter preference: The preference type.
     public func get<P: PreferenceStorable>(_ preference: P.Type) -> P {
-        P(rawValue: (try? getValue(for: P.preferenceKey)) ?? P.defaultPreferenceValue.rawValue)!
+        if let preferenceRawValue = try? getValue(for: P.preferenceKey), let preference = P(
+            rawValue: preferenceRawValue
+        ) {
+            return preference
+        } else {
+            // The store may contain an invalid preference value. Reset it to
+            // the default.
+            set(P.defaultPreferenceValue)
+            return P.defaultPreferenceValue
+        }
     }
 
     /// Set a preference.

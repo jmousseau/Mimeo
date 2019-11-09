@@ -18,6 +18,7 @@ public final class SendFeedbackCell: NavigationSettingCell {
             }
 
             let mailComposeViewController = MFMailComposeViewController()
+            mailComposeViewController.view.tintColor = .systemBlue
             mailComposeViewController.mailComposeDelegate = presenter
             mailComposeViewController.setToRecipients(["mimeo@jmousseau.com"])
             mailComposeViewController.setSubject("\(Bundle.main.applicationDisplayName) Feedback")

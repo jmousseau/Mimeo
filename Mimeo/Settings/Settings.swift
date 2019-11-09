@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Vision
 
 /// The Quick Recognition setting.
 public enum QuickRecognitionSetting: String, CaseIterable, BooleanPreferenceStorable {
@@ -28,5 +29,10 @@ public enum QuickRecognitionSetting: String, CaseIterable, BooleanPreferenceStor
 
     /// Quick Recognition is off.
     case off = "off"
+
+    /// The recognition level corresponding to the Quick Recognition setting.
+    public var recognitionLevel: VNRequestTextRecognitionLevel {
+        isEnabled ? .fast : .accurate
+    }
 
 }
