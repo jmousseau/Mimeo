@@ -148,15 +148,18 @@ public final class ResultsTableView: UITableView {
             case (.notStarted,  _):
                 recognizedText = []
                 cachedGroupedRecognizedText = nil
+                backgroundView = nil
 
             case (.inProgress, _):
                 break
 
             case (.complete(let result), .plain):
+                updateNoResultsLabel(for: result)
                 fontClassification = result.fontClassification ?? .serif
                 recognizedText = [result.observations.plainText()]
 
             case (.complete(let result), .grouped):
+                updateNoResultsLabel(for: result)
                 fontClassification = result.fontClassification ?? .serif
 
                 if let groupedRecognizedText = cachedGroupedRecognizedText {
@@ -180,17 +183,16 @@ public final class ResultsTableView: UITableView {
         }
     }
 
-    public func allReconizedTextLabels() -> [UILabel] {
-        visibleCells.compactMap { cell in
-            guard let label = (cell as? Cell)?.label else {
-                return nil
-            }
-
-            return label
-        }
-    }
-
     private var fontClassification: FontClassifier.Classification = .serif
+
+    private lazy var noResultsLabel: UILabel = {
+        let noResultsLabel = UILabel()
+        noResultsLabel.numberOfLines = 0
+        noResultsLabel.text = "No text detected"
+        noResultsLabel.textColor = .secondaryLabel
+        noResultsLabel.textAlignment = .center
+        return noResultsLabel
+    }()
 
     public convenience init(frame: CGRect) {
         self.init(frame: .zero, style: .plain)
@@ -207,6 +209,27 @@ public final class ResultsTableView: UITableView {
 
     public func copyAllRecognizedText() -> String {
         recognizedText.joined(separator: " ")
+    }
+
+    public func allReconizedTextLabels() -> [UILabel] {
+        visibleCells.compactMap { cell in
+            guard let label = (cell as? Cell)?.label else {
+                return nil
+            }
+
+            return label
+        }
+    }
+
+    private func updateNoResultsLabel(
+        for result: TextRecognizer.RecognizedTextResult
+    ) {
+        if result.observations.count > 0 {
+            backgroundView = nil
+        } else {
+            noResultsLabel.bounds = bounds
+            backgroundView = noResultsLabel
+        }
     }
 
 }

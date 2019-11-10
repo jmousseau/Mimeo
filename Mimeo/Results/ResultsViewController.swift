@@ -152,7 +152,7 @@ public final class ResultsViewController: UIViewController {
                 activityIndicator.alpha = 1
                 activityIndicator.startAnimating()
 
-            case .complete:
+            case .complete(let result):
                 resultsLayout = preferencesStore.get(ResultsLayout.self)
 
                 UIView.animate(withDuration: 0.25, animations: {
@@ -160,7 +160,7 @@ public final class ResultsViewController: UIViewController {
                 }) { isFinished in
                     if (isFinished) {
                         self.activityIndicator.stopAnimating()
-                        self.copyAllButton.isEnabled = true
+                        self.copyAllButton.isEnabled = result.observations.count > 0
                     }
                 }
             }
