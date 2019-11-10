@@ -35,6 +35,7 @@
 		042AB4EB236FAB29003EE5FF /* ViewDissolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4EA236FAB29003EE5FF /* ViewDissolver.swift */; };
 		042AB4EE236FAB73003EE5FF /* ViewDissolverShaders.h in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4ED236FAB73003EE5FF /* ViewDissolverShaders.h */; };
 		042AB4F0236FABBB003EE5FF /* ViewDissolverShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4EF236FABBB003EE5FF /* ViewDissolverShaders.metal */; };
+		0455A0802377F06F009FFAEA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0455A07F2377F06F009FFAEA /* CloudKit.framework */; };
 		045645D723663E5A00FB8F89 /* FontClassifierV1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 045645D623663E5900FB8F89 /* FontClassifierV1.mlmodel */; };
 		0467705A237760AD00192D2E /* AboutNavigationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677059237760AD00192D2E /* AboutNavigationCell.swift */; };
 		0467705E237760FD00192D2E /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467705D237760FD00192D2E /* AboutViewController.swift */; };
@@ -122,6 +123,7 @@
 		042AB4EC236FAB72003EE5FF /* Mimeo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mimeo-Bridging-Header.h"; sourceTree = "<group>"; };
 		042AB4ED236FAB73003EE5FF /* ViewDissolverShaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewDissolverShaders.h; sourceTree = "<group>"; };
 		042AB4EF236FABBB003EE5FF /* ViewDissolverShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ViewDissolverShaders.metal; sourceTree = "<group>"; };
+		0455A07F2377F06F009FFAEA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		045645D623663E5900FB8F89 /* FontClassifierV1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FontClassifierV1.mlmodel; path = FontClassifier.mlproj/Models/FontClassifierV1.mlmodel; sourceTree = SOURCE_ROOT; };
 		04677059237760AD00192D2E /* AboutNavigationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutNavigationCell.swift; sourceTree = "<group>"; };
 		0467705D237760FD00192D2E /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04111E3E235AA9B000F73084 /* MimeoKit in Frameworks */,
+				0455A0802377F06F009FFAEA /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +188,7 @@
 		04111E3C235AA9B000F73084 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0455A07F2377F06F009FFAEA /* CloudKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
