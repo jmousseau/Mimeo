@@ -50,13 +50,13 @@ final class VisionTests: XCTestCase {
                 observation.boundingBox
             }),
             [
-                CGRect(x: 1, y: 1, width: 0, height: 0),
-                CGRect(x: 2, y: 1, width: 0, height: 0),
-                CGRect(x: 4, y: 1, width: 0, height: 0),
+                CGRect(x: 2, y: 3, width: 0, height: 0),
                 CGRect(x: 1, y: 2, width: 0, height: 0),
                 CGRect(x: 2, y: 2, width: 0, height: 0),
                 CGRect(x: 3, y: 2, width: 0, height: 0),
-                CGRect(x: 2, y: 3, width: 0, height: 0)
+                CGRect(x: 1, y: 1, width: 0, height: 0),
+                CGRect(x: 2, y: 1, width: 0, height: 0),
+                CGRect(x: 4, y: 1, width: 0, height: 0)
             ]
         )
     }

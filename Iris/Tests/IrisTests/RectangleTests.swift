@@ -8,6 +8,11 @@ final class RectangleTests: XCTestCase {
         XCTAssertEqual(rect.topLeft, CGPoint(x: 10, y: 20))
     }
 
+    func testCenter() {
+        let rect = CGRect(x: 10, y: 20, width: 30, height: 40)
+        XCTAssertEqual(rect.center, CGPoint(x: 25, y: 40))
+    }
+
     func testBottomRight() {
         let rect = CGRect(x: 10, y: 20, width: 30, height: 40)
         XCTAssertEqual(rect.bottomRight, CGPoint(x: 40, y: 60))

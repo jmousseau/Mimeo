@@ -9,6 +9,14 @@ extension CGRect {
         origin
     }
 
+    /// The rectangle's center.
+    public var center: CGPoint {
+        return CGPoint(
+            x: origin.x + width / 2,
+            y: origin.y + height / 2
+        )
+    }
+
     /// The rectangle's bottom right.
     public var bottomRight: CGPoint {
         CGPoint(

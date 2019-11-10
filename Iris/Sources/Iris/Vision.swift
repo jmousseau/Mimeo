@@ -60,7 +60,8 @@ extension Collection where Element: VNRectangleObservation {
                 return lhs.topLeft.x < rhs.topLeft.x
             }
 
-            return lhs.topLeft.y < rhs.topLeft.y
+            // Vision origin is the bottom left of the image.
+            return lhs.topLeft.y > rhs.topLeft.y
         })
     }
 

@@ -14,7 +14,7 @@ extension VNRectangleObservation: Clusterable {
     /// The rectangle observation's features used for algorithms such as
     /// clustering.
     public func clusterFeatures() -> [Double] {
-        [Double(topLeft.x * 0.5), Double(topLeft.y * 2)]
+        [Double(boundingBox.center.x * 0.5), Double(boundingBox.center.y * 2)]
     }
 
 }
@@ -59,8 +59,16 @@ extension Array where Element: VNRecognizedTextObservation {
             return clusters.sorted(by: { lhs, rhs in
                 let lhsBoundingBox = lhs.observations.boundingBox()
                 let rhsBoundingBox = rhs.observations.boundingBox()
-                return lhsBoundingBox.topLeft.x < rhsBoundingBox.topLeft.x &&
-                    lhsBoundingBox.topLeft.y < rhsBoundingBox.topLeft.y
+                let lhsCenter = lhsBoundingBox.center
+                let rhsCenter = rhsBoundingBox.center
+
+                if lhsCenter.y == rhsCenter.y {
+                    return lhsCenter.x < rhsCenter.x
+                }
+
+                // Vision origin is the bottom left of the image.
+                return lhsCenter.y > rhsCenter.y
+
             })
         } catch {
             return []
