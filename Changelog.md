@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.3.0] - 2019-11-09
+
+### Added
+- Settings about, recognition language, and feedback sections.
+- Serif/sans-serif font classifier.
+
+### Changed
+- Improved text observation clustering.
+- Improved copy animation (w.r.t. performance and effect).
+- Increased button color contrast for light backgrounds.
+
+### Fixed
+- Text observation ordering.
+
 ## [0.2.0] - 2019-10-19
 
 ### Added
