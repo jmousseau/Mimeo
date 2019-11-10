@@ -15,8 +15,8 @@ public enum QuickRecognitionSetting: String, CaseIterable, BooleanPreferenceStor
     /// The Quick Recognition preference key.
     public static let preferenceKey = "quick-recognition"
 
-    /// The default Quick Recognition preference value.
-    public static let defaultPreferenceValue: QuickRecognitionSetting = .off
+    /// The default Quick Recognition preference.
+    public static let defaultPreference: QuickRecognitionSetting = .off
 
     /// The Quick Recognition case that is considered enabled.
     public static let enabledCase: QuickRecognitionSetting = .on

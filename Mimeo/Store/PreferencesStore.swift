@@ -9,22 +9,74 @@
 import CoreData
 import UIKit
 
+// MARK: - Preference Storable
+
 /// A type which may be stored in the preferences store.
-public protocol PreferenceStorable: RawRepresentable where RawValue == String {
+public protocol PreferenceStorable: Equatable {
 
     /// The key under which the preference is stored.
     static var preferenceKey: String { get }
 
-    /// The default preference value.
-    static var defaultPreferenceValue: Self { get }
+    /// The default preference.
+    static var defaultPreference: Self { get }
+
+    /// The preference's value.
+    var preferenceValue: String { get }
+
+    /// Initialize a preference storable with a given preference value.
+    /// - Parameter preferenceValue: The preference value with which to
+    /// initialize a preference storable.
+    init?(preferenceValue: String)
 
 }
 
-extension PreferenceStorable {
+// MARK: - Raw Representable
 
-    /// The preference storable's preference value.
-    public var preferenceValue: RawValue {
+/// Default preference storable raw string representable implementation.
+extension PreferenceStorable where Self: RawRepresentable, Self.RawValue == String {
+
+    public var preferenceValue: String {
         rawValue
+    }
+
+    public init?(preferenceValue: String) {
+        self.init(rawValue: preferenceValue)
+    }
+
+}
+
+// MARK: - Codable
+
+/// Default preference storable codable implementation.
+extension PreferenceStorable where Self: Codable {
+
+    public var preferenceValue: String {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+
+        guard let data = try? encoder.encode(self) else {
+            return Self.defaultPreference.preferenceValue
+        }
+
+        return String(data: data, encoding: .utf8) ?? Self.defaultPreference.preferenceValue
+    }
+
+    public init?(preferenceValue: String) {
+        guard let data = preferenceValue.data(using: .utf8) else {
+            return nil
+        }
+
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+
+        guard let decodedSelf = try? decoder.decode(
+            Self.self,
+            from: data
+        ) else {
+            return nil
+        }
+
+        self = decodedSelf
     }
 
 }
@@ -73,15 +125,15 @@ public struct PreferencesStore {
     /// Get a preference.
     /// - Parameter preference: The preference type.
     public func get<P: PreferenceStorable>(_ preference: P.Type) -> P {
-        if let preferenceRawValue = try? getValue(for: P.preferenceKey), let preference = P(
-            rawValue: preferenceRawValue
+        if let preferenceValue = try? getValue(for: P.preferenceKey), let preference = P(
+            preferenceValue: preferenceValue
         ) {
             return preference
         } else {
             // The store may contain an invalid preference value. Reset it to
             // the default.
-            set(P.defaultPreferenceValue)
-            return P.defaultPreferenceValue
+            set(P.defaultPreference)
+            return P.defaultPreference
         }
     }
 

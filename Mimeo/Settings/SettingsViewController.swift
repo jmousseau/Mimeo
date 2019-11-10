@@ -11,7 +11,7 @@ import MessageUI
 
 public final class SettingsViewController: StaticTableViewController {
 
-    private let preferenceStore = PreferencesStore.default()
+    private let preferencesStore = PreferencesStore.default()
 
     public override var sections: [StaticTableViewController.Section] {
         [
@@ -25,7 +25,7 @@ public final class SettingsViewController: StaticTableViewController {
                 cells: [
                     BooleanSettingCell(
                         title: "Quick Recognition",
-                        preferenceStore: preferenceStore,
+                        preferenceStore: preferencesStore,
                         preference: QuickRecognitionSetting.self
                     )
                 ]
@@ -33,7 +33,7 @@ public final class SettingsViewController: StaticTableViewController {
             Section(
                 header: "Feedback",
                 cells: [
-                    RateAppCell(),
+                    RateAppCell(preferencesStore: preferencesStore),
                     SendFeedbackCell(presenter: self)
                 ]
             ),

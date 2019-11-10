@@ -15,7 +15,7 @@ public enum RecognitionLanguage: String, PreferenceStorable {
     public static var preferenceKey: String = "recognition-language"
 
     /// The default language preference.
-    public static var defaultPreferenceValue: RecognitionLanguage = .en_US
+    public static var defaultPreference: RecognitionLanguage = .en_US
 
     /// The supported languages.
     public static var supportedLanguages: [RecognitionLanguage] {
