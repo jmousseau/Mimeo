@@ -150,7 +150,7 @@ public struct PreferencesStore {
     /// specified key, if it exists. Otherwise, create a new preference object
     /// and with a key of `key`.
     /// - Parameter key: The for which to fetch a preference object.
-    public func fetchPreference(for key: String) throws -> Preference {
+    private func fetchPreference(for key: String) throws -> Preference {
         let fetchRequest: NSFetchRequest<Preference> = Preference.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "key == %@", key)
 
@@ -174,6 +174,11 @@ extension PreferencesStore: KeyValueStore {
 
     public func set(value: String?, for key: String) throws {
         let preference = try fetchPreference(for: key)
+
+        guard preference.value != value else {
+            return
+        }
+
         preference.value = value
         try preference.managedObjectContext?.save()
     }
