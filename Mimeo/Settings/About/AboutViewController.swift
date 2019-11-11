@@ -10,8 +10,10 @@ import UIKit
 
 public final class AboutViewController: StaticTableViewController {
 
-    public override var sections: [StaticTableViewController.Section] {
-        return [
+    public init() {
+        super.init(style: .grouped)
+
+        sections = [
             Section(
                 cells: [
                     ApplicationVersionCell(),
@@ -19,10 +21,6 @@ public final class AboutViewController: StaticTableViewController {
                 ]
             )
         ]
-    }
-
-    public init() {
-        super.init(style: .grouped)
 
         navigationItem.largeTitleDisplayMode = .never
     }

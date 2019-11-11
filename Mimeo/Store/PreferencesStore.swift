@@ -30,6 +30,16 @@ public protocol PreferenceStorable: Equatable {
 
 }
 
+// MARK: - Core Data
+
+extension PreferenceStorable {
+
+    fileprivate static func fetchRequest() -> NSFetchRequest<Preference> {
+        Preference.fetchRequest(for: preferenceKey)
+    }
+
+}
+
 // MARK: - Raw Representable
 
 /// Default preference storable raw string representable implementation.
@@ -101,6 +111,8 @@ extension BooleanPreferenceStorable {
 
 }
 
+// MARK: - Preferences Store
+
 /// A preference store backed by Core Data.
 public struct PreferencesStore {
 
@@ -146,21 +158,20 @@ public struct PreferencesStore {
         )
     }
 
-    /// Fetch a preference object from the managed object context for the
-    /// specified key, if it exists. Otherwise, create a new preference object
-    /// and with a key of `key`.
-    /// - Parameter key: The for which to fetch a preference object.
-    private func fetchPreference(for key: String) throws -> Preference {
-        let fetchRequest: NSFetchRequest<Preference> = Preference.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "key == %@", key)
-
-        if let preference = try managedObjectContext.fetch(fetchRequest).first {
-            return preference
-        } else {
-            let preference = Preference(context: managedObjectContext)
-            preference.key = key
-            return preference
-        }
+    /// Create a fetched result controller for a given preference.
+    /// - Parameters:
+    ///   - preference: The preference for which to create a fetched result
+    ///     controller.
+    ///   - didChange: The fetched result controller's change closure.
+    public func fetchedResultController<P: PreferenceStorable>(
+        for preference: P.Type,
+        didChange: @escaping () -> Void
+    ) -> AnyFetchedResultController {
+        Preference.fetchedResultController(
+            for: preference.preferenceKey,
+            managedObjectContext: managedObjectContext,
+            didChange: didChange
+        )
     }
 
 }
@@ -181,6 +192,60 @@ extension PreferencesStore: KeyValueStore {
 
         preference.value = value
         try preference.managedObjectContext?.save()
+    }
+
+    /// Fetch a preference object from the managed object context for the
+    /// specified key, if it exists. Otherwise, create a new preference object
+    /// and with a key of `key`.
+    /// - Parameter key: The for which to fetch a preference object.
+    private func fetchPreference(for key: String) throws -> Preference {
+        let fetchRequest = Preference.fetchRequest(for: key)
+        if let preference = try managedObjectContext.fetch(fetchRequest).first {
+            return preference
+        } else {
+            let preference = Preference(context: managedObjectContext)
+            preference.key = key
+            return preference
+        }
+    }
+
+}
+
+// MARK: - Preference
+
+extension Preference {
+
+    /// Create a preference fetch request for a given key.
+    /// - Parameter key: The key for which to create the fetch request.
+    fileprivate static func fetchRequest(
+        for key: String
+    ) -> NSFetchRequest<Preference> {
+        let fetchRequest: NSFetchRequest<Preference> = Preference.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "key == %@", key)
+        return fetchRequest
+    }
+
+    /// Create a preference fetched result controller for the given key.
+    /// - Parameters:
+    ///   - key: The key for which to create a preference fetched result
+    ///     controller.
+    ///   - managedObjectContext: The managed object context with which to
+    ///     create the fetched result controller.
+    ///   - didChange: A closure that is called when the fetched result
+    ///     controller's content changes.
+    fileprivate static func fetchedResultController(
+        for key: String,
+        managedObjectContext: NSManagedObjectContext,
+        didChange: @escaping () -> Void
+    ) -> FetchedResultController<Preference> {
+        let fetchRequest = Preference.fetchRequest(for: key)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "key", ascending: true)]
+
+        return FetchedResultController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: managedObjectContext,
+            didChange: didChange
+        )
     }
 
 }

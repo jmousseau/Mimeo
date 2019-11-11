@@ -12,7 +12,7 @@ public final class BooleanSettingCell: UITableViewCell {
 
     public static let identifier = "boolean-setting-cell"
 
-    private lazy var preferenceStore = PreferencesStore.default()
+    private var fetchedResultController: AnyFetchedResultController?
 
     private let title: String
 
@@ -26,9 +26,7 @@ public final class BooleanSettingCell: UITableViewCell {
     }()
 
     private lazy var toggle: UISwitch = {
-        let toggle = UISwitch()
-        toggle.addTarget(self, action: #selector(toggleButtonPressed), for: .valueChanged)
-        return toggle
+        return UISwitch()
     }()
 
     convenience init<P: BooleanPreferenceStorable>(
@@ -39,8 +37,16 @@ public final class BooleanSettingCell: UITableViewCell {
     ) {
         self.init(title: title, isOn: preferenceStore.get(preference).isEnabled, onToggle: { isOn in
             preferenceStore.set(isOn ? P.enabledCase : P.disabledCase)
-            onToggle?(isOn)
         })
+
+        fetchedResultController = preferenceStore.fetchedResultController(
+            for: preference,
+            didChange: {
+                let isOn = preferenceStore.get(preference).isEnabled
+                self.toggle.setOn(isOn, animated: true)
+                onToggle?(isOn)
+            }
+        )
     }
 
     init(title: String, isOn: Bool, onToggle: @escaping (_ isOn: Bool) -> Void) {
@@ -52,6 +58,7 @@ public final class BooleanSettingCell: UITableViewCell {
         selectionStyle = .none
 
         toggle.isOn = isOn
+        toggle.addTarget(self, action: #selector(toggleButtonPressed), for: .valueChanged)
 
         addTitleLabel()
         addToggle()
@@ -68,6 +75,7 @@ public final class BooleanSettingCell: UITableViewCell {
     @objc private func toggleButtonPressed(_ toggle: UISwitch) {
         self.onToggle(toggle.isOn)
     }
+
 }
 
 // MARK: - View Layout

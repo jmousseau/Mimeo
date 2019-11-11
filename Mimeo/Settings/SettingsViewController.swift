@@ -13,8 +13,10 @@ public final class SettingsViewController: StaticTableViewController {
 
     private let preferencesStore = PreferencesStore.default()
 
-    public override var sections: [StaticTableViewController.Section] {
-        [
+    public init() {
+        super.init(style: .grouped)
+
+        sections = [
             Section(
                 cells: [
                     RecognitionLanguageNavigationCell(presenter: self)
@@ -43,10 +45,6 @@ public final class SettingsViewController: StaticTableViewController {
                 ]
             )
         ]
-    }
-
-    public init() {
-        super.init(style: .grouped)
 
         tableView.delegate = self
     }

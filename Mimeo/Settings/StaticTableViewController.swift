@@ -30,7 +30,7 @@ public class StaticTableViewController: UITableViewController {
 
     }
 
-    public private(set) lazy var sections = [Section]()
+    public var sections = [Section]()
 
     public override init(style: UITableView.Style) {
         super.init(style: style)
