@@ -7,6 +7,7 @@
 //
 
 import AVFoundation
+import Iris
 import UIKit
 
 /// The camera view controller delegate.
@@ -75,6 +76,13 @@ public final class CameraViewController: UIViewController {
         captureSessionQueue.async {
             self.configureCaptureSession()
         }
+
+        let autoFocusGestureRecognizer = UITapGestureRecognizer()
+        autoFocusGestureRecognizer.addTarget(
+            self, action: #selector(autoFocus(_:))
+        )
+
+        view.addGestureRecognizer(autoFocusGestureRecognizer)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -136,6 +144,9 @@ public final class CameraViewController: UIViewController {
     /// The capture session.
     private let captureSession = AVCaptureSession()
 
+    /// The capture device
+    private var captureDevice: AVCaptureDevice?
+
     /// The device input matching the required media type.
     private var requiredDeviceInput: AVCaptureDeviceInput?
 
@@ -162,6 +173,8 @@ public final class CameraViewController: UIViewController {
             let device = try makeDevice()
             try addRequiredInput(to: device)
             try addPhotoOutput()
+
+            captureDevice = device
         } catch {
             cameraSetupResult = .captureSessionConfigurationFailed
         }
@@ -332,6 +345,115 @@ public final class CameraViewController: UIViewController {
             self.photoOutput.capturePhoto(with: photoSettings, delegate: self)
         }
     }
+
+    // MARK: - Auto Focus
+
+    private var autoFocusFeedbackLayer: CALayer?
+
+    @objc private func autoFocus(_ gestureRecognizer: UITapGestureRecognizer) {
+        guard let gestureRecognizerView = gestureRecognizer.view else {
+            return
+        }
+
+        guard let captureDevice = captureDevice else {
+            return
+        }
+
+        guard (try? captureDevice.lockForConfiguration()) != nil else {
+            return
+        }
+
+        let touchPoint = gestureRecognizer.location(in: gestureRecognizerView)
+        let focusPoint = touchPoint.normalized(
+            for: gestureRecognizerView.frame.size
+        )
+
+        if captureDevice.isFocusPointOfInterestSupported {
+            captureDevice.focusPointOfInterest = focusPoint
+            captureDevice.focusMode = .continuousAutoFocus
+        }
+
+        if captureDevice.isExposurePointOfInterestSupported {
+            captureDevice.focusPointOfInterest = focusPoint
+            captureDevice.exposureMode = .continuousAutoExposure
+        }
+
+        captureDevice.unlockForConfiguration()
+
+        presentAutofocusFeedback(centeredAt: touchPoint)
+    }
+
+    private func presentAutofocusFeedback(centeredAt point: CGPoint) {
+        self.autoFocusFeedbackLayer?.removeFromSuperlayer()
+
+        var autofocusFeedbackLayer = makeAutofocusFeedbackLayer()
+
+        autofocusFeedbackLayer.removeFromSuperlayer()
+        autofocusFeedbackLayer.removeAllAnimations()
+
+        autofocusFeedbackLayer.frame = CGRect(
+            x: point.x - autofocusFeedbackLayer.bounds.width / 2,
+            y: point.y - autofocusFeedbackLayer.bounds.height / 2,
+            width: autofocusFeedbackLayer.bounds.width,
+            height: autofocusFeedbackLayer.bounds.width
+        )
+
+        addFadeInAnimation(to: &autofocusFeedbackLayer)
+        addScaleInAnimation(to: &autofocusFeedbackLayer)
+        addFadeOutAnimation(to: &autofocusFeedbackLayer)
+
+        view.layer.addSublayer(autofocusFeedbackLayer)
+
+        self.autoFocusFeedbackLayer = autofocusFeedbackLayer
+    }
+
+    private func makeAutofocusFeedbackLayer() -> CALayer {
+        let autofocusFeedbackLayer = CALayer()
+        autofocusFeedbackLayer.backgroundColor = UIColor.clear.cgColor
+        autofocusFeedbackLayer.borderWidth = 1
+        autofocusFeedbackLayer.borderColor = UIColor.mimeoYellowDark.cgColor
+        autofocusFeedbackLayer.cornerRadius = 16
+        autofocusFeedbackLayer.bounds = CGRect(x: 0, y: 0, width: 110, height: 110)
+        return autofocusFeedbackLayer
+    }
+
+    private func addScaleInAnimation(to layer: inout CALayer) {
+        let initialBounds = layer.bounds
+        let finalBounds = layer.bounds.scaled(by: 0.75)
+
+        let scaleInAnimation = CABasicAnimation(keyPath: "bounds")
+        scaleInAnimation.fromValue = initialBounds
+        scaleInAnimation.duration = 0.15
+
+        layer.bounds = finalBounds
+
+        layer.add(scaleInAnimation, forKey: "scaleInAnimation")
+    }
+
+    private func addFadeInAnimation(to layer: inout CALayer) {
+        let initialOpacity: Float = 0
+        let finalOpacity: Float = 1
+
+        let fadeInAnimation = CABasicAnimation(keyPath: "opacity")
+        fadeInAnimation.fromValue = initialOpacity
+        fadeInAnimation.duration = 0.1
+
+        layer.opacity = finalOpacity
+
+        layer.add(fadeInAnimation, forKey: "fadeInAnimation")
+    }
+
+    private func addFadeOutAnimation(to layer: inout CALayer) {
+        let fadeOutAnimation = CAKeyframeAnimation(keyPath: "opacity")
+        fadeOutAnimation.keyTimes = [0, NSNumber(value: (1.3 - 0.25) / 1.3), 1]
+        fadeOutAnimation.values = [1, 1, 0]
+        fadeOutAnimation.duration = 1.3
+
+        layer.opacity = 0
+
+        layer.add(fadeOutAnimation, forKey: "fadeOutAnimation")
+    }
+
 }
 
 // MARK: - Photo Capture Delegate
