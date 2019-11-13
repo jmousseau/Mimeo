@@ -72,7 +72,7 @@ extension CGRect {
 
     /// Transform the normalized rectangle from Vision coordinate space to
     /// UIImage coordinate space.
-    public func inNormalizedUIImageCooridnateSpace() -> CGRect {
+    public func inNormalizedUIImageCoordinateSpace() -> CGRect {
         CGRect(
             x: origin.x,
             y: 1 - origin.y - height,

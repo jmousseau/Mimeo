@@ -57,7 +57,7 @@ final class RectangleTests: XCTestCase {
     func testInNormalizedUIImageCoordinateSpace() {
         let rect = CGRect(x: 0.1, y: 0.2, width: 0.3, height: 0.4)
         XCTAssertEqual(
-            rect.inNormalizedUIImageCooridnateSpace(),
+            rect.inNormalizedUIImageCoordinateSpace(),
             CGRect(x: 0.1, y: 0.4, width: 0.3, height: 0.4)
         )
     }

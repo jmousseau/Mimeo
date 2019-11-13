@@ -54,6 +54,8 @@ public final class CameraViewController: UIViewController {
             name: UIDevice.orientationDidChangeNotification,
             object: nil
         )
+
+        addVideoPreview()
     }
 
     required init?(coder: NSCoder) {
@@ -69,7 +71,7 @@ public final class CameraViewController: UIViewController {
 
         if let videoPreviewLayer = videoPreviewLayer {
             videoPreviewLayer.session = captureSession
-            view.layer.addSublayer(videoPreviewLayer)
+            videoPreviewView.layer.addSublayer(videoPreviewLayer)
         }
 
         checkAuthorizationStatus()
@@ -82,7 +84,13 @@ public final class CameraViewController: UIViewController {
             self, action: #selector(autoFocus(_:))
         )
 
-        view.addGestureRecognizer(autoFocusGestureRecognizer)
+        videoPreviewView.addGestureRecognizer(autoFocusGestureRecognizer)
+    }
+
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        videoPreviewLayer?.frame = videoPreviewView.bounds
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -156,6 +164,9 @@ public final class CameraViewController: UIViewController {
         photoOutput.isHighResolutionCaptureEnabled = true
         return photoOutput
     }()
+
+    /// The video preview view.
+    private let videoPreviewView = UIView(frame: .zero)
 
     /// If the required media type is video,this is the session's preview layer.
     private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
@@ -236,6 +247,19 @@ public final class CameraViewController: UIViewController {
         ))
 
         present(privacySettingsAlert, animated: true, completion: nil)
+    }
+
+    private func addVideoPreview() {
+        view.addSubview(videoPreviewView)
+
+        videoPreviewView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            videoPreviewView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            videoPreviewView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            videoPreviewView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            videoPreviewView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            videoPreviewView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 4.0 / 3.0)
+        ])
     }
 
     // MARK: - Camera Setup
@@ -346,9 +370,9 @@ public final class CameraViewController: UIViewController {
         }
     }
 
-    // MARK: - Auto Focus
+    // MARK: - Autofocus
 
-    private var autoFocusFeedbackLayer: CALayer?
+    private var autofocusFeedbackLayer: CALayer?
 
     @objc private func autoFocus(_ gestureRecognizer: UITapGestureRecognizer) {
         guard let gestureRecognizerView = gestureRecognizer.view else {
@@ -384,7 +408,7 @@ public final class CameraViewController: UIViewController {
     }
 
     private func presentAutofocusFeedback(centeredAt point: CGPoint) {
-        self.autoFocusFeedbackLayer?.removeFromSuperlayer()
+        self.autofocusFeedbackLayer?.removeFromSuperlayer()
 
         var autofocusFeedbackLayer = makeAutofocusFeedbackLayer()
 
@@ -402,9 +426,9 @@ public final class CameraViewController: UIViewController {
         addScaleInAnimation(to: &autofocusFeedbackLayer)
         addFadeOutAnimation(to: &autofocusFeedbackLayer)
 
-        view.layer.addSublayer(autofocusFeedbackLayer)
+        videoPreviewLayer?.addSublayer(autofocusFeedbackLayer)
 
-        self.autoFocusFeedbackLayer = autofocusFeedbackLayer
+        self.autofocusFeedbackLayer = autofocusFeedbackLayer
     }
 
     private func makeAutofocusFeedbackLayer() -> CALayer {

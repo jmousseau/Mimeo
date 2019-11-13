@@ -104,7 +104,7 @@ public struct FontClassifier {
         for characterBox in characterBoxes {
             guard let characterImage = image.crop(
                 to: characterBox.boundingBox
-                    .inNormalizedUIImageCooridnateSpace()
+                    .inNormalizedUIImageCoordinateSpace()
                     .denormalize(for: image.size)
             ) else {
                 continue
@@ -151,7 +151,7 @@ public struct FontClassifier {
     ) -> Color? {
         let boundingBox = observations
             .boundingBox()
-            .inNormalizedUIImageCooridnateSpace()
+            .inNormalizedUIImageCoordinateSpace()
             .denormalize(for: image.size)
 
         let expandedBoundingBox = boundingBox.expanded(
