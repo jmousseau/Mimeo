@@ -5,11 +5,14 @@ import Foundation
 // MARK: - Image Filter
 
 /// An image filter.
-@available(iOS 10.0, *)
+@available(iOS 11.0, *)
 public enum ImageFilter {
 
     /// Average color of an image.
     case averageColor
+
+    /// Correct the image's perspective
+    case correct(perspective: Quadrilateral)
 
     /// Crop an image.
     case crop(rect: CGRect)
@@ -32,6 +35,9 @@ public enum ImageFilter {
         switch self {
         case .averageColor:
             return applyAverageColorFilter(to: image)
+
+        case .correct(let perspective):
+            return applyCorrectionFilter(to: image, perspective: perspective)
 
         case .crop(let rect):
             return applyCropFilter(to: image, rect: rect)
@@ -70,6 +76,31 @@ public enum ImageFilter {
         }
 
         return self.image(for: averageColorImage)
+    }
+
+    // MARK: - Correct Perspective
+
+    private func applyCorrectionFilter(
+        to image: CGImage,
+        perspective: Quadrilateral
+    ) -> Image? {
+        guard let correctionFilter = CIFilter(name: "CIPerspectiveCorrection") else {
+            return nil
+        }
+
+        correctionFilter.setValuesForKeys([
+            kCIInputImageKey: CIImage(cgImage: image),
+            "inputTopLeft": CIVector(cgPoint: perspective.topLeft),
+            "inputTopRight": CIVector(cgPoint: perspective.topRight),
+            "inputBottomLeft": CIVector(cgPoint: perspective.bottomLeft),
+            "inputBottomRight": CIVector(cgPoint: perspective.bottomRight)
+        ])
+
+        guard let correctedImage = correctionFilter.outputImage?.oriented(.right) else {
+            return nil
+        }
+
+        return self.image(for: correctedImage)
     }
 
     // MARK: - Crop Filter
@@ -144,7 +175,6 @@ public enum ImageFilter {
 
     // MARK: - Subtract Filter
 
-    @available(iOS 10.0, *)
     private func applySubtractFilter(
         to image: CGImage,
         rects: [CGRect],

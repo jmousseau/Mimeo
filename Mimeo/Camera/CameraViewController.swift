@@ -8,10 +8,14 @@
 
 import AVFoundation
 import Iris
+import MimeoKit
 import UIKit
 
 /// The camera view controller delegate.
 public protocol CameraViewControllerDelegate: class {
+
+    /// The camer view controller delegate's recognition state.
+    var recognitionState: TextRecognizer.RecognitionState { get }
 
     /// The camera view controller captured a photo.
     /// - Parameter cameraViewController: The camera view controller which
@@ -22,10 +26,23 @@ public protocol CameraViewControllerDelegate: class {
         didCapturePhoto photo: AVCapturePhoto
     )
 
+    /// The camera view controller auto cropped an image.
+    /// - Parameters:
+    ///   - cameraViewController: The camer view controller which auto cropped
+    ///     the `image`.
+    ///   - image: The auto cropped image.
+    func cameraViewController(
+        _ cameraViewController: CameraViewController,
+        didAutoCropImage image: UIImage
+    )
+
 }
 
 /// A camera view controller.
 public final class CameraViewController: UIViewController {
+
+    /// The default preference's store.
+    private let preferencesStore = PreferencesStore.default()
 
     /// The camera view controller's delegate.
     public weak var delegate: CameraViewControllerDelegate?
@@ -48,6 +65,15 @@ public final class CameraViewController: UIViewController {
     public init() {
         super.init(nibName: nil, bundle: nil)
 
+        autocropController = preferencesStore.fetchedResultController(
+            for: AutocropPreference.self,
+            didChange: {
+                self.isAutocropEnabled = self.preferencesStore.get(
+                    AutocropPreference.self
+                ).isEnabled
+            }
+        )
+
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(deviceOrientationDidChange(_:)),
@@ -56,6 +82,7 @@ public final class CameraViewController: UIViewController {
         )
 
         addVideoPreview()
+        addAutocropButton()
     }
 
     required init?(coder: NSCoder) {
@@ -64,6 +91,8 @@ public final class CameraViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+
+        isAutocropEnabled = preferencesStore.get(AutocropPreference.self).isEnabled
 
         if requiredMediaType == .video {
             videoPreviewLayer = AVCaptureVideoPreviewLayer()
@@ -149,6 +178,9 @@ public final class CameraViewController: UIViewController {
     /// The capture session communication queue.
     private let captureSessionQueue = DispatchQueue(label: "Capture Session Queue")
 
+    /// The sample buffer queue.
+    private let sampleBufferQueue = DispatchQueue(label: "Sample Buffer Queue")
+
     /// The capture session.
     private let captureSession = AVCaptureSession()
 
@@ -163,6 +195,14 @@ public final class CameraViewController: UIViewController {
         let photoOutput = AVCapturePhotoOutput()
         photoOutput.isHighResolutionCaptureEnabled = true
         return photoOutput
+    }()
+
+    /// The video output used for the autocrop overlay.
+    private lazy var videoOutput: AVCaptureVideoDataOutput = {
+        let videoOutput = AVCaptureVideoDataOutput()
+        videoOutput.alwaysDiscardsLateVideoFrames = true
+        videoOutput.setSampleBufferDelegate(self, queue: sampleBufferQueue)
+        return videoOutput
     }()
 
     /// The video preview view.
@@ -184,6 +224,7 @@ public final class CameraViewController: UIViewController {
             let device = try makeDevice()
             try addRequiredInput(to: device)
             try addPhotoOutput()
+            try addVideoOutput()
 
             captureDevice = device
         } catch {
@@ -233,6 +274,16 @@ public final class CameraViewController: UIViewController {
         captureSession.addOutput(photoOutput)
     }
 
+    /// Add video output to the capture session.
+    private func addVideoOutput() throws {
+        guard captureSession.canAddOutput(videoOutput) else {
+            print("Unable to add video output.")
+            throw CameraSetupResult.captureSessionConfigurationFailed
+        }
+
+        captureSession.addOutput(videoOutput)
+    }
+
     private func displayCaptureSessionConfigurationFailureAlert() {
         let privacySettingsAlert = UIAlertController(
             title: "Mimeo",
@@ -257,7 +308,10 @@ public final class CameraViewController: UIViewController {
             videoPreviewView.leftAnchor.constraint(equalTo: view.leftAnchor),
             videoPreviewView.rightAnchor.constraint(equalTo: view.rightAnchor),
             videoPreviewView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            videoPreviewView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            videoPreviewView.centerYAnchor.constraint(
+                equalTo: view.centerYAnchor,
+                constant: CameraOverlayVerticalOffset
+            ),
             videoPreviewView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 4.0 / 3.0)
         ])
     }
@@ -478,6 +532,131 @@ public final class CameraViewController: UIViewController {
         layer.add(fadeOutAnimation, forKey: "fadeOutAnimation")
     }
 
+    // MARK: - Autocrop
+
+    private let autocropRectangleDetectionDispatchGroup = DispatchGroup()
+
+    private var autocropController: AnyFetchedResultController?
+
+    private lazy var autocropImage: UIImage? = {
+        let configuration = UIImage.SymbolConfiguration(scale: .small)
+        return UIImage(
+            systemName: "crop",
+            withConfiguration: configuration
+        )
+    }()
+
+    private var autocropButtonTitle: String {
+        isAutocropEnabled ? "ON" : "OFF"
+    }
+
+    private var isAutocropEnabled: Bool = false {
+        didSet {
+            autocropButton.setTitle(autocropButtonTitle, for: .normal)
+            autocropButton.backgroundColor = isAutocropEnabled ? .mimeoYellowDark : .clear
+            autocropButton.tintColor = isAutocropEnabled ? .black : .white
+            autocropButton.setTitleColor(isAutocropEnabled ? .black : .white, for: .normal)
+
+            autocropRectangleDetectionDispatchGroup.notify(queue: .main) {
+                self.removeAutocropOverlay()
+            }
+        }
+    }
+
+    private lazy var autocropButton: UIButton = {
+        let autocropButton = UIButton()
+        autocropButton.setImage(autocropImage, for: .normal)
+        autocropButton.setTitle(autocropButtonTitle, for: .normal)
+        autocropButton.titleLabel?.font = .monospacedSystemFont(ofSize: 15, weight: .bold)
+        autocropButton.setContentEdgeInsets(
+            UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6),
+            withTitlePadding: 4
+        )
+        autocropButton.layer.cornerRadius = 8
+        autocropButton.addTarget(self, action: #selector(toggleAutocropFeature), for: .touchUpInside)
+        return autocropButton
+    }()
+
+    private var numberOfConsecutiveFramesWithoutRectangle = 0
+
+    private var shouldRemoveAutocropOverlay: Bool {
+        numberOfConsecutiveFramesWithoutRectangle >= 3
+    }
+
+    private let autocropOverlay: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.strokeColor = UIColor.mimeoYellowDark.cgColor
+        layer.lineWidth = 1
+        layer.opacity = 1
+        layer.fillColor = UIColor.mimeoYellowDark.withAlphaComponent(0.18).cgColor
+        return layer
+    }()
+
+    private func addAutocropButton() {
+        view.addSubview(autocropButton)
+
+        autocropButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            autocropButton.trailingAnchor.constraint(equalTo: videoPreviewView.trailingAnchor, constant: -8),
+            autocropButton.bottomAnchor.constraint(equalTo: videoPreviewView.bottomAnchor, constant: -8)
+        ])
+    }
+
+    @objc private func toggleAutocropFeature() {
+        var autocropPreference = preferencesStore.get(AutocropPreference.self)
+        autocropPreference.toggle()
+        preferencesStore.set(autocropPreference)
+    }
+
+    private func presentAutocropLayer(for pixelBuffer: CVPixelBuffer) {
+        guard isAutocropEnabled,
+            (delegate?.recognitionState ?? .notStarted) == .notStarted else {
+            self.removeAutocropOverlay()
+            return
+        }
+
+        autocropRectangleDetectionDispatchGroup.enter()
+
+        RectangleDetector.detectRectangles(in: pixelBuffer) { quadrilaterals in
+            DispatchQueue.main.async {
+                defer {
+                    self.autocropRectangleDetectionDispatchGroup.leave()
+                }
+
+                guard let quadrilateral = quadrilaterals.sorted(by: { lhs, rhs in
+                    lhs.area > rhs.area
+                }).first else {
+                    self.numberOfConsecutiveFramesWithoutRectangle += 1
+
+                    if self.shouldRemoveAutocropOverlay {
+                        self.removeAutocropOverlay()
+                    }
+
+                    return
+                }
+
+                self.numberOfConsecutiveFramesWithoutRectangle = 0
+
+                guard let videoPreviewLayer = self.videoPreviewLayer else {
+                    return
+                }
+
+                if self.autocropOverlay.superlayer == nil {
+                    videoPreviewLayer.addSublayer(self.autocropOverlay)
+                }
+
+                self.autocropOverlay.path = quadrilateral
+                    .denormalizeInCoordinateSpace(of: videoPreviewLayer)
+                    .path.cgPath
+            }
+        }
+    }
+
+    private func removeAutocropOverlay() {
+        autocropOverlay.removeFromSuperlayer()
+        numberOfConsecutiveFramesWithoutRectangle = 0
+    }
+
 }
 
 // MARK: - Photo Capture Delegate
@@ -490,7 +669,52 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
         error: Error?
     ) {
         guard error == nil else { return }
-        delegate?.cameraViewController(self, didCapturePhoto: photo)
+
+        guard isAutocropEnabled, let image = photo.cgImageRepresentation()?.takeUnretainedValue() else {
+            delegate?.cameraViewController(self, didCapturePhoto: photo)
+            return
+        }
+
+        RectangleDetector.detectRectangles(
+            in: image
+        ) { quadrilaterals in
+            guard let quadrilateral = quadrilaterals.sorted(by: { lhs, rhs in
+                lhs.area > rhs.area
+            }).first else {
+                self.delegate?.cameraViewController(self, didCapturePhoto: photo)
+                return
+            }
+
+            guard let autocroppedImage = ImageFilter.correct(
+                perspective: quadrilateral
+                    .denormalize(for: CGSize(width: image.width, height: image.height))
+            ).apply(to: UIImage(cgImage: image)) else {
+                self.delegate?.cameraViewController(self, didCapturePhoto: photo)
+                return
+            }
+
+            DispatchQueue.main.async {
+                self.delegate?.cameraViewController(self, didAutoCropImage: autocroppedImage)
+            }
+        }
+    }
+
+}
+
+// MARK: - Sample Buffer Delegate
+
+extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+
+    public func captureOutput(
+        _ output: AVCaptureOutput,
+        didOutput sampleBuffer: CMSampleBuffer,
+        from connection: AVCaptureConnection
+    ) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+
+        presentAutocropLayer(for: pixelBuffer)
     }
 
 }

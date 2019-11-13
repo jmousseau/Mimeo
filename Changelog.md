@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- Automatic document cropping.
+
 ## [0.3.0] - 2019-11-09
 
 ### Added

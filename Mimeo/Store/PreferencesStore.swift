@@ -106,7 +106,12 @@ extension BooleanPreferenceStorable {
 
     /// Is the preference enabled?
     var isEnabled: Bool {
-        return self == Self.enabledCase
+        return self == .enabledCase
+    }
+
+    /// Toggle the preference.
+    mutating func toggle() {
+        self = isEnabled ? .disabledCase : .enabledCase
     }
 
 }

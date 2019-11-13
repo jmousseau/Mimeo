@@ -7,9 +7,12 @@
 //
 
 import AVFoundation
+import Iris
 import MimeoKit
 import UIKit
 import Vision
+
+public let CameraOverlayVerticalOffset: CGFloat = -25
 
 public final class MimeoViewController: UIViewController {
 
@@ -168,7 +171,10 @@ extension MimeoViewController {
             cameraOverlayView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cameraOverlayView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             cameraOverlayView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor),
-            cameraOverlayView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            cameraOverlayView.centerYAnchor.constraint(
+                equalTo: view.centerYAnchor,
+                constant: CameraOverlayVerticalOffset
+            ),
             NSLayoutConstraint(
                 item: cameraOverlayView,
                 attribute: .height,
@@ -204,7 +210,7 @@ extension MimeoViewController {
 
         cameraShutterButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            topLayoutGuide.heightAnchor.constraint(equalTo: bottomLayoutGuide.heightAnchor),
+            topLayoutGuide.heightAnchor.constraint(equalTo: bottomLayoutGuide.heightAnchor, multiplier: 0.5),
             topLayoutGuide.topAnchor.constraint(equalTo: cameraOverlayView.bottomAnchor),
             topLayoutGuide.bottomAnchor.constraint(equalTo: cameraShutterButton.topAnchor),
             bottomLayoutGuide.topAnchor.constraint(equalTo: cameraShutterButton.bottomAnchor),
@@ -291,11 +297,22 @@ extension MimeoViewController: CameraViewControllerDelegate {
         resultsViewController.recognitionState = .notStarted
     }
 
+    public var recognitionState: TextRecognizer.RecognitionState {
+        resultsViewController.recognitionState
+    }
+
     public func cameraViewController(
         _ cameraViewController: CameraViewController,
         didCapturePhoto photo: AVCapturePhoto
     ) {
         recognizeText(in: photo)
+    }
+
+    public func cameraViewController(
+        _ cameraViewController: CameraViewController,
+        didAutoCropImage image: UIImage
+    ) {
+        recognizeText(in: image)
     }
 
 }

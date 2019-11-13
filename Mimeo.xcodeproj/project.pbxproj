@@ -36,6 +36,8 @@
 		042AB4EE236FAB73003EE5FF /* ViewDissolverShaders.h in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4ED236FAB73003EE5FF /* ViewDissolverShaders.h */; };
 		042AB4F0236FABBB003EE5FF /* ViewDissolverShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4EF236FABBB003EE5FF /* ViewDissolverShaders.metal */; };
 		04422E1A2378FD9400014263 /* FetchedResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422E192378FD9400014263 /* FetchedResultController.swift */; };
+		045428F1237BBBF10074F576 /* AutocropPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045428F0237BBBF10074F576 /* AutocropPreference.swift */; };
+		045428F3237BC2AC0074F576 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045428F2237BC2AC0074F576 /* UIButton.swift */; };
 		0455A0802377F06F009FFAEA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0455A07F2377F06F009FFAEA /* CloudKit.framework */; };
 		045645D723663E5A00FB8F89 /* FontClassifierV1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 045645D623663E5900FB8F89 /* FontClassifierV1.mlmodel */; };
 		0467705A237760AD00192D2E /* AboutNavigationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677059237760AD00192D2E /* AboutNavigationCell.swift */; };
@@ -125,6 +127,8 @@
 		042AB4ED236FAB73003EE5FF /* ViewDissolverShaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewDissolverShaders.h; sourceTree = "<group>"; };
 		042AB4EF236FABBB003EE5FF /* ViewDissolverShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ViewDissolverShaders.metal; sourceTree = "<group>"; };
 		04422E192378FD9400014263 /* FetchedResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultController.swift; sourceTree = "<group>"; };
+		045428F0237BBBF10074F576 /* AutocropPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocropPreference.swift; sourceTree = "<group>"; };
+		045428F2237BC2AC0074F576 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		0455A07F2377F06F009FFAEA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		045645D623663E5900FB8F89 /* FontClassifierV1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FontClassifierV1.mlmodel; path = FontClassifier.mlproj/Models/FontClassifierV1.mlmodel; sourceTree = SOURCE_ROOT; };
 		04677059237760AD00192D2E /* AboutNavigationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutNavigationCell.swift; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 			children = (
 				041C542F23768AE000A6BFB8 /* Bundle.swift */,
 				04193BE4235AAD8700AD04F5 /* CGRect.swift */,
+				045428F2237BC2AC0074F576 /* UIButton.swift */,
 				041C542923767F6100A6BFB8 /* UIColor.swift */,
 				04193BE3235AAD8700AD04F5 /* UIDevice.swift */,
 			);
@@ -346,6 +351,7 @@
 		049842FA2341195E0002AB6D /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				045428F0237BBBF10074F576 /* AutocropPreference.swift */,
 				049842FB2341199C0002AB6D /* CameraViewController.swift */,
 				04818305234987CB00379B52 /* CameraShutterButton.swift */,
 			);
@@ -576,6 +582,7 @@
 				04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */,
 				041C542E23768A9200A6BFB8 /* RateAppCell.swift in Sources */,
 				041C543223768B7600A6BFB8 /* SendFeedbackCell.swift in Sources */,
+				045428F3237BC2AC0074F576 /* UIButton.swift in Sources */,
 				049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */,
 				04193C01235B78A200AD04F5 /* Intents.intentdefinition in Sources */,
 				04855D7E2354245B00ACB0A2 /* InsetLabel.swift in Sources */,
@@ -591,6 +598,7 @@
 				04193C30235BD57D00AD04F5 /* BooleanSettingCell.swift in Sources */,
 				04193BE1235AAD3D00AD04F5 /* ResultsViewController.swift in Sources */,
 				04789F212341138E006656E4 /* SceneDelegate.swift in Sources */,
+				045428F1237BBBF10074F576 /* AutocropPreference.swift in Sources */,
 				0467705E237760FD00192D2E /* AboutViewController.swift in Sources */,
 				04E3B34223773D3B00F7E991 /* RecognitionLanguageViewController.swift in Sources */,
 				048183012349674200379B52 /* MimeoViewController.swift in Sources */,

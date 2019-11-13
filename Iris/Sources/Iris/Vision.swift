@@ -12,7 +12,10 @@ extension VNRecognizedTextObservation {
 
 }
 
-// MARK: - VNRectangleObservation Collection
+// MARK: - Rectangle Observation
+
+@available(iOS 11.0, *)
+extension VNRectangleObservation: Quadrilateral { }
 
 @available(iOS 11.0, macOS 10.15, *)
 extension Collection where Element: VNRectangleObservation {
