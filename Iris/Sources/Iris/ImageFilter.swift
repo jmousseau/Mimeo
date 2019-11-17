@@ -96,7 +96,7 @@ public enum ImageFilter {
             "inputBottomRight": CIVector(cgPoint: perspective.bottomRight)
         ])
 
-        guard let correctedImage = correctionFilter.outputImage?.oriented(.right) else {
+        guard let correctedImage = correctionFilter.outputImage else {
             return nil
         }
 

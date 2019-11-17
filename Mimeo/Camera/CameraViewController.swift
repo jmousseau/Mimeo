@@ -668,32 +668,27 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
     ) {
         guard error == nil else { return }
 
-        guard isAutocropEnabled, let image = photo.cgImageRepresentation()?.takeUnretainedValue() else {
+        guard isAutocropEnabled,
+            let image = photo.cgImageRepresentation()?.takeUnretainedValue(),
+            let orientationRawValue = photo.metadata[kCGImagePropertyOrientation as String] as? UInt32,
+            let orientation = CGImagePropertyOrientation(rawValue: orientationRawValue) else {
             delegate?.cameraViewController(self, didCapturePhoto: photo)
             return
         }
 
-        RectangleDetector.detectRectangles(
-            in: image
-        ) { quadrilaterals in
-            guard let quadrilateral = quadrilaterals.sorted(by: { lhs, rhs in
-                lhs.area > rhs.area
-            }).first else {
+        ImageCropper.cropToLargestRectangle(
+            in: UIImage(
+                cgImage: image,
+                scale: 1,
+                orientation: orientation.imageOrientation
+            ).orientedUp()!
+        ) { autocroppedImage in
+            guard let autocroppedImage = autocroppedImage else {
                 self.delegate?.cameraViewController(self, didCapturePhoto: photo)
                 return
             }
 
-            guard let autocroppedImage = ImageFilter.correct(
-                perspective: quadrilateral
-                    .denormalize(for: CGSize(width: image.width, height: image.height))
-            ).apply(to: UIImage(cgImage: image)) else {
-                self.delegate?.cameraViewController(self, didCapturePhoto: photo)
-                return
-            }
-
-            DispatchQueue.main.async {
-                self.delegate?.cameraViewController(self, didAutoCropImage: autocroppedImage)
-            }
+            self.delegate?.cameraViewController(self, didAutoCropImage: autocroppedImage)
         }
     }
 

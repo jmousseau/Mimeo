@@ -347,7 +347,7 @@ extension MimeoViewController: UIImagePickerControllerDelegate & UINavigationCon
             imagePickerViewController.dismiss(animated: true, completion: nil)
         }
 
-        guard let image = info[.originalImage] as? UIImage else {
+        guard let image = (info[.originalImage] as? UIImage)?.orientedUp() else {
             return
         }
 
