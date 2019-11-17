@@ -556,10 +556,6 @@ public final class CameraViewController: UIViewController {
             autocropButton.backgroundColor = isAutocropEnabled ? .mimeoYellowDark : .clear
             autocropButton.tintColor = isAutocropEnabled ? .black : .white
             autocropButton.setTitleColor(isAutocropEnabled ? .black : .white, for: .normal)
-
-            autocropRectangleDetectionDispatchGroup.notify(queue: .main) {
-                self.removeAutocropOverlay()
-            }
         }
     }
 
@@ -653,8 +649,10 @@ public final class CameraViewController: UIViewController {
     }
 
     private func removeAutocropOverlay() {
-        autocropOverlay.removeFromSuperlayer()
-        numberOfConsecutiveFramesWithoutRectangle = 0
+        autocropRectangleDetectionDispatchGroup.notify(queue: .main) {
+            self.autocropOverlay.removeFromSuperlayer()
+            self.numberOfConsecutiveFramesWithoutRectangle = 0
+        }
     }
 
 }

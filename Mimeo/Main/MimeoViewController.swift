@@ -383,8 +383,6 @@ extension MimeoViewController {
         in image: CGImage,
         withOrientation orientation: CGImagePropertyOrientation
     ) {
-        cameraShutterButton.image = cancelImage
-
         let uiImage = UIImage(cgImage: image, scale: 1, orientation: orientation.imageOrientation)
 
         imageRequests = try! textRecognizer.recognizeText(
