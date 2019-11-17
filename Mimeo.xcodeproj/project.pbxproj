@@ -36,6 +36,7 @@
 		042AB4EE236FAB73003EE5FF /* ViewDissolverShaders.h in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4ED236FAB73003EE5FF /* ViewDissolverShaders.h */; };
 		042AB4F0236FABBB003EE5FF /* ViewDissolverShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4EF236FABBB003EE5FF /* ViewDissolverShaders.metal */; };
 		04422E1A2378FD9400014263 /* FetchedResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422E192378FD9400014263 /* FetchedResultController.swift */; };
+		044C59932380D66A00621C56 /* NewYorkSmall-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 044C59922380D66A00621C56 /* NewYorkSmall-Regular.otf */; };
 		045428F1237BBBF10074F576 /* AutocropPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045428F0237BBBF10074F576 /* AutocropPreference.swift */; };
 		045428F3237BC2AC0074F576 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045428F2237BC2AC0074F576 /* UIButton.swift */; };
 		0455A0802377F06F009FFAEA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0455A07F2377F06F009FFAEA /* CloudKit.framework */; };
@@ -127,6 +128,7 @@
 		042AB4ED236FAB73003EE5FF /* ViewDissolverShaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewDissolverShaders.h; sourceTree = "<group>"; };
 		042AB4EF236FABBB003EE5FF /* ViewDissolverShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ViewDissolverShaders.metal; sourceTree = "<group>"; };
 		04422E192378FD9400014263 /* FetchedResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultController.swift; sourceTree = "<group>"; };
+		044C59922380D66A00621C56 /* NewYorkSmall-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NewYorkSmall-Regular.otf"; sourceTree = "<group>"; };
 		045428F0237BBBF10074F576 /* AutocropPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocropPreference.swift; sourceTree = "<group>"; };
 		045428F2237BC2AC0074F576 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		0455A07F2377F06F009FFAEA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -271,6 +273,14 @@
 			path = "View Dissolver";
 			sourceTree = "<group>";
 		};
+		044C59912380B83200621C56 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				044C59922380D66A00621C56 /* NewYorkSmall-Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		0467705B237760E700192D2E /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +382,7 @@
 		04E92D8F234114D600877507 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				044C59912380B83200621C56 /* Fonts */,
 				04789F2723411393006656E4 /* Assets.xcassets */,
 				045645D623663E5900FB8F89 /* FontClassifierV1.mlmodel */,
 			);
@@ -532,6 +543,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044C59932380D66A00621C56 /* NewYorkSmall-Regular.otf in Resources */,
 				04789F2E23411393006656E4 /* LaunchScreen.storyboard in Resources */,
 				04789F2823411393006656E4 /* Assets.xcassets in Resources */,
 			);

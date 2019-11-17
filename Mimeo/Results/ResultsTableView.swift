@@ -27,7 +27,7 @@ public final class ResultsTableView: UITableView {
 
         fileprivate static let identifier = "results-cell"
 
-        private let serifFont = UIFont(name: "Times New Roman", size: 18)
+        private let serifFont = UIFont(name: "NewYorkSmall-Regular", size: 17)
 
         private let sansSerifFont = UIFont.systemFont(ofSize: 17)
 
