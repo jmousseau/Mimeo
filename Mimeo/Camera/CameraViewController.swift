@@ -488,16 +488,16 @@ public final class CameraViewController: UIViewController {
     private func makeAutofocusFeedbackLayer() -> CALayer {
         let autofocusFeedbackLayer = CALayer()
         autofocusFeedbackLayer.backgroundColor = UIColor.clear.cgColor
-        autofocusFeedbackLayer.borderWidth = 1
+        autofocusFeedbackLayer.borderWidth = 2
         autofocusFeedbackLayer.borderColor = UIColor.mimeoYellowDark.cgColor
         autofocusFeedbackLayer.cornerRadius = 16
-        autofocusFeedbackLayer.bounds = CGRect(x: 0, y: 0, width: 110, height: 110)
+        autofocusFeedbackLayer.bounds = CGRect(x: 0, y: 0, width: 80, height: 80)
         return autofocusFeedbackLayer
     }
 
     private func addScaleInAnimation(to layer: inout CALayer) {
-        let initialBounds = layer.bounds
-        let finalBounds = layer.bounds.scaled(by: 0.75)
+        let initialBounds = layer.bounds.scaled(by: 1.25)
+        let finalBounds = layer.bounds
 
         let scaleInAnimation = CABasicAnimation(keyPath: "bounds")
         scaleInAnimation.fromValue = initialBounds
@@ -539,7 +539,7 @@ public final class CameraViewController: UIViewController {
     private var autocropController: AnyFetchedResultController?
 
     private lazy var autocropImage: UIImage? = {
-        let configuration = UIImage.SymbolConfiguration(scale: .small)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
         return UIImage(
             systemName: "crop",
             withConfiguration: configuration
@@ -563,9 +563,9 @@ public final class CameraViewController: UIViewController {
         let autocropButton = UIButton()
         autocropButton.setImage(autocropImage, for: .normal)
         autocropButton.setTitle(autocropButtonTitle, for: .normal)
-        autocropButton.titleLabel?.font = .monospacedSystemFont(ofSize: 15, weight: .bold)
+        autocropButton.titleLabel?.font = .monospacedSystemFont(ofSize: 15, weight: .semibold)
         autocropButton.setContentEdgeInsets(
-            UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6),
+            UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 8),
             withTitlePadding: 4
         )
         autocropButton.layer.cornerRadius = 8
@@ -582,7 +582,7 @@ public final class CameraViewController: UIViewController {
     private let autocropOverlay: CAShapeLayer = {
         let layer = CAShapeLayer()
         layer.strokeColor = UIColor.mimeoYellowDark.cgColor
-        layer.lineWidth = 1
+        layer.lineWidth = 2
         layer.opacity = 1
         layer.fillColor = UIColor.mimeoYellowDark.withAlphaComponent(0.18).cgColor
         return layer
