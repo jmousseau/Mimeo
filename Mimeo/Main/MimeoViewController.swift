@@ -351,7 +351,22 @@ extension MimeoViewController: UIImagePickerControllerDelegate & UINavigationCon
             return
         }
 
-        recognizeText(in: image)
+        if preferenceStore.get(AutocropPreference.self).isEnabled {
+            ImageCropper.cropToLargestRectangle(
+                in: image
+            ) { autocroppedImage in
+                DispatchQueue.main.async {
+                    guard let autocroppedImage = autocroppedImage else {
+                        self.recognizeText(in: image)
+                        return
+                    }
+
+                    self.recognizeText(in: autocroppedImage)
+                }
+            }
+        } else {
+            recognizeText(in: image)
+        }
     }
 
 }
