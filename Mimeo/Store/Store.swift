@@ -14,9 +14,12 @@ import Foundation
 /// Synced to iCloud.
 public final class Store {
 
+    /// The store's persistent container name.
+    private let containerName: String
+
     /// The store's persistent container.
     lazy var persistentContainer: NSPersistentCloudKitContainer = {
-        let container = NSPersistentCloudKitContainer(name: "Mimeo")
+        let container = NSPersistentCloudKitContainer(name: containerName)
 
         guard let description = container.persistentStoreDescriptions.first else {
             fatalError("Container is missing store description")
@@ -40,5 +43,16 @@ public final class Store {
 
         return container
     }()
+
+    /// The store's persistent history token store.
+    private lazy var persistentHistoryTokenStore: PersistentHistoryTokenStore = {
+        return PersistentHistoryTokenStore(containerName: containerName)
+    }()
+
+    /// Initialize a store.
+    /// - Parameter containerName: The store's persistent container name.
+    public init(containerName: String) {
+        self.containerName = containerName
+    }
 
 }

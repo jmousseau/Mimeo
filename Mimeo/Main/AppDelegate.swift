@@ -11,8 +11,9 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    /// The application's store.
     lazy var store: Store = {
-        Store()
+        Store(containerName: "Mimeo")
     }()
 
     func application(

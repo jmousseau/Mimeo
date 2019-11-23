@@ -56,6 +56,7 @@
 		04855D7E2354245B00ACB0A2 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04855D7D2354245B00ACB0A2 /* InsetLabel.swift */; };
 		049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049842FB2341199C0002AB6D /* CameraViewController.swift */; };
 		04AD6D652387C9830075ACCB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD6D642387C9830075ACCB /* Store.swift */; };
+		04B8598623883BD20058D2F3 /* PersistentHistoryTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B8598523883BD20058D2F3 /* PersistentHistoryTokenStore.swift */; };
 		04E3B34223773D3B00F7E991 /* RecognitionLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B34123773D3B00F7E991 /* RecognitionLanguageViewController.swift */; };
 		04E3B34523773DDB00F7E991 /* StaticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B34423773DDB00F7E991 /* StaticTableViewController.swift */; };
 		04E3B3472377407600F7E991 /* RecognitionLanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B3462377407600F7E991 /* RecognitionLanguageCell.swift */; };
@@ -155,6 +156,7 @@
 		04855D7D2354245B00ACB0A2 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		049842FB2341199C0002AB6D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		04AD6D642387C9830075ACCB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		04B8598523883BD20058D2F3 /* PersistentHistoryTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryTokenStore.swift; sourceTree = "<group>"; };
 		04E3B34123773D3B00F7E991 /* RecognitionLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionLanguageViewController.swift; sourceTree = "<group>"; };
 		04E3B34423773DDB00F7E991 /* StaticTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableViewController.swift; sourceTree = "<group>"; };
 		04E3B3462377407600F7E991 /* RecognitionLanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionLanguageCell.swift; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				04193BD2235AACD900AD04F5 /* KeyValueStore.swift */,
 				04422E192378FD9400014263 /* FetchedResultController.swift */,
 				04193BD3235AACD900AD04F5 /* Mimeo.xcdatamodeld */,
+				04B8598523883BD20058D2F3 /* PersistentHistoryTokenStore.swift */,
 				04193BD5235AACD900AD04F5 /* PreferencesStore.swift */,
 				04AD6D642387C9830075ACCB /* Store.swift */,
 			);
@@ -597,6 +600,7 @@
 				04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */,
 				041C542E23768A9200A6BFB8 /* RateAppCell.swift in Sources */,
 				041C543223768B7600A6BFB8 /* SendFeedbackCell.swift in Sources */,
+				04B8598623883BD20058D2F3 /* PersistentHistoryTokenStore.swift in Sources */,
 				045428F3237BC2AC0074F576 /* UIButton.swift in Sources */,
 				049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */,
 				04193C01235B78A200AD04F5 /* Intents.intentdefinition in Sources */,
