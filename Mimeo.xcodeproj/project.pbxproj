@@ -55,6 +55,7 @@
 		04818306234987CB00379B52 /* CameraShutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04818305234987CB00379B52 /* CameraShutterButton.swift */; };
 		04855D7E2354245B00ACB0A2 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04855D7D2354245B00ACB0A2 /* InsetLabel.swift */; };
 		049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049842FB2341199C0002AB6D /* CameraViewController.swift */; };
+		04AD6D652387C9830075ACCB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD6D642387C9830075ACCB /* Store.swift */; };
 		04E3B34223773D3B00F7E991 /* RecognitionLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B34123773D3B00F7E991 /* RecognitionLanguageViewController.swift */; };
 		04E3B34523773DDB00F7E991 /* StaticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B34423773DDB00F7E991 /* StaticTableViewController.swift */; };
 		04E3B3472377407600F7E991 /* RecognitionLanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B3462377407600F7E991 /* RecognitionLanguageCell.swift */; };
@@ -153,6 +154,7 @@
 		04818305234987CB00379B52 /* CameraShutterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraShutterButton.swift; sourceTree = "<group>"; };
 		04855D7D2354245B00ACB0A2 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		049842FB2341199C0002AB6D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		04AD6D642387C9830075ACCB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		04E3B34123773D3B00F7E991 /* RecognitionLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionLanguageViewController.swift; sourceTree = "<group>"; };
 		04E3B34423773DDB00F7E991 /* StaticTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableViewController.swift; sourceTree = "<group>"; };
 		04E3B3462377407600F7E991 /* RecognitionLanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionLanguageCell.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				04422E192378FD9400014263 /* FetchedResultController.swift */,
 				04193BD3235AACD900AD04F5 /* Mimeo.xcdatamodeld */,
 				04193BD5235AACD900AD04F5 /* PreferencesStore.swift */,
+				04AD6D642387C9830075ACCB /* Store.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				04E3B34223773D3B00F7E991 /* RecognitionLanguageViewController.swift in Sources */,
 				048183012349674200379B52 /* MimeoViewController.swift in Sources */,
 				041C542C2376886100A6BFB8 /* NavigationSettingCell.swift in Sources */,
+				04AD6D652387C9830075ACCB /* Store.swift in Sources */,
 				04193BE5235AAD8700AD04F5 /* UIDevice.swift in Sources */,
 				04E3B3472377407600F7E991 /* RecognitionLanguageCell.swift in Sources */,
 				04193C32235BD8DE00AD04F5 /* Settings.swift in Sources */,

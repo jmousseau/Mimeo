@@ -125,7 +125,7 @@ public struct PreferencesStore {
     public static func `default`() -> PreferencesStore {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return PreferencesStore(
-            managedObjectContext: appDelegate.persistentContainer.viewContext
+            managedObjectContext: appDelegate.store.persistentContainer.viewContext
         )
     }
 
