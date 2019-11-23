@@ -286,18 +286,18 @@ public final class ResultsViewController: UIViewController {
 
     @objc private func copyTextToPasteboard() {
         UIPasteboard.general.string = resultsTableView.copyAllRecognizedText()
-        dissolveText(in: resultsTableView.allReconizedTextLabels())
+        dissolveText(in: resultsTableView.allRecognizedTextViews())
     }
 
-    fileprivate func dissolveText(in labels: [UILabel]) {
+    fileprivate func dissolveText(in views: [UIView]) {
         let tableViewOffset = CGPoint(
             x: resultsTableView.contentOffset.x,
             y: -1 * resultsTableView.contentOffset.y
         )
 
-        let rects = labels.map { label in
-            label
-                .convert(label.frame, to: resultsTableView)
+        let rects = views.map { view in
+            view
+                .convert(view.frame, to: resultsTableView)
                 .offset(by: tableViewOffset)
                 .scaled(by: UIScreen.main.scale)
         }
@@ -327,10 +327,11 @@ extension ResultsViewController: ResultsTableViewDelegate  {
 
     public func resultsTableView(
         _ resultsTableView: ResultsTableView,
-        didCopyTextInLabel label: UILabel
+        didCopyText text: String,
+        in view: UIView
     ) {
-        UIPasteboard.general.string = label.text
-        dissolveText(in: [label])
+        UIPasteboard.general.string = text
+        dissolveText(in: [view])
     }
 
 }

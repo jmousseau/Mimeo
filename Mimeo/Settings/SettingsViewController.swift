@@ -23,6 +23,15 @@ public final class SettingsViewController: StaticTableViewController {
                 ]
             ),
             Section(
+                footer: "Automatically detect phone numbers, links, etc.",
+                cells: [
+                    DataDetectionNavigationCell(
+                        presenter: self,
+                        preferencesStore: preferencesStore
+                    )
+                ]
+            ),
+            Section(
                 footer: "Faster text recognition, but lower accuracy.",
                 cells: [
                     BooleanSettingCell(

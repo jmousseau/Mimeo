@@ -16,7 +16,8 @@ public protocol ResultsTableViewDelegate: class {
 
     func resultsTableView(
         _ resultsTableView: ResultsTableView,
-        didCopyTextInLabel label: UILabel
+        didCopyText text: String,
+        in view: UIView
     )
 
 }
@@ -31,11 +32,14 @@ public final class ResultsTableView: UITableView {
 
         private let sansSerifFont = UIFont.systemFont(ofSize: 17)
 
-        fileprivate lazy var label: UILabel = {
-            let label = UILabel()
-            label.numberOfLines = 0
-            label.font = fontClassification == .serif ? serifFont : sansSerifFont
-            return label
+        fileprivate lazy var textView: UITextView = {
+            let textView = UITextView()
+            textView.isScrollEnabled = false
+            textView.isEditable = false
+            textView.backgroundColor = .clear
+            textView.font = fontClassification == .serif ? serifFont : sansSerifFont
+            textView.tintColor = .mimeoYellow
+            return textView
         }()
 
         private lazy var copyButton: UIButton = {
@@ -71,7 +75,7 @@ public final class ResultsTableView: UITableView {
             let stackView = UIStackView()
             stackView.axis = .vertical
             stackView.spacing = 8
-            stackView.addArrangedSubview(label)
+            stackView.addArrangedSubview(textView)
             stackView.addArrangedSubview(copyButtonStackView)
             return stackView
         }()
@@ -80,13 +84,13 @@ public final class ResultsTableView: UITableView {
 
         public var recognizedText: String? {
             didSet {
-                label.text = recognizedText
+                textView.text = recognizedText
             }
         }
 
         public var fontClassification: FontClassifier.Classification = .serif {
             didSet {
-                label.font = fontClassification == .serif ? serifFont : sansSerifFont
+                textView.font = fontClassification == .serif ? serifFont : sansSerifFont
             }
         }
 
@@ -112,7 +116,7 @@ public final class ResultsTableView: UITableView {
         }
 
         public override func prepareForReuse() {
-            label.text = nil
+            textView.text = nil
         }
 
         private func addStackView() {
@@ -128,7 +132,7 @@ public final class ResultsTableView: UITableView {
         }
 
         @objc private func didPressCopyButton() {
-            guard let text = label.text else {
+            guard let text = textView.text else {
                 return
             }
 
@@ -136,6 +140,8 @@ public final class ResultsTableView: UITableView {
         }
 
     }
+
+    private let preferencesStore = PreferencesStore.default()
 
     public weak var resultsDelegate: ResultsTableViewDelegate?
 
@@ -211,13 +217,13 @@ public final class ResultsTableView: UITableView {
         recognizedText.joined(separator: " ")
     }
 
-    public func allReconizedTextLabels() -> [UILabel] {
+    public func allRecognizedTextViews() -> [UIView] {
         visibleCells.compactMap { cell in
-            guard let label = (cell as? Cell)?.label else {
+            guard let textView = (cell as? Cell)?.textView else {
                 return nil
             }
 
-            return label
+            return textView
         }
     }
 
@@ -254,13 +260,18 @@ extension ResultsTableView: UITableViewDataSource {
             fatalError("Dequeue resuable cell failed with identifier: \(Cell.identifier)")
         }
 
+        cell.textView.dataDetectorTypes = preferencesStore
+            .get(DataDetectionSetting.self)
+            .enabledDataDetectorTypes
+
         cell.recognizedText = recognizedText[indexPath.row]
         cell.fontClassification = fontClassification
         cell.isCopyButtonVisible = state.resultsLayout == .grouped
         cell.didCopy = { text in
             self.resultsDelegate?.resultsTableView(
-                self, didCopyTextInLabel:
-                cell.label
+                self,
+                didCopyText: cell.textView.text,
+                in: cell.textView
             )
         }
 

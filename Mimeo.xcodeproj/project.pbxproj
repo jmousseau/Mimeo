@@ -41,6 +41,10 @@
 		045428F3237BC2AC0074F576 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045428F2237BC2AC0074F576 /* UIButton.swift */; };
 		0455A0802377F06F009FFAEA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0455A07F2377F06F009FFAEA /* CloudKit.framework */; };
 		045645D723663E5A00FB8F89 /* FontClassifierV1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 045645D623663E5900FB8F89 /* FontClassifierV1.mlmodel */; };
+		0466B97F238991EF00215B80 /* DataDetectionNavigationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0466B97E238991EF00215B80 /* DataDetectionNavigationCell.swift */; };
+		0466B9822389936F00215B80 /* DataDetectionSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0466B9812389936F00215B80 /* DataDetectionSettingViewController.swift */; };
+		0466B9842389967900215B80 /* DataDetectionSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0466B9832389967900215B80 /* DataDetectionSetting.swift */; };
+		0466B9862389A02600215B80 /* DataDetectionTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0466B9852389A02600215B80 /* DataDetectionTypeCell.swift */; };
 		0467705A237760AD00192D2E /* AboutNavigationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677059237760AD00192D2E /* AboutNavigationCell.swift */; };
 		0467705E237760FD00192D2E /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467705D237760FD00192D2E /* AboutViewController.swift */; };
 		046770602377614C00192D2E /* ApplicationVersionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467705F2377614C00192D2E /* ApplicationVersionCell.swift */; };
@@ -135,6 +139,10 @@
 		045428F2237BC2AC0074F576 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		0455A07F2377F06F009FFAEA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		045645D623663E5900FB8F89 /* FontClassifierV1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FontClassifierV1.mlmodel; path = FontClassifier.mlproj/Models/FontClassifierV1.mlmodel; sourceTree = SOURCE_ROOT; };
+		0466B97E238991EF00215B80 /* DataDetectionNavigationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetectionNavigationCell.swift; sourceTree = "<group>"; };
+		0466B9812389936F00215B80 /* DataDetectionSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetectionSettingViewController.swift; sourceTree = "<group>"; };
+		0466B9832389967900215B80 /* DataDetectionSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetectionSetting.swift; sourceTree = "<group>"; };
+		0466B9852389A02600215B80 /* DataDetectionTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetectionTypeCell.swift; sourceTree = "<group>"; };
 		04677059237760AD00192D2E /* AboutNavigationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutNavigationCell.swift; sourceTree = "<group>"; };
 		0467705D237760FD00192D2E /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		0467705F2377614C00192D2E /* ApplicationVersionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationVersionCell.swift; sourceTree = "<group>"; };
@@ -244,6 +252,7 @@
 			children = (
 				04677059237760AD00192D2E /* AboutNavigationCell.swift */,
 				04193C2F235BD57D00AD04F5 /* BooleanSettingCell.swift */,
+				0466B97E238991EF00215B80 /* DataDetectionNavigationCell.swift */,
 				041C54332377347400A6BFB8 /* RecognitionLanguageNavigationCell.swift */,
 				041C542B2376886100A6BFB8 /* NavigationSettingCell.swift */,
 				041C542D23768A9200A6BFB8 /* RateAppCell.swift */,
@@ -252,6 +261,7 @@
 				04193C2D235BD15A00AD04F5 /* SettingsViewController.swift */,
 				04E3B34423773DDB00F7E991 /* StaticTableViewController.swift */,
 				0467705B237760E700192D2E /* About */,
+				0466B9802389934900215B80 /* Data Detection */,
 				041C5435237735B600A6BFB8 /* Recognition Language */,
 			);
 			path = Settings;
@@ -283,6 +293,16 @@
 				044C59922380D66A00621C56 /* NewYorkSmall-Regular.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		0466B9802389934900215B80 /* Data Detection */ = {
+			isa = PBXGroup;
+			children = (
+				0466B9832389967900215B80 /* DataDetectionSetting.swift */,
+				0466B9812389936F00215B80 /* DataDetectionSettingViewController.swift */,
+				0466B9852389A02600215B80 /* DataDetectionTypeCell.swift */,
+			);
+			path = "Data Detection";
 			sourceTree = "<group>";
 		};
 		0467705B237760E700192D2E /* About */ = {
@@ -593,10 +613,12 @@
 				04193BD7235AACD900AD04F5 /* Mimeo.xcdatamodeld in Sources */,
 				04193BE0235AAD3D00AD04F5 /* ResultsTableView.swift in Sources */,
 				041C54342377347400A6BFB8 /* RecognitionLanguageNavigationCell.swift in Sources */,
+				0466B9862389A02600215B80 /* DataDetectionTypeCell.swift in Sources */,
 				042AB4EB236FAB29003EE5FF /* ViewDissolver.swift in Sources */,
 				046770622377615900192D2E /* ApplicationBuildNumberCell.swift in Sources */,
 				0467705A237760AD00192D2E /* AboutNavigationCell.swift in Sources */,
 				042AB4EE236FAB73003EE5FF /* ViewDissolverShaders.h in Sources */,
+				0466B9842389967900215B80 /* DataDetectionSetting.swift in Sources */,
 				04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */,
 				041C542E23768A9200A6BFB8 /* RateAppCell.swift in Sources */,
 				041C543223768B7600A6BFB8 /* SendFeedbackCell.swift in Sources */,
@@ -617,12 +639,14 @@
 				04193C30235BD57D00AD04F5 /* BooleanSettingCell.swift in Sources */,
 				04193BE1235AAD3D00AD04F5 /* ResultsViewController.swift in Sources */,
 				04789F212341138E006656E4 /* SceneDelegate.swift in Sources */,
+				0466B97F238991EF00215B80 /* DataDetectionNavigationCell.swift in Sources */,
 				045428F1237BBBF10074F576 /* AutocropPreference.swift in Sources */,
 				0467705E237760FD00192D2E /* AboutViewController.swift in Sources */,
 				04E3B34223773D3B00F7E991 /* RecognitionLanguageViewController.swift in Sources */,
 				048183012349674200379B52 /* MimeoViewController.swift in Sources */,
 				041C542C2376886100A6BFB8 /* NavigationSettingCell.swift in Sources */,
 				04AD6D652387C9830075ACCB /* Store.swift in Sources */,
+				0466B9822389936F00215B80 /* DataDetectionSettingViewController.swift in Sources */,
 				04193BE5235AAD8700AD04F5 /* UIDevice.swift in Sources */,
 				04E3B3472377407600F7E991 /* RecognitionLanguageCell.swift in Sources */,
 				04193C32235BD8DE00AD04F5 /* Settings.swift in Sources */,
