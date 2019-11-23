@@ -43,7 +43,13 @@ public final class BooleanSettingCell: UITableViewCell {
             for: preference,
             didChange: {
                 let isOn = preferenceStore.get(preference).isEnabled
+
+                // Remove and add back the toggle to prevent recursive
+                // `onToggle` callbacks.
+                self.removeToggleAction()
                 self.toggle.setOn(isOn, animated: true)
+                self.addToggleAction()
+
                 onToggle?(isOn)
             }
         )
@@ -58,7 +64,7 @@ public final class BooleanSettingCell: UITableViewCell {
         selectionStyle = .none
 
         toggle.isOn = isOn
-        toggle.addTarget(self, action: #selector(toggleButtonPressed), for: .valueChanged)
+        addToggleAction()
 
         addTitleLabel()
         addToggle()
@@ -70,6 +76,22 @@ public final class BooleanSettingCell: UITableViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    private func addToggleAction() {
+        toggle.addTarget(
+            self,
+            action: #selector(toggleButtonPressed),
+            for: .valueChanged
+        )
+    }
+
+    private func removeToggleAction() {
+        toggle.removeTarget(
+            self,
+            action: #selector(toggleButtonPressed),
+            for: .valueChanged
+        )
     }
 
     @objc private func toggleButtonPressed(_ toggle: UISwitch) {

@@ -147,9 +147,9 @@ public struct PreferencesStore {
         ) {
             return preference
         } else {
-            // The store may contain an invalid preference value. Reset it to
-            // the default.
-            set(P.defaultPreference)
+            // Although tempting, do not set the default preference value, just
+            // return it. Setting the default preference value will cause a core
+            // data recursive save crash.
             return P.defaultPreference
         }
     }
