@@ -153,6 +153,10 @@ public final class ResultsViewController: UIViewController {
                 activityIndicator.startAnimating()
 
             case .complete(let result):
+                MimeoAnalytics.shared.record(event: MimeoAnalytics.Events.RecognizedTextEvent(
+                    totalRecognizedTextLength: UInt(result.observations.plainText().count)
+                ))
+
                 resultsLayout = preferencesStore.get(ResultsLayout.self)
 
                 UIView.animate(withDuration: 0.25, animations: {

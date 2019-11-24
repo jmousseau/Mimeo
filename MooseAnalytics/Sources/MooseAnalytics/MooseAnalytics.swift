@@ -98,7 +98,7 @@ public struct MooseAnalytics {
             case version = "version"
 
             /// The event's application installation id coding key.
-            case applicationInstallationIdentifier = "application_installation_id"
+            case applicationInstallationIdentifier = "application_installation_identifier"
 
             /// The event's application version coding key.
             case applicationVersion = "application_version"
@@ -199,8 +199,12 @@ public struct MooseAnalytics {
         let data = try jsonEncoder.encode(event)
 
         var request = URLRequest(url: url(for: .events))
+
         request.httpMethod = "POST"
         request.httpBody = data
+
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         addCredentials(to: &request)
 

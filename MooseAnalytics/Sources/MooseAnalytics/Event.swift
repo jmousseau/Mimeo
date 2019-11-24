@@ -4,7 +4,7 @@ import Foundation
 public protocol AnalyticsEvent {
 
     /// The analytics event's payload type.
-    associatedtype Payload: Encodable
+    associatedtype AnalyticsPayload: Encodable
 
     /// The analytics event's version.
     var version: UInt { get }
@@ -13,6 +13,6 @@ public protocol AnalyticsEvent {
     var collection: String { get }
 
     /// The analytics event's payload
-    var payload: Payload { get }
+    var payload: AnalyticsPayload { get }
 
 }

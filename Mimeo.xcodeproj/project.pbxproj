@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040DA4A6238B1D6700356081 /* MooseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 040DA4A5238B1D6700356081 /* MooseAnalytics */; };
+		040DA4A9238B1DB700356081 /* MimeoAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DA4A8238B1DB700356081 /* MimeoAnalytics.swift */; };
+		040DA4AB238B20FE00356081 /* ApplicationInstallationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DA4AA238B20FE00356081 /* ApplicationInstallationStore.swift */; };
 		04111E3E235AA9B000F73084 /* MimeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 04111E3D235AA9B000F73084 /* MimeoKit */; };
 		04193BD6235AACD900AD04F5 /* KeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BD2235AACD900AD04F5 /* KeyValueStore.swift */; };
 		04193BD7235AACD900AD04F5 /* Mimeo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04193BD3235AACD900AD04F5 /* Mimeo.xcdatamodeld */; };
@@ -37,6 +40,7 @@
 		042AB4F0236FABBB003EE5FF /* ViewDissolverShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4EF236FABBB003EE5FF /* ViewDissolverShaders.metal */; };
 		04422E1A2378FD9400014263 /* FetchedResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422E192378FD9400014263 /* FetchedResultController.swift */; };
 		044C59932380D66A00621C56 /* NewYorkSmall-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 044C59922380D66A00621C56 /* NewYorkSmall-Regular.otf */; };
+		045296FA238B23AE009A87AC /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045296F9238B23AE009A87AC /* Secrets.swift */; };
 		045428F1237BBBF10074F576 /* AutocropPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045428F0237BBBF10074F576 /* AutocropPreference.swift */; };
 		045428F3237BC2AC0074F576 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045428F2237BC2AC0074F576 /* UIButton.swift */; };
 		0455A0802377F06F009FFAEA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0455A07F2377F06F009FFAEA /* CloudKit.framework */; };
@@ -105,6 +109,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		040DA4A8238B1DB700356081 /* MimeoAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoAnalytics.swift; sourceTree = "<group>"; };
+		040DA4AA238B20FE00356081 /* ApplicationInstallationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationInstallationStore.swift; sourceTree = "<group>"; };
 		04193BD2235AACD900AD04F5 /* KeyValueStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueStore.swift; sourceTree = "<group>"; };
 		04193BD4235AACD900AD04F5 /* Mimeo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mimeo.xcdatamodel; sourceTree = "<group>"; };
 		04193BD5235AACD900AD04F5 /* PreferencesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesStore.swift; sourceTree = "<group>"; };
@@ -135,6 +141,8 @@
 		042AB4EF236FABBB003EE5FF /* ViewDissolverShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ViewDissolverShaders.metal; sourceTree = "<group>"; };
 		04422E192378FD9400014263 /* FetchedResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultController.swift; sourceTree = "<group>"; };
 		044C59922380D66A00621C56 /* NewYorkSmall-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NewYorkSmall-Regular.otf"; sourceTree = "<group>"; };
+		045296F9238B23AE009A87AC /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		045296FB238B23BF009A87AC /* Secrets.template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.template.swift; sourceTree = "<group>"; };
 		045428F0237BBBF10074F576 /* AutocropPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocropPreference.swift; sourceTree = "<group>"; };
 		045428F2237BC2AC0074F576 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		0455A07F2377F06F009FFAEA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -184,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04111E3E235AA9B000F73084 /* MimeoKit in Frameworks */,
+				040DA4A6238B1D6700356081 /* MooseAnalytics in Frameworks */,
 				0455A0802377F06F009FFAEA /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +214,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040DA4A7238B1DA200356081 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				040DA4A8238B1DB700356081 /* MimeoAnalytics.swift */,
+				045296FB238B23BF009A87AC /* Secrets.template.swift */,
+				045296F9238B23AE009A87AC /* Secrets.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
 		04111E3C235AA9B000F73084 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +370,7 @@
 				04E92D902341150C00877507 /* Store */,
 				04855D7C2354244A00ACB0A2 /* Views */,
 				04193BE2235AAD7100AD04F5 /* Extensions */,
+				040DA4A7238B1DA200356081 /* Analytics */,
 				04E92D8F234114D600877507 /* Assets */,
 			);
 			path = Mimeo;
@@ -416,6 +436,7 @@
 		04E92D902341150C00877507 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				040DA4AA238B20FE00356081 /* ApplicationInstallationStore.swift */,
 				04193BD2235AACD900AD04F5 /* KeyValueStore.swift */,
 				04422E192378FD9400014263 /* FetchedResultController.swift */,
 				04193BD3235AACD900AD04F5 /* Mimeo.xcdatamodeld */,
@@ -466,6 +487,7 @@
 			name = Mimeo;
 			packageProductDependencies = (
 				04111E3D235AA9B000F73084 /* MimeoKit */,
+				040DA4A5238B1D6700356081 /* MooseAnalytics */,
 			);
 			productName = Mimeo;
 			productReference = 04789F1B2341138D006656E4 /* Mimeo.app */;
@@ -607,6 +629,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				046770602377614C00192D2E /* ApplicationVersionCell.swift in Sources */,
+				045296FA238B23AE009A87AC /* Secrets.swift in Sources */,
 				04193BD6235AACD900AD04F5 /* KeyValueStore.swift in Sources */,
 				041C543023768AE000A6BFB8 /* Bundle.swift in Sources */,
 				04193BDF235AAD3D00AD04F5 /* ResultsLayout.swift in Sources */,
@@ -620,6 +643,7 @@
 				042AB4EE236FAB73003EE5FF /* ViewDissolverShaders.h in Sources */,
 				0466B9842389967900215B80 /* DataDetectionSetting.swift in Sources */,
 				04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */,
+				040DA4A9238B1DB700356081 /* MimeoAnalytics.swift in Sources */,
 				041C542E23768A9200A6BFB8 /* RateAppCell.swift in Sources */,
 				041C543223768B7600A6BFB8 /* SendFeedbackCell.swift in Sources */,
 				04B8598623883BD20058D2F3 /* PersistentHistoryTokenStore.swift in Sources */,
@@ -645,6 +669,7 @@
 				04E3B34223773D3B00F7E991 /* RecognitionLanguageViewController.swift in Sources */,
 				048183012349674200379B52 /* MimeoViewController.swift in Sources */,
 				041C542C2376886100A6BFB8 /* NavigationSettingCell.swift in Sources */,
+				040DA4AB238B20FE00356081 /* ApplicationInstallationStore.swift in Sources */,
 				04AD6D652387C9830075ACCB /* Store.swift in Sources */,
 				0466B9822389936F00215B80 /* DataDetectionSettingViewController.swift in Sources */,
 				04193BE5235AAD8700AD04F5 /* UIDevice.swift in Sources */,
@@ -1044,6 +1069,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		040DA4A5238B1D6700356081 /* MooseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MooseAnalytics;
+		};
 		04111E3D235AA9B000F73084 /* MimeoKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MimeoKit;
