@@ -4,8 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.4.0] - 2019-11-24
+
 ### Added
+- Tap to focus.
 - Automatic document cropping.
+- Privacy policy.
+- iCloud settings synchronization.
+- Data detection.
+- Moose analytics.
+
+### Changed
+- The serif results font is now "New York".
 
 ## [0.3.0] - 2019-11-09
 
