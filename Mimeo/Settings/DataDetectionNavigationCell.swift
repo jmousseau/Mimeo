@@ -23,6 +23,7 @@ public final class DataDetectionNavigationCell: NavigationSettingCell {
                 let dataDetectionViewController = DataDetectionSettingViewController()
                 dataDetectionViewController.view.tintColor = .mimeoYellow
                 dataDetectionViewController.navigationItem.title = "Data Detection"
+                dataDetectionViewController.navigationItem.largeTitleDisplayMode = .never
                 presenter.navigationController?.pushViewController(
                     dataDetectionViewController,
                     animated: true

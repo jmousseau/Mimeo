@@ -50,6 +50,7 @@ public final class SettingsViewController: StaticTableViewController {
             ),
             Section(
                 cells: [
+                    PrivacyPolicyNavigationCell(presenter: self),
                     AboutNavigationCell(presenter: self)
                 ]
             )
