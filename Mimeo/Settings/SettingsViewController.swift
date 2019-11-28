@@ -42,7 +42,6 @@ public final class SettingsViewController: StaticTableViewController {
                 ]
             ),
             Section(
-                header: "Feedback",
                 cells: [
                     RateAppCell(preferencesStore: preferencesStore),
                     SendFeedbackCell(presenter: self)
