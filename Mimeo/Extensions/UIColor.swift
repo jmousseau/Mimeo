@@ -12,12 +12,12 @@ extension UIColor {
 
     /// Mimeo yellow for light backgrounds.
     public static var mimeoYellowLight: UIColor {
-        UIColor(red: 185 / 255, green: 145 / 255, blue: 0, alpha: 1)
+        UIColor(displayP3Red: 185 / 255, green: 145 / 255, blue: 0, alpha: 1)
     }
 
     /// Mimeo yellow for dark backgrounds.
     public static var mimeoYellowDark: UIColor {
-        .systemYellow
+        UIColor(displayP3Red: 255 / 255, green: 204 / 255, blue: 0, alpha: 1)
     }
 
     /// Mimeo yellow that adapts to the current user interface style.
