@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.0] - 2019-12-01
+
+### Changed
+
+Used P3 color profile for yellows.
+
 ## [0.4.0] - 2019-11-24
 
 ### Added
