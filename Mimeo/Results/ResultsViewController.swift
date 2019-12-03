@@ -55,19 +55,6 @@ public final class ResultsViewController: UIViewController {
         return resultsLayoutSegmentedControl
     }()
 
-    private lazy var betaLabel: UILabel = {
-        let betaLabel = InsetLabel()
-        betaLabel.contentInsets = .init(top: 2, left: 4, bottom: 2, right: 4)
-        betaLabel.text = "BETA"
-        betaLabel.font = .monospacedSystemFont(ofSize: 10, weight: .bold)
-        betaLabel.textColor = .white
-        betaLabel.backgroundColor = .systemGreen
-        betaLabel.clipsToBounds = true
-        betaLabel.layer.cornerRadius = 6
-        betaLabel.alpha = resultsLayout.isBeta ? 1 : 0
-        return betaLabel
-    }()
-
     private lazy var copyAllButton: UIButton = {
         let symbolConfiguration = UIImage.SymbolConfiguration(scale: .large)
         let copyImage = UIImage(
@@ -120,10 +107,6 @@ public final class ResultsViewController: UIViewController {
                 addDissolvingTextView()
 
                 view.bringSubviewToFront(resultsTableView)
-            }
-
-            UIView.animate(withDuration: 0.25) {
-                self.betaLabel.alpha = self.resultsLayout.isBeta ? 1 : 0
             }
 
             resultsTableView.state = (recognitionState, resultsLayout)
@@ -183,7 +166,6 @@ public final class ResultsViewController: UIViewController {
 
         addBlurView()
         addResultsLayoutSegmentedControl()
-        addBetaLabel()
         addActivityIndicator()
     }
 
@@ -210,16 +192,6 @@ public final class ResultsViewController: UIViewController {
         NSLayoutConstraint.activate([
             view.centerXAnchor.constraint(equalTo: resultsLayoutSegmentedControl.centerXAnchor),
             resultsLayoutSegmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)
-        ])
-    }
-
-    private func addBetaLabel() {
-        view.addSubview(betaLabel)
-
-        betaLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            betaLabel.centerXAnchor.constraint(equalTo: resultsLayoutSegmentedControl.trailingAnchor, constant: -2),
-            betaLabel.centerYAnchor.constraint(equalTo: resultsLayoutSegmentedControl.topAnchor, constant: 2)
         ])
     }
 
