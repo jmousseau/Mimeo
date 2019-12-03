@@ -64,6 +64,7 @@
 		048183012349674200379B52 /* MimeoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048183002349674200379B52 /* MimeoViewController.swift */; };
 		04818306234987CB00379B52 /* CameraShutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04818305234987CB00379B52 /* CameraShutterButton.swift */; };
 		04855D7E2354245B00ACB0A2 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04855D7D2354245B00ACB0A2 /* InsetLabel.swift */; };
+		048DD365239637EC0041DBE9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 048DD364239637EC0041DBE9 /* StoreKit.framework */; };
 		049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049842FB2341199C0002AB6D /* CameraViewController.swift */; };
 		04AD6D652387C9830075ACCB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD6D642387C9830075ACCB /* Store.swift */; };
 		04B8598623883BD20058D2F3 /* PersistentHistoryTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B8598523883BD20058D2F3 /* PersistentHistoryTokenStore.swift */; };
@@ -174,6 +175,7 @@
 		048183002349674200379B52 /* MimeoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoViewController.swift; sourceTree = "<group>"; };
 		04818305234987CB00379B52 /* CameraShutterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraShutterButton.swift; sourceTree = "<group>"; };
 		04855D7D2354245B00ACB0A2 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
+		048DD364239637EC0041DBE9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		049842FB2341199C0002AB6D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		04AD6D642387C9830075ACCB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		04B8598523883BD20058D2F3 /* PersistentHistoryTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryTokenStore.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				04111E3E235AA9B000F73084 /* MimeoKit in Frameworks */,
 				040DA4A6238B1D6700356081 /* MooseAnalytics in Frameworks */,
 				0455A0802377F06F009FFAEA /* CloudKit.framework in Frameworks */,
+				048DD365239637EC0041DBE9 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +234,7 @@
 		04111E3C235AA9B000F73084 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				048DD364239637EC0041DBE9 /* StoreKit.framework */,
 				0455A07F2377F06F009FFAEA /* CloudKit.framework */,
 			);
 			name = Frameworks;
