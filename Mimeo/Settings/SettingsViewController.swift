@@ -98,22 +98,3 @@ extension SettingsViewController : MFMailComposeViewControllerDelegate {
     }
 
 }
-
-// MARK: - Table View Delegate
-
-extension SettingsViewController {
-
-    public override func tableView(
-        _ tableView: UITableView,
-        didSelectRowAt indexPath: IndexPath
-    ) {
-        if let cell = tableView.cellForRow(at: indexPath) as? SettingCell {
-            cell.action()
-
-            if cell.shouldDeselectCellOnSelection {
-                deselectRowForSelectedIndexPath()
-            }
-        }
-    }
-
-}
