@@ -6,6 +6,8 @@
 //  Copyright © 2019 Jack Mousseau. All rights reserved.
 //
 
+import CloudKit
+import Purchases
 import UIKit
 
 @UIApplicationMain
@@ -20,7 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication, didFinishLaunchingWithOptions
         launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        configurePurchases()
+
         UINavigationBar.appearance().tintColor = .mimeoYellow
+
         return true
     }
 
@@ -36,6 +41,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             name: "Default Configuration",
             sessionRole: connectingSceneSession.role
         )
+    }
+
+    private func configurePurchases() {
+        if Purchases.canMakePayments() {
+            #if DEBUG
+            Purchases.debugLogsEnabled = true
+            #endif
+
+            CKContainer.default().fetchUserRecordID { userRecordID, _ in
+                Purchases.configure(
+                    withAPIKey: RevenueCatAPIKey,
+                    appUserID: userRecordID?.recordName
+                )
+            }
+        }
+
     }
 
 }

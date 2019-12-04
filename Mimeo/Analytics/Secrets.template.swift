@@ -13,3 +13,5 @@ public let MimeoAnalyticsCredentials = MooseAnalytics.Credentials(
     applicationIdentifier: "",
     applicationSecret: ""
 )
+
+public let RevenueCatAPIKey = ""
