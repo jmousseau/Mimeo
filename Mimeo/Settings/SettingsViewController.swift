@@ -6,8 +6,9 @@
 //  Copyright © 2019 Jack Mousseau. All rights reserved.
 //
 
-import UIKit
 import MessageUI
+import Purchases
+import UIKit
 
 public final class SettingsViewController: StaticTableViewController {
 
@@ -41,6 +42,11 @@ public final class SettingsViewController: StaticTableViewController {
                     )
                 ]
             ),
+            Purchases.canMakePayments() ? Section(
+                cells: [
+                    MimeoProNavigationCell(presenter: self)
+                ]
+            ) : nil,
             Section(
                 cells: [
                     RateAppCell(preferencesStore: preferencesStore),
@@ -53,7 +59,7 @@ public final class SettingsViewController: StaticTableViewController {
                     AboutNavigationCell(presenter: self)
                 ]
             )
-        ]
+        ].compactMap({ $0 })
 
         tableView.delegate = self
     }
