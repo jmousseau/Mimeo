@@ -38,6 +38,7 @@
 		042AB4EB236FAB29003EE5FF /* ViewDissolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4EA236FAB29003EE5FF /* ViewDissolver.swift */; };
 		042AB4EE236FAB73003EE5FF /* ViewDissolverShaders.h in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4ED236FAB73003EE5FF /* ViewDissolverShaders.h */; };
 		042AB4F0236FABBB003EE5FF /* ViewDissolverShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4EF236FABBB003EE5FF /* ViewDissolverShaders.metal */; };
+		043B419B23977410009FD2C2 /* SubscribeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043B419A23977410009FD2C2 /* SubscribeCell.swift */; };
 		04422E1A2378FD9400014263 /* FetchedResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422E192378FD9400014263 /* FetchedResultController.swift */; };
 		044C59932380D66A00621C56 /* NewYorkSmall-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 044C59922380D66A00621C56 /* NewYorkSmall-Regular.otf */; };
 		045296FA238B23AE009A87AC /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045296F9238B23AE009A87AC /* Secrets.swift */; };
@@ -70,6 +71,8 @@
 		049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049842FB2341199C0002AB6D /* CameraViewController.swift */; };
 		04AD6D652387C9830075ACCB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD6D642387C9830075ACCB /* Store.swift */; };
 		04B8598623883BD20058D2F3 /* PersistentHistoryTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B8598523883BD20058D2F3 /* PersistentHistoryTokenStore.swift */; };
+		04D23B462398A94900BCDC8B /* RestorePurchasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D23B452398A94900BCDC8B /* RestorePurchasesCell.swift */; };
+		04DE719B2397779E0018A966 /* MimeoProSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE719A2397779E0018A966 /* MimeoProSubscription.swift */; };
 		04E3B34223773D3B00F7E991 /* RecognitionLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B34123773D3B00F7E991 /* RecognitionLanguageViewController.swift */; };
 		04E3B34523773DDB00F7E991 /* StaticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B34423773DDB00F7E991 /* StaticTableViewController.swift */; };
 		04E3B3472377407600F7E991 /* RecognitionLanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B3462377407600F7E991 /* RecognitionLanguageCell.swift */; };
@@ -145,6 +148,7 @@
 		042AB4EC236FAB72003EE5FF /* Mimeo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mimeo-Bridging-Header.h"; sourceTree = "<group>"; };
 		042AB4ED236FAB73003EE5FF /* ViewDissolverShaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewDissolverShaders.h; sourceTree = "<group>"; };
 		042AB4EF236FABBB003EE5FF /* ViewDissolverShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ViewDissolverShaders.metal; sourceTree = "<group>"; };
+		043B419A23977410009FD2C2 /* SubscribeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeCell.swift; sourceTree = "<group>"; };
 		04422E192378FD9400014263 /* FetchedResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultController.swift; sourceTree = "<group>"; };
 		044C59922380D66A00621C56 /* NewYorkSmall-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NewYorkSmall-Regular.otf"; sourceTree = "<group>"; };
 		045296F9238B23AE009A87AC /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 		049842FB2341199C0002AB6D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		04AD6D642387C9830075ACCB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		04B8598523883BD20058D2F3 /* PersistentHistoryTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryTokenStore.swift; sourceTree = "<group>"; };
+		04D23B452398A94900BCDC8B /* RestorePurchasesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePurchasesCell.swift; sourceTree = "<group>"; };
+		04DE719A2397779E0018A966 /* MimeoProSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoProSubscription.swift; sourceTree = "<group>"; };
 		04E3B34123773D3B00F7E991 /* RecognitionLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionLanguageViewController.swift; sourceTree = "<group>"; };
 		04E3B34423773DDB00F7E991 /* StaticTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableViewController.swift; sourceTree = "<group>"; };
 		04E3B3462377407600F7E991 /* RecognitionLanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionLanguageCell.swift; sourceTree = "<group>"; };
@@ -368,6 +374,8 @@
 			isa = PBXGroup;
 			children = (
 				0477BD2623976FAC00A6E089 /* MimeoProViewController.swift */,
+				04D23B452398A94900BCDC8B /* RestorePurchasesCell.swift */,
+				043B419A23977410009FD2C2 /* SubscribeCell.swift */,
 			);
 			path = "Mimeo Pro";
 			sourceTree = "<group>";
@@ -408,6 +416,7 @@
 				04193C2C235BD14100AD04F5 /* Settings */,
 				04E92D902341150C00877507 /* Store */,
 				04855D7C2354244A00ACB0A2 /* Views */,
+				04DE71992397777C0018A966 /* In-App Purchases */,
 				04193BE2235AAD7100AD04F5 /* Extensions */,
 				040DA4A7238B1DA200356081 /* Analytics */,
 				04E92D8F234114D600877507 /* Assets */,
@@ -449,6 +458,14 @@
 				04818305234987CB00379B52 /* CameraShutterButton.swift */,
 			);
 			path = Camera;
+			sourceTree = "<group>";
+		};
+		04DE71992397777C0018A966 /* In-App Purchases */ = {
+			isa = PBXGroup;
+			children = (
+				04DE719A2397779E0018A966 /* MimeoProSubscription.swift */,
+			);
+			path = "In-App Purchases";
 			sourceTree = "<group>";
 		};
 		04E92D8E234114CC00877507 /* Main */ = {
@@ -719,6 +736,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				046770602377614C00192D2E /* ApplicationVersionCell.swift in Sources */,
+				04DE719B2397779E0018A966 /* MimeoProSubscription.swift in Sources */,
 				045296FA238B23AE009A87AC /* Secrets.swift in Sources */,
 				04193BD6235AACD900AD04F5 /* KeyValueStore.swift in Sources */,
 				041C543023768AE000A6BFB8 /* Bundle.swift in Sources */,
@@ -736,6 +754,7 @@
 				04789F1F2341138D006656E4 /* AppDelegate.swift in Sources */,
 				040DA4A9238B1DB700356081 /* MimeoAnalytics.swift in Sources */,
 				041C542E23768A9200A6BFB8 /* RateAppCell.swift in Sources */,
+				04D23B462398A94900BCDC8B /* RestorePurchasesCell.swift in Sources */,
 				041C543223768B7600A6BFB8 /* SendFeedbackCell.swift in Sources */,
 				04B8598623883BD20058D2F3 /* PersistentHistoryTokenStore.swift in Sources */,
 				045428F3237BC2AC0074F576 /* UIButton.swift in Sources */,
@@ -747,6 +766,7 @@
 				04E3B34523773DDB00F7E991 /* StaticTableViewController.swift in Sources */,
 				04193BE6235AAD8700AD04F5 /* CGRect.swift in Sources */,
 				041C54372377370300A6BFB8 /* RecognitionLanguage.swift in Sources */,
+				043B419B23977410009FD2C2 /* SubscribeCell.swift in Sources */,
 				04193BD8235AACD900AD04F5 /* PreferencesStore.swift in Sources */,
 				04529702238B5AA7009A87AC /* PrivacyPolicyViewController.swift in Sources */,
 				04818306234987CB00379B52 /* CameraShutterButton.swift in Sources */,
