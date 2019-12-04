@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		040DA4A6238B1D6700356081 /* MooseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 040DA4A5238B1D6700356081 /* MooseAnalytics */; };
+		040DA4A6238B1D6700356081 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 040DA4A5238B1D6700356081 /* SwiftPackageProductDependency */; };
 		040DA4A9238B1DB700356081 /* MimeoAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DA4A8238B1DB700356081 /* MimeoAnalytics.swift */; };
 		040DA4AB238B20FE00356081 /* ApplicationInstallationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DA4AA238B20FE00356081 /* ApplicationInstallationStore.swift */; };
-		04111E3E235AA9B000F73084 /* MimeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 04111E3D235AA9B000F73084 /* MimeoKit */; };
+		04111E3E235AA9B000F73084 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 04111E3D235AA9B000F73084 /* SwiftPackageProductDependency */; };
 		04193BD6235AACD900AD04F5 /* KeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BD2235AACD900AD04F5 /* KeyValueStore.swift */; };
 		04193BD7235AACD900AD04F5 /* Mimeo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04193BD3235AACD900AD04F5 /* Mimeo.xcdatamodeld */; };
 		04193BD8235AACD900AD04F5 /* PreferencesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BD5235AACD900AD04F5 /* PreferencesStore.swift */; };
@@ -22,7 +22,7 @@
 		04193BEE235AB00E00AD04F5 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BED235AB00E00AD04F5 /* IntentHandler.swift */; };
 		04193BF2235AB00E00AD04F5 /* MimeoIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 04193BEB235AB00E00AD04F5 /* MimeoIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		04193BFE235AB7A300AD04F5 /* RecognizeTextIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193BFD235AB7A300AD04F5 /* RecognizeTextIntentHandler.swift */; };
-		04193C00235AC37300AD04F5 /* MimeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 04193BFF235AC37300AD04F5 /* MimeoKit */; };
+		04193C00235AC37300AD04F5 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 04193BFF235AC37300AD04F5 /* SwiftPackageProductDependency */; };
 		04193C01235B78A200AD04F5 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 04193BF7235AB07100AD04F5 /* Intents.intentdefinition */; settings = {ATTRIBUTES = (no_codegen, ); }; };
 		04193C02235B78B500AD04F5 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 04193BF7235AB07100AD04F5 /* Intents.intentdefinition */; };
 		04193C2E235BD15A00AD04F5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193C2D235BD15A00AD04F5 /* SettingsViewController.swift */; };
@@ -71,6 +71,7 @@
 		04E3B34223773D3B00F7E991 /* RecognitionLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B34123773D3B00F7E991 /* RecognitionLanguageViewController.swift */; };
 		04E3B34523773DDB00F7E991 /* StaticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B34423773DDB00F7E991 /* StaticTableViewController.swift */; };
 		04E3B3472377407600F7E991 /* RecognitionLanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B3462377407600F7E991 /* RecognitionLanguageCell.swift */; };
+		F78DF9328EC682D7070B0F66 /* Pods_Mimeo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99EB934F39652CC415CCFC68 /* Pods_Mimeo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +183,9 @@
 		04E3B34123773D3B00F7E991 /* RecognitionLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionLanguageViewController.swift; sourceTree = "<group>"; };
 		04E3B34423773DDB00F7E991 /* StaticTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableViewController.swift; sourceTree = "<group>"; };
 		04E3B3462377407600F7E991 /* RecognitionLanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionLanguageCell.swift; sourceTree = "<group>"; };
+		103DFC2F80FB6DFA7B64DDFB /* Pods-Mimeo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mimeo.release.xcconfig"; path = "Target Support Files/Pods-Mimeo/Pods-Mimeo.release.xcconfig"; sourceTree = "<group>"; };
+		99EB934F39652CC415CCFC68 /* Pods_Mimeo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mimeo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2B266FF65A22427E146D058 /* Pods-Mimeo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mimeo.debug.xcconfig"; path = "Target Support Files/Pods-Mimeo/Pods-Mimeo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +193,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04193C00235AC37300AD04F5 /* MimeoKit in Frameworks */,
+				04193C00235AC37300AD04F5 /* BuildFile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,10 +201,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04111E3E235AA9B000F73084 /* MimeoKit in Frameworks */,
-				040DA4A6238B1D6700356081 /* MooseAnalytics in Frameworks */,
+				04111E3E235AA9B000F73084 /* BuildFile in Frameworks */,
+				040DA4A6238B1D6700356081 /* BuildFile in Frameworks */,
 				0455A0802377F06F009FFAEA /* CloudKit.framework in Frameworks */,
 				048DD365239637EC0041DBE9 /* StoreKit.framework in Frameworks */,
+				F78DF9328EC682D7070B0F66 /* Pods_Mimeo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +241,7 @@
 			children = (
 				048DD364239637EC0041DBE9 /* StoreKit.framework */,
 				0455A07F2377F06F009FFAEA /* CloudKit.framework */,
+				99EB934F39652CC415CCFC68 /* Pods_Mimeo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -361,6 +367,7 @@
 				04193BEC235AB00E00AD04F5 /* MimeoIntents */,
 				04789F1C2341138D006656E4 /* Products */,
 				04111E3C235AA9B000F73084 /* Frameworks */,
+				B080AED90E692C6F98E088A5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -465,6 +472,16 @@
 			path = Store;
 			sourceTree = "<group>";
 		};
+		B080AED90E692C6F98E088A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D2B266FF65A22427E146D058 /* Pods-Mimeo.debug.xcconfig */,
+				103DFC2F80FB6DFA7B64DDFB /* Pods-Mimeo.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -482,7 +499,7 @@
 			);
 			name = MimeoIntents;
 			packageProductDependencies = (
-				04193BFF235AC37300AD04F5 /* MimeoKit */,
+				04193BFF235AC37300AD04F5 /* SwiftPackageProductDependency */,
 			);
 			productName = MimeoIntents;
 			productReference = 04193BEB235AB00E00AD04F5 /* MimeoIntents.appex */;
@@ -492,10 +509,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04789F4823411393006656E4 /* Build configuration list for PBXNativeTarget "Mimeo" */;
 			buildPhases = (
+				E4D50E1F35746336126C511F /* [CP] Check Pods Manifest.lock */,
 				04789F172341138D006656E4 /* Sources */,
 				04789F182341138D006656E4 /* Frameworks */,
 				04789F192341138D006656E4 /* Resources */,
 				04193BF6235AB00E00AD04F5 /* Embed App Extensions */,
+				6F64E7E94CEA6BC9EE9CE347 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -504,8 +523,8 @@
 			);
 			name = Mimeo;
 			packageProductDependencies = (
-				04111E3D235AA9B000F73084 /* MimeoKit */,
-				040DA4A5238B1D6700356081 /* MooseAnalytics */,
+				04111E3D235AA9B000F73084 /* SwiftPackageProductDependency */,
+				040DA4A5238B1D6700356081 /* SwiftPackageProductDependency */,
 			);
 			productName = Mimeo;
 			productReference = 04789F1B2341138D006656E4 /* Mimeo.app */;
@@ -583,8 +602,6 @@
 				Base,
 			);
 			mainGroup = 04789F122341138D006656E4;
-			packageReferences = (
-			);
 			productRefGroup = 04789F1C2341138D006656E4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -630,6 +647,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6F64E7E94CEA6BC9EE9CE347 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mimeo/Pods-Mimeo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mimeo/Pods-Mimeo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mimeo/Pods-Mimeo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4D50E1F35746336126C511F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Mimeo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		04193BE7235AB00E00AD04F5 /* Sources */ = {
@@ -905,6 +964,7 @@
 		};
 		04789F4923411393006656E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2B266FF65A22427E146D058 /* Pods-Mimeo.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -931,6 +991,7 @@
 		};
 		04789F4A23411393006656E4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 103DFC2F80FB6DFA7B64DDFB /* Pods-Mimeo.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1089,15 +1150,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		040DA4A5238B1D6700356081 /* MooseAnalytics */ = {
+		040DA4A5238B1D6700356081 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MooseAnalytics;
 		};
-		04111E3D235AA9B000F73084 /* MimeoKit */ = {
+		04111E3D235AA9B000F73084 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MimeoKit;
 		};
-		04193BFF235AC37300AD04F5 /* MimeoKit */ = {
+		04193BFF235AC37300AD04F5 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MimeoKit;
 		};

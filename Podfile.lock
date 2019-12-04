@@ -1,0 +1,16 @@
+PODS:
+  - Purchases (3.0.0)
+
+DEPENDENCIES:
+  - Purchases (= 3.0.0)
+
+SPEC REPOS:
+  trunk:
+    - Purchases
+
+SPEC CHECKSUMS:
+  Purchases: e22cbc4cd3bccdb482b5cc9a9a2a2008887d0ba4
+
+PODFILE CHECKSUM: 7572ae77ab35e7b2996a38b0f90b5ae10eba057a
+
+COCOAPODS: 1.8.4
