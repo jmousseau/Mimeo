@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class RecognitionLanguageNavigationCell: NavigationSettingCell {
+public final class RecognitionLanguageNavigationCell: SettingCell {
 
     private let preferencesStore = PreferencesStore.default()
 
@@ -30,6 +30,7 @@ public final class RecognitionLanguageNavigationCell: NavigationSettingCell {
             }
         )
 
+        accessoryType = .disclosureIndicator
         detailTextLabel?.text = preferencesStore.get(RecognitionLanguage.self).description
     }
 

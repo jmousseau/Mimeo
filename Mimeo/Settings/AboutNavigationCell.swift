@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class AboutNavigationCell: NavigationSettingCell {
+public final class AboutNavigationCell: SettingCell {
 
     public init(presenter: UIViewController) {
         let title = "About"
@@ -23,6 +23,8 @@ public final class AboutNavigationCell: NavigationSettingCell {
                 animated: true
             )
         })
+
+        accessoryType = .disclosureIndicator
     }
 
     required init?(coder: NSCoder) {

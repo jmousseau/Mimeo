@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class DataDetectionNavigationCell: NavigationSettingCell {
+public final class DataDetectionNavigationCell: SettingCell {
 
     private var dataDetectionController: AnyFetchedResultController?
 
@@ -31,6 +31,7 @@ public final class DataDetectionNavigationCell: NavigationSettingCell {
             }
         )
 
+        accessoryType = .disclosureIndicator
         detailTextLabel?.text = detailTextLabelText(
             for: preferencesStore.get(DataDetectionSetting.self)
         )

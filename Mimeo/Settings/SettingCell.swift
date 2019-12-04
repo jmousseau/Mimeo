@@ -1,5 +1,5 @@
 //
-//  NavigationSettingCell.swift
+//  SettingCell.swift
 //  Mimeo
 //
 //  Created by Jack Mousseau on 11/8/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class NavigationSettingCell: UITableViewCell {
+public class SettingCell: UITableViewCell {
 
     public static let identifier = "navigation-setting-cell"
 
@@ -28,7 +28,6 @@ public class NavigationSettingCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: Self.identifier)
 
         textLabel?.text = title
-        accessoryType = .disclosureIndicator
     }
 
     required init?(coder: NSCoder) {

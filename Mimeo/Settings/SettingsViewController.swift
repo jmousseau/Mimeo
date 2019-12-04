@@ -101,7 +101,7 @@ extension SettingsViewController {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        if let cell = tableView.cellForRow(at: indexPath) as? NavigationSettingCell {
+        if let cell = tableView.cellForRow(at: indexPath) as? SettingCell {
             cell.action()
 
             if cell.shouldDeselectCellOnSelection {

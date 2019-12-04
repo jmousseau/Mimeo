@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class PrivacyPolicyNavigationCell: NavigationSettingCell {
+public final class PrivacyPolicyNavigationCell: SettingCell {
 
     public init(presenter: UIViewController) {
         super.init(
@@ -24,6 +24,8 @@ public final class PrivacyPolicyNavigationCell: NavigationSettingCell {
                 )
             }
         )
+
+        accessoryType = .disclosureIndicator
     }
 
     required init?(coder: NSCoder) {

@@ -9,7 +9,7 @@
 import Foundation
 import MessageUI
 
-public final class SendFeedbackCell: NavigationSettingCell {
+public final class SendFeedbackCell: SettingCell {
 
     public init(presenter: UIViewController & MFMailComposeViewControllerDelegate) {
         super.init(title: "Send Feedback") {
@@ -25,6 +25,8 @@ public final class SendFeedbackCell: NavigationSettingCell {
             mailComposeViewController.becomeFirstResponder()
             presenter.present(mailComposeViewController, animated: true)
         }
+
+        accessoryType = .disclosureIndicator
     }
 
     required init?(coder: NSCoder) {

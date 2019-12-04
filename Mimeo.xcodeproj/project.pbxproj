@@ -29,7 +29,7 @@
 		04193C30235BD57D00AD04F5 /* BooleanSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193C2F235BD57D00AD04F5 /* BooleanSettingCell.swift */; };
 		04193C32235BD8DE00AD04F5 /* QuickRecognitionSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04193C31235BD8DE00AD04F5 /* QuickRecognitionSetting.swift */; };
 		041C542A23767F6100A6BFB8 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041C542923767F6100A6BFB8 /* UIColor.swift */; };
-		041C542C2376886100A6BFB8 /* NavigationSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041C542B2376886100A6BFB8 /* NavigationSettingCell.swift */; };
+		041C542C2376886100A6BFB8 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041C542B2376886100A6BFB8 /* SettingCell.swift */; };
 		041C542E23768A9200A6BFB8 /* RateAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041C542D23768A9200A6BFB8 /* RateAppCell.swift */; };
 		041C543023768AE000A6BFB8 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041C542F23768AE000A6BFB8 /* Bundle.swift */; };
 		041C543223768B7600A6BFB8 /* SendFeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041C543123768B7600A6BFB8 /* SendFeedbackCell.swift */; };
@@ -132,7 +132,7 @@
 		04193C2F235BD57D00AD04F5 /* BooleanSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooleanSettingCell.swift; sourceTree = "<group>"; };
 		04193C31235BD8DE00AD04F5 /* QuickRecognitionSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickRecognitionSetting.swift; sourceTree = "<group>"; };
 		041C542923767F6100A6BFB8 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		041C542B2376886100A6BFB8 /* NavigationSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSettingCell.swift; sourceTree = "<group>"; };
+		041C542B2376886100A6BFB8 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		041C542D23768A9200A6BFB8 /* RateAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppCell.swift; sourceTree = "<group>"; };
 		041C542F23768AE000A6BFB8 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		041C543123768B7600A6BFB8 /* SendFeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFeedbackCell.swift; sourceTree = "<group>"; };
@@ -280,12 +280,12 @@
 				04677059237760AD00192D2E /* AboutNavigationCell.swift */,
 				04193C2F235BD57D00AD04F5 /* BooleanSettingCell.swift */,
 				0466B97E238991EF00215B80 /* DataDetectionNavigationCell.swift */,
-				041C54332377347400A6BFB8 /* RecognitionLanguageNavigationCell.swift */,
-				041C542B2376886100A6BFB8 /* NavigationSettingCell.swift */,
 				04529703238B5C08009A87AC /* PrivacyPolicyNavigationCell.swift */,
 				04193C31235BD8DE00AD04F5 /* QuickRecognitionSetting.swift */,
 				041C542D23768A9200A6BFB8 /* RateAppCell.swift */,
+				041C54332377347400A6BFB8 /* RecognitionLanguageNavigationCell.swift */,
 				041C543123768B7600A6BFB8 /* SendFeedbackCell.swift */,
+				041C542B2376886100A6BFB8 /* SettingCell.swift */,
 				04193C2D235BD15A00AD04F5 /* SettingsViewController.swift */,
 				04E3B34423773DDB00F7E991 /* StaticTableViewController.swift */,
 				0467705B237760E700192D2E /* About */,
@@ -688,7 +688,7 @@
 				0467705E237760FD00192D2E /* AboutViewController.swift in Sources */,
 				04E3B34223773D3B00F7E991 /* RecognitionLanguageViewController.swift in Sources */,
 				048183012349674200379B52 /* MimeoViewController.swift in Sources */,
-				041C542C2376886100A6BFB8 /* NavigationSettingCell.swift in Sources */,
+				041C542C2376886100A6BFB8 /* SettingCell.swift in Sources */,
 				040DA4AB238B20FE00356081 /* ApplicationInstallationStore.swift in Sources */,
 				04AD6D652387C9830075ACCB /* Store.swift in Sources */,
 				0466B9822389936F00215B80 /* DataDetectionSettingViewController.swift in Sources */,

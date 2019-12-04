@@ -73,7 +73,7 @@ public struct AppReviewRequest: PreferenceStorable, Codable {
 
 }
 
-public final class RateAppCell: NavigationSettingCell {
+public final class RateAppCell: SettingCell {
 
     public init(preferencesStore: PreferencesStore) {
         super.init(
@@ -84,6 +84,8 @@ public final class RateAppCell: NavigationSettingCell {
             appReviewRequest.requestReview()
             preferencesStore.set(appReviewRequest)
         }
+
+        accessoryType = .disclosureIndicator
     }
 
     required init?(coder: NSCoder) {
