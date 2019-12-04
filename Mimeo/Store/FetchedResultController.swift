@@ -55,6 +55,10 @@ public final class FetchedResultController<
     public func controllerDidChangeContent(
         _ controller: NSFetchedResultsController<NSFetchRequestResult>
     ) {
+        guard controller.managedObjectContext.hasChanges else {
+            return
+        }
+
         didChange()
     }
 
