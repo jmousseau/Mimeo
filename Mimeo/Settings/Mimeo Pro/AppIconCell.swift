@@ -54,9 +54,8 @@ public final class AppIconCell: SettingCell, MimeoProSettingCell {
         fetchedResultController = preferencesStore.fetchedResultController(
             for: AppIcon.self,
             didChange: {
-                let appIcon = preferencesStore.get(AppIcon.self)
-                UIApplication.shared.set(appIcon: appIcon)
-                self.detailTextLabel?.text = appIcon.name
+                // The app icon is updated in the base view controller.
+                self.detailTextLabel?.text = preferencesStore.get(AppIcon.self).name
             }
         )
 

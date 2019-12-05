@@ -16,7 +16,9 @@ public let CameraOverlayVerticalOffset: CGFloat = -25
 
 public final class MimeoViewController: UIViewController {
 
-    private let preferenceStore = PreferencesStore.default()
+    private let preferencesStore = PreferencesStore.default()
+
+    private var appIconFetchedResultsController: AnyFetchedResultController?
 
     private lazy var textRecognizer: TextRecognizer = {
         do {
@@ -134,6 +136,15 @@ public final class MimeoViewController: UIViewController {
         addSettingsButton()
         addImportButton()
         addResultsViewController()
+
+        appIconFetchedResultsController = preferencesStore.fetchedResultController(
+            for: AppIcon.self,
+            didChange: {
+                UIApplication.shared.set(
+                    appIcon: self.preferencesStore.get(AppIcon.self)
+                )
+            }
+        )
 
         view.bringSubviewToFront(cameraShutterButton)
     }
@@ -351,7 +362,7 @@ extension MimeoViewController: UIImagePickerControllerDelegate & UINavigationCon
             return
         }
 
-        if preferenceStore.get(AutocropPreference.self).isEnabled {
+        if preferencesStore.get(AutocropPreference.self).isEnabled {
             ImageCropper.cropToLargestRectangle(
                 in: image
             ) { autocroppedImage in
@@ -403,7 +414,7 @@ extension MimeoViewController {
         imageRequests = try! textRecognizer.recognizeText(
             in: uiImage.orientedUp()!.cgImage!,
             orientation: .up,
-            recognitionLevel: preferenceStore.get(QuickRecognitionSetting.self).recognitionLevel,
+            recognitionLevel: preferencesStore.get(QuickRecognitionSetting.self).recognitionLevel,
             completion: { recognitionState in
                 DispatchQueue.main.async {
                     self.didUpdate(recognitionState: recognitionState)
