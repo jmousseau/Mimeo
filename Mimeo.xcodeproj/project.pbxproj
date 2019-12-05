@@ -69,10 +69,16 @@
 		04855D7E2354245B00ACB0A2 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04855D7D2354245B00ACB0A2 /* InsetLabel.swift */; };
 		048DD365239637EC0041DBE9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 048DD364239637EC0041DBE9 /* StoreKit.framework */; };
 		049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049842FB2341199C0002AB6D /* CameraViewController.swift */; };
+		04A1924B2398B1FE00176A27 /* MimeoProSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A1924A2398B1FE00176A27 /* MimeoProSettingCell.swift */; };
 		04AD6D652387C9830075ACCB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD6D642387C9830075ACCB /* Store.swift */; };
 		04B8598623883BD20058D2F3 /* PersistentHistoryTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B8598523883BD20058D2F3 /* PersistentHistoryTokenStore.swift */; };
 		04D23B462398A94900BCDC8B /* RestorePurchasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D23B452398A94900BCDC8B /* RestorePurchasesCell.swift */; };
 		04D23B482398AD9600BCDC8B /* CancelSubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D23B472398AD9600BCDC8B /* CancelSubscriptionCell.swift */; };
+		04D23B4A2398B09800BCDC8B /* AppIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D23B492398B09800BCDC8B /* AppIconCell.swift */; };
+		04D23B4C2398B0D100BCDC8B /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D23B4B2398B0D100BCDC8B /* AppIcon.swift */; };
+		04D23B4F2398B13300BCDC8B /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D23B4E2398B13300BCDC8B /* UIApplication.swift */; };
+		04D23B532398B17D00BCDC8B /* iPhone App Dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D23B512398B17D00BCDC8B /* iPhone App Dark@2x.png */; };
+		04D23B542398B17D00BCDC8B /* iPhone App Dark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D23B522398B17D00BCDC8B /* iPhone App Dark@3x.png */; };
 		04DE719B2397779E0018A966 /* MimeoProSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE719A2397779E0018A966 /* MimeoProSubscription.swift */; };
 		04E3B34223773D3B00F7E991 /* RecognitionLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B34123773D3B00F7E991 /* RecognitionLanguageViewController.swift */; };
 		04E3B34523773DDB00F7E991 /* StaticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B34423773DDB00F7E991 /* StaticTableViewController.swift */; };
@@ -187,10 +193,16 @@
 		04855D7D2354245B00ACB0A2 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		048DD364239637EC0041DBE9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		049842FB2341199C0002AB6D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		04A1924A2398B1FE00176A27 /* MimeoProSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoProSettingCell.swift; sourceTree = "<group>"; };
 		04AD6D642387C9830075ACCB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		04B8598523883BD20058D2F3 /* PersistentHistoryTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryTokenStore.swift; sourceTree = "<group>"; };
 		04D23B452398A94900BCDC8B /* RestorePurchasesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePurchasesCell.swift; sourceTree = "<group>"; };
 		04D23B472398AD9600BCDC8B /* CancelSubscriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelSubscriptionCell.swift; sourceTree = "<group>"; };
+		04D23B492398B09800BCDC8B /* AppIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconCell.swift; sourceTree = "<group>"; };
+		04D23B4B2398B0D100BCDC8B /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
+		04D23B4E2398B13300BCDC8B /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		04D23B512398B17D00BCDC8B /* iPhone App Dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone App Dark@2x.png"; sourceTree = "<group>"; };
+		04D23B522398B17D00BCDC8B /* iPhone App Dark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone App Dark@3x.png"; sourceTree = "<group>"; };
 		04DE719A2397779E0018A966 /* MimeoProSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoProSubscription.swift; sourceTree = "<group>"; };
 		04E3B34123773D3B00F7E991 /* RecognitionLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionLanguageViewController.swift; sourceTree = "<group>"; };
 		04E3B34423773DDB00F7E991 /* StaticTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +286,7 @@
 			children = (
 				041C542F23768AE000A6BFB8 /* Bundle.swift */,
 				04193BE4235AAD8700AD04F5 /* CGRect.swift */,
+				04D23B4E2398B13300BCDC8B /* UIApplication.swift */,
 				045428F2237BC2AC0074F576 /* UIButton.swift */,
 				041C542923767F6100A6BFB8 /* UIColor.swift */,
 				04193BE3235AAD8700AD04F5 /* UIDevice.swift */,
@@ -375,7 +388,10 @@
 		0477BD2523976F8F00A6E089 /* Mimeo Pro */ = {
 			isa = PBXGroup;
 			children = (
+				04D23B4B2398B0D100BCDC8B /* AppIcon.swift */,
+				04D23B492398B09800BCDC8B /* AppIconCell.swift */,
 				04D23B472398AD9600BCDC8B /* CancelSubscriptionCell.swift */,
+				04A1924A2398B1FE00176A27 /* MimeoProSettingCell.swift */,
 				0477BD2623976FAC00A6E089 /* MimeoProViewController.swift */,
 				04D23B452398A94900BCDC8B /* RestorePurchasesCell.swift */,
 				043B419A23977410009FD2C2 /* SubscribeCell.swift */,
@@ -463,6 +479,15 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
+		04D23B502398B17D00BCDC8B /* Dark App Icon */ = {
+			isa = PBXGroup;
+			children = (
+				04D23B512398B17D00BCDC8B /* iPhone App Dark@2x.png */,
+				04D23B522398B17D00BCDC8B /* iPhone App Dark@3x.png */,
+			);
+			path = "Dark App Icon";
+			sourceTree = "<group>";
+		};
 		04DE71992397777C0018A966 /* In-App Purchases */ = {
 			isa = PBXGroup;
 			children = (
@@ -485,6 +510,7 @@
 		04E92D8F234114D600877507 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				04D23B502398B17D00BCDC8B /* Dark App Icon */,
 				044C59912380B83200621C56 /* Fonts */,
 				04789F2723411393006656E4 /* Assets.xcassets */,
 				045645D623663E5900FB8F89 /* FontClassifierV1.mlmodel */,
@@ -660,6 +686,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				044C59932380D66A00621C56 /* NewYorkSmall-Regular.otf in Resources */,
+				04D23B542398B17D00BCDC8B /* iPhone App Dark@3x.png in Resources */,
+				04D23B532398B17D00BCDC8B /* iPhone App Dark@2x.png in Resources */,
 				04789F2E23411393006656E4 /* LaunchScreen.storyboard in Resources */,
 				04789F2823411393006656E4 /* Assets.xcassets in Resources */,
 			);
@@ -741,6 +769,7 @@
 				046770602377614C00192D2E /* ApplicationVersionCell.swift in Sources */,
 				04DE719B2397779E0018A966 /* MimeoProSubscription.swift in Sources */,
 				04D23B482398AD9600BCDC8B /* CancelSubscriptionCell.swift in Sources */,
+				04D23B4F2398B13300BCDC8B /* UIApplication.swift in Sources */,
 				045296FA238B23AE009A87AC /* Secrets.swift in Sources */,
 				04193BD6235AACD900AD04F5 /* KeyValueStore.swift in Sources */,
 				041C543023768AE000A6BFB8 /* Bundle.swift in Sources */,
@@ -765,12 +794,15 @@
 				049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */,
 				04193C01235B78A200AD04F5 /* Intents.intentdefinition in Sources */,
 				04855D7E2354245B00ACB0A2 /* InsetLabel.swift in Sources */,
+				04D23B4A2398B09800BCDC8B /* AppIconCell.swift in Sources */,
 				041C542A23767F6100A6BFB8 /* UIColor.swift in Sources */,
+				04A1924B2398B1FE00176A27 /* MimeoProSettingCell.swift in Sources */,
 				04422E1A2378FD9400014263 /* FetchedResultController.swift in Sources */,
 				04E3B34523773DDB00F7E991 /* StaticTableViewController.swift in Sources */,
 				04193BE6235AAD8700AD04F5 /* CGRect.swift in Sources */,
 				041C54372377370300A6BFB8 /* RecognitionLanguage.swift in Sources */,
 				043B419B23977410009FD2C2 /* SubscribeCell.swift in Sources */,
+				04D23B4C2398B0D100BCDC8B /* AppIcon.swift in Sources */,
 				04193BD8235AACD900AD04F5 /* PreferencesStore.swift in Sources */,
 				04529702238B5AA7009A87AC /* PrivacyPolicyViewController.swift in Sources */,
 				04818306234987CB00379B52 /* CameraShutterButton.swift in Sources */,

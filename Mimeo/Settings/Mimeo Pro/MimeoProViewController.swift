@@ -11,6 +11,8 @@ import Purchases
 
 public final class MimeoProViewController: StaticTableViewController {
 
+    private let preferencesStore = PreferencesStore.default()
+
     public init() {
         super.init(style: .grouped)
 
@@ -28,6 +30,18 @@ public final class MimeoProViewController: StaticTableViewController {
         case .cancelled, .failed:
             break
         }
+
+        sections.append(contentsOf: [
+            Section(
+                header: "Pro Settings",
+                cells: [
+                    AppIconCell(
+                        presenter: self,
+                        preferencesStore: preferencesStore
+                    )
+                ]
+            )
+        ])
 
         tableView.reloadData()
     }
