@@ -32,22 +32,11 @@ public final class MimeoViewController: UIViewController {
 
     private let settingsViewController = SettingsViewController()
 
-    private lazy var settingsDoneButton: UIBarButtonItem = {
-        let settingsDoneButton = UIBarButtonItem(
-            title: "Done",
-            style: .done,
-            target: self,
-            action: #selector(dismissSettings)
-        )
-        settingsDoneButton.tintColor = .mimeoYellow
-        return settingsDoneButton
-    }()
-
     private lazy var settingsNavigationViewController: UINavigationController = {
-        let settingsNavigationViewController = UINavigationController(rootViewController: settingsViewController)
+        let settingsNavigationViewController = UINavigationController(
+            rootViewController: settingsViewController
+        )
         settingsNavigationViewController.navigationBar.prefersLargeTitles = true
-        settingsNavigationViewController.navigationBar.topItem?.title = "Settings"
-        settingsNavigationViewController.navigationBar.topItem?.rightBarButtonItem = settingsDoneButton
         return settingsNavigationViewController
     }()
 
@@ -97,7 +86,11 @@ public final class MimeoViewController: UIViewController {
         let settingsButton = UIButton()
         settingsButton.tintColor = .mimeoYellowDark
         settingsButton.setImage(settingsImage, for: .normal)
-        settingsButton.addTarget(self, action: #selector(presentSettings), for: .touchUpInside)
+        settingsButton.addTarget(
+            self, action:
+            #selector(presentSettings),
+            for: .touchUpInside
+        )
         return settingsButton
     }()
 
@@ -113,7 +106,7 @@ public final class MimeoViewController: UIViewController {
         let recognitionHistoryButton = UIButton()
         recognitionHistoryButton.tintColor = .mimeoYellow
         recognitionHistoryButton.setImage(recognitionHistoryImage, for: .normal)
-        recognitionHistoryButton.addTarget(self, action: #selector(presentSettings), for: .touchUpInside)
+        recognitionHistoryButton.addTarget(self, action: #selector(presentRecognitionHistory), for: .touchUpInside)
         return recognitionHistoryButton
     }()
 
@@ -329,11 +322,28 @@ extension MimeoViewController {
 
 }
 
+// MARK: - Recognition History
+
+extension MimeoViewController {
+
+    @objc private func presentRecognitionHistory() {
+        let recognitionHistoryNavigationViewController = UINavigationController(
+            rootViewController: RecognitionHistoryViewController()
+        )
+        recognitionHistoryNavigationViewController.navigationBar.prefersLargeTitles = true
+        present(recognitionHistoryNavigationViewController, animated: true)
+    }
+
+}
+
 // MARK: - Image Picker
 
 extension MimeoViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
     @objc private func pickImage() {
+        let imagePickerViewController = UIImagePickerController()
+        imagePickerViewController.delegate = self
+        imagePickerViewController.view.tintColor = .mimeoYellow
         present(imagePickerViewController, animated: true)
     }
 
@@ -342,7 +352,7 @@ extension MimeoViewController: UIImagePickerControllerDelegate & UINavigationCon
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
     ) {
         defer {
-            imagePickerViewController.dismiss(animated: true, completion: nil)
+            picker.dismiss(animated: true, completion: nil)
         }
 
         guard let image = (info[.originalImage] as? UIImage)?.orientedUp() else {

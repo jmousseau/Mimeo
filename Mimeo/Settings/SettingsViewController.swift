@@ -17,6 +17,14 @@ public final class SettingsViewController: StaticTableViewController {
     public init() {
         super.init(style: .grouped)
 
+        navigationItem.title = "Settings"
+        navigationItem.rightBarButtonItem = .makeDoneButton(
+            target: self,
+            action: #selector(dismissAnimated)
+        )
+
+        tableView.delegate = self
+
         sections = [
             Section(
                 cells: [
@@ -60,12 +68,14 @@ public final class SettingsViewController: StaticTableViewController {
                 ]
             )
         ].compactMap({ $0 })
-
-        tableView.delegate = self
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc private func dismissAnimated() {
+        dismiss(animated: true)
     }
 
 }
@@ -94,7 +104,7 @@ extension SettingsViewController : MFMailComposeViewControllerDelegate {
         error: Error?
     ) {
         controller.dismiss(animated: true)
-        deselectRowForSelectedIndexPath()
+        tableView.deselectRowForSelectedIndexPath()
     }
 
 }

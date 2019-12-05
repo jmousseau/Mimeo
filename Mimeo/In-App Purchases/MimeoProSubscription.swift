@@ -15,7 +15,20 @@ public struct MimeoProSubscription {
 
     private static let productIdentifier = "mimeopro"
 
-    public enum Status {
+    public enum Status: Equatable {
+
+        public static func == (lhs: MimeoProSubscription.Status, rhs: MimeoProSubscription.Status) -> Bool {
+            switch (lhs, rhs) {
+            case (.subscribed, .subscribed),
+                 (.notSubscribed, .notSubscribed),
+                 (.cancelled, .cancelled),
+                 (.failed, .failed):
+                return true
+
+            default:
+                return false
+            }
+        }
 
         case subscribed
 
@@ -30,6 +43,14 @@ public struct MimeoProSubscription {
     public static func status(_ completion: @escaping (Status) -> Void) {
         Purchases.shared.purchaserInfo { purchaseInfo, error in
             completion(status(for: purchaseInfo, error: error))
+        }
+    }
+
+    public static func isSubscribed(_ completion: @escaping () -> Void) {
+        status { subscriptionStatus in
+            if (subscriptionStatus == .subscribed) {
+                completion()
+            }
         }
     }
 

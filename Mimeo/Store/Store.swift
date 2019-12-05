@@ -8,6 +8,7 @@
 
 import CoreData
 import Foundation
+import UIKit
 
 /// Store notifications.
 extension Notification.Name {
@@ -21,6 +22,12 @@ extension Notification.Name {
 ///
 /// Synced to iCloud.
 public final class Store {
+
+    /// The store's view context.
+    public static let viewContext: NSManagedObjectContext = {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.store.persistentContainer.viewContext
+    }()
 
     /// The Store's transactions user info key
     public static let transactionsUserInfoKey = "transactions"

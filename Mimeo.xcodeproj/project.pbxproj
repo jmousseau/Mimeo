@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040798232399FA2F00538E05 /* RecognitionHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040798222399FA2F00538E05 /* RecognitionHistoryViewController.swift */; };
 		040DA4A6238B1D6700356081 /* MooseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 040DA4A5238B1D6700356081 /* MooseAnalytics */; };
 		040DA4A9238B1DB700356081 /* MimeoAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DA4A8238B1DB700356081 /* MimeoAnalytics.swift */; };
 		040DA4AB238B20FE00356081 /* ApplicationInstallationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DA4AA238B20FE00356081 /* ApplicationInstallationStore.swift */; };
@@ -48,6 +49,8 @@
 		045428F3237BC2AC0074F576 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045428F2237BC2AC0074F576 /* UIButton.swift */; };
 		0455A0802377F06F009FFAEA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0455A07F2377F06F009FFAEA /* CloudKit.framework */; };
 		045645D723663E5A00FB8F89 /* FontClassifierV1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 045645D623663E5900FB8F89 /* FontClassifierV1.mlmodel */; };
+		0463CBDE239C73CB00DDD3A9 /* LinkResponsiveTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0463CBDD239C73CB00DDD3A9 /* LinkResponsiveTextView.swift */; };
+		0463CBE0239C7BD200DDD3A9 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0463CBDF239C7BD200DDD3A9 /* UITableView.swift */; };
 		0466B97F238991EF00215B80 /* DataDetectionNavigationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0466B97E238991EF00215B80 /* DataDetectionNavigationCell.swift */; };
 		0466B9822389936F00215B80 /* DataDetectionSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0466B9812389936F00215B80 /* DataDetectionSettingViewController.swift */; };
 		0466B9842389967900215B80 /* DataDetectionSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0466B9832389967900215B80 /* DataDetectionSetting.swift */; };
@@ -64,6 +67,7 @@
 		04789F2E23411393006656E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04789F2C23411393006656E4 /* LaunchScreen.storyboard */; };
 		04789F3923411393006656E4 /* MimeoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F3823411393006656E4 /* MimeoTests.swift */; };
 		04789F4423411393006656E4 /* MimeoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F4323411393006656E4 /* MimeoUITests.swift */; };
+		047F9267239A310100155408 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F9266239A310100155408 /* UIBarButtonItem.swift */; };
 		048183012349674200379B52 /* MimeoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048183002349674200379B52 /* MimeoViewController.swift */; };
 		04818306234987CB00379B52 /* CameraShutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04818305234987CB00379B52 /* CameraShutterButton.swift */; };
 		04855D7E2354245B00ACB0A2 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04855D7D2354245B00ACB0A2 /* InsetLabel.swift */; };
@@ -127,6 +131,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		040798222399FA2F00538E05 /* RecognitionHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionHistoryViewController.swift; sourceTree = "<group>"; };
 		040DA4A8238B1DB700356081 /* MimeoAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoAnalytics.swift; sourceTree = "<group>"; };
 		040DA4AA238B20FE00356081 /* ApplicationInstallationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationInstallationStore.swift; sourceTree = "<group>"; };
 		04193BD2235AACD900AD04F5 /* KeyValueStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueStore.swift; sourceTree = "<group>"; };
@@ -168,6 +173,8 @@
 		045428F2237BC2AC0074F576 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		0455A07F2377F06F009FFAEA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		045645D623663E5900FB8F89 /* FontClassifierV1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FontClassifierV1.mlmodel; path = FontClassifier.mlproj/Models/FontClassifierV1.mlmodel; sourceTree = SOURCE_ROOT; };
+		0463CBDD239C73CB00DDD3A9 /* LinkResponsiveTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkResponsiveTextView.swift; sourceTree = "<group>"; };
+		0463CBDF239C7BD200DDD3A9 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		0466B97E238991EF00215B80 /* DataDetectionNavigationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetectionNavigationCell.swift; sourceTree = "<group>"; };
 		0466B9812389936F00215B80 /* DataDetectionSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetectionSettingViewController.swift; sourceTree = "<group>"; };
 		0466B9832389967900215B80 /* DataDetectionSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetectionSetting.swift; sourceTree = "<group>"; };
@@ -190,6 +197,7 @@
 		04789F3F23411393006656E4 /* MimeoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimeoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04789F4323411393006656E4 /* MimeoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoUITests.swift; sourceTree = "<group>"; };
 		04789F4523411393006656E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		047F9266239A310100155408 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		048183002349674200379B52 /* MimeoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoViewController.swift; sourceTree = "<group>"; };
 		04818305234987CB00379B52 /* CameraShutterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraShutterButton.swift; sourceTree = "<group>"; };
 		04855D7D2354245B00ACB0A2 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
@@ -254,6 +262,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040798212399FA1400538E05 /* Recognition History */ = {
+			isa = PBXGroup;
+			children = (
+				040798222399FA2F00538E05 /* RecognitionHistoryViewController.swift */,
+			);
+			path = "Recognition History";
+			sourceTree = "<group>";
+		};
 		040DA4A7238B1DA200356081 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,9 +307,11 @@
 				041C542F23768AE000A6BFB8 /* Bundle.swift */,
 				04193BE4235AAD8700AD04F5 /* CGRect.swift */,
 				04D23B4E2398B13300BCDC8B /* UIApplication.swift */,
+				047F9266239A310100155408 /* UIBarButtonItem.swift */,
 				045428F2237BC2AC0074F576 /* UIButton.swift */,
 				041C542923767F6100A6BFB8 /* UIColor.swift */,
 				04193BE3235AAD8700AD04F5 /* UIDevice.swift */,
+				0463CBDF239C7BD200DDD3A9 /* UITableView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -438,6 +456,7 @@
 				04E92D8E234114CC00877507 /* Main */,
 				049842FA2341195E0002AB6D /* Camera */,
 				04193BD9235AAD3200AD04F5 /* Results */,
+				040798212399FA1400538E05 /* Recognition History */,
 				04193C2C235BD14100AD04F5 /* Settings */,
 				04E92D902341150C00877507 /* Store */,
 				04855D7C2354244A00ACB0A2 /* Views */,
@@ -471,6 +490,7 @@
 			isa = PBXGroup;
 			children = (
 				04855D7D2354245B00ACB0A2 /* InsetLabel.swift */,
+				0463CBDD239C73CB00DDD3A9 /* LinkResponsiveTextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -783,6 +803,7 @@
 				04193BDF235AAD3D00AD04F5 /* ResultsLayout.swift in Sources */,
 				04193BD7235AACD900AD04F5 /* Mimeo.xcdatamodeld in Sources */,
 				04A1924F2398B6BD00176A27 /* RecognitionHistoryCell.swift in Sources */,
+				040798232399FA2F00538E05 /* RecognitionHistoryViewController.swift in Sources */,
 				04193BE0235AAD3D00AD04F5 /* ResultsTableView.swift in Sources */,
 				041C54342377347400A6BFB8 /* RecognitionLanguageNavigationCell.swift in Sources */,
 				04A1924D2398B56200176A27 /* RecognitionHistory.swift in Sources */,
@@ -800,6 +821,7 @@
 				04B8598623883BD20058D2F3 /* PersistentHistoryTokenStore.swift in Sources */,
 				045428F3237BC2AC0074F576 /* UIButton.swift in Sources */,
 				049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */,
+				0463CBE0239C7BD200DDD3A9 /* UITableView.swift in Sources */,
 				04193C01235B78A200AD04F5 /* Intents.intentdefinition in Sources */,
 				04855D7E2354245B00ACB0A2 /* InsetLabel.swift in Sources */,
 				04D23B4A2398B09800BCDC8B /* AppIconCell.swift in Sources */,
@@ -817,6 +839,7 @@
 				042AB4F0236FABBB003EE5FF /* ViewDissolverShaders.metal in Sources */,
 				04193C2E235BD15A00AD04F5 /* SettingsViewController.swift in Sources */,
 				04193C30235BD57D00AD04F5 /* BooleanSettingCell.swift in Sources */,
+				047F9267239A310100155408 /* UIBarButtonItem.swift in Sources */,
 				0477BD2923976FD400A6E089 /* MimeoProNavigationCell.swift in Sources */,
 				04193BE1235AAD3D00AD04F5 /* ResultsViewController.swift in Sources */,
 				04789F212341138E006656E4 /* SceneDelegate.swift in Sources */,
@@ -827,6 +850,7 @@
 				04E3B34223773D3B00F7E991 /* RecognitionLanguageViewController.swift in Sources */,
 				048183012349674200379B52 /* MimeoViewController.swift in Sources */,
 				041C542C2376886100A6BFB8 /* SettingCell.swift in Sources */,
+				0463CBDE239C73CB00DDD3A9 /* LinkResponsiveTextView.swift in Sources */,
 				040DA4AB238B20FE00356081 /* ApplicationInstallationStore.swift in Sources */,
 				04AD6D652387C9830075ACCB /* Store.swift in Sources */,
 				0466B9822389936F00215B80 /* DataDetectionSettingViewController.swift in Sources */,

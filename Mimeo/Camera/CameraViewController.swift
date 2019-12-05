@@ -810,7 +810,9 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 
         imageRequests.append(TextDetector
             .textExistsRequest() { textExistsInVideoPreview in
-            self.framesWithText.removeFirst()
+            if self.framesWithText.count > 0 {
+                self.framesWithText.removeFirst()
+            }
             self.framesWithText.append(textExistsInVideoPreview ? 1 : 0)
             self.textExistsInVideoPreview =
                 self.framesWithText.reduce(.zero, +) / Double(self.framesWithText.count) > 0.5

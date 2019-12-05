@@ -123,10 +123,7 @@ public struct PreferencesStore {
 
     /// Returns a new default preference store instance.
     public static func `default`() -> PreferencesStore {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return PreferencesStore(
-            managedObjectContext: appDelegate.store.persistentContainer.viewContext
-        )
+        PreferencesStore(managedObjectContext: Store.viewContext)
     }
 
     /// The preference store's managed object context.

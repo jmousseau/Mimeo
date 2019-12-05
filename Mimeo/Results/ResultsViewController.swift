@@ -136,9 +136,20 @@ public final class ResultsViewController: UIViewController {
                 activityIndicator.startAnimating()
 
             case .complete(let result):
+                let plainText = result.observations.plainText()
+
                 MimeoAnalytics.shared.record(event: MimeoAnalytics.Events.RecognizedTextEvent(
-                    totalRecognizedTextLength: UInt(result.observations.plainText().count)
+                    totalRecognizedTextLength: UInt(plainText.count)
                 ))
+
+                if (!plainText.isEmpty) {
+                    MimeoProSubscription.isSubscribed {
+                        let recognitionResult = RecognitionResult(context: Store.viewContext)
+                        recognitionResult.text = plainText
+                        recognitionResult.createdAt = Date()
+                        try? recognitionResult.managedObjectContext?.save()
+                    }
+                }
 
                 resultsLayout = preferencesStore.get(ResultsLayout.self)
 
