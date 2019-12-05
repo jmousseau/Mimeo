@@ -50,16 +50,60 @@ public final class FetchedResultController<
 
         controller.delegate = self
         try? controller.performFetch()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(type(of: self).didRecieveRemoteTransactions(_:)),
+            name: .didRecieveRemoteTransactions,
+            object: nil
+        )
     }
 
     public func controllerDidChangeContent(
         _ controller: NSFetchedResultsController<NSFetchRequestResult>
     ) {
+        // External changes are handled by `didRecieveRemoteTransactions`.
         guard controller.managedObjectContext.hasChanges else {
             return
         }
 
         didChange()
+    }
+
+    @objc private func didRecieveRemoteTransactions(
+        _ notification: NSNotification
+    ) {
+        guard let transactions = notification.userInfo?[
+            Store.transactionsUserInfoKey
+        ] as? [NSPersistentHistoryTransaction] else {
+            preconditionFailure()
+        }
+
+        let changes = transactions.reduce([]) { changes, transaction in
+            changes + (transaction.changes ?? [])
+        }
+
+        let changedObjectIds = changes.reduce([]) { changedObjectIds, change in
+            changedObjectIds + [change.changedObjectID]
+        }
+
+        let fetchRequest = controller.fetchRequest.copy() as! NSFetchRequest<NSFetchRequestResult>
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            controller.fetchRequest.predicate,
+            NSPredicate(format: "self IN %@", changedObjectIds)
+        ].compactMap({ $0 }))
+
+        guard let changedObjectCount = try? controller.managedObjectContext.count(
+            for: fetchRequest
+        ) else {
+            return
+        }
+
+        if changedObjectCount > 0 {
+            DispatchQueue.main.async {
+                self.didChange()
+            }
+        }
     }
 
 }

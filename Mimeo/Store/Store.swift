@@ -9,13 +9,27 @@
 import CoreData
 import Foundation
 
+/// Store notifications.
+extension Notification.Name {
+
+    /// The store recieved remove transactions.
+    static let didRecieveRemoteTransactions = Notification.Name("didRecieveRemoteTransactions")
+
+}
+
 /// The local store.
 ///
 /// Synced to iCloud.
 public final class Store {
 
+    /// The Store's transactions user info key
+    public static let transactionsUserInfoKey = "transactions"
+
     /// The store's persistent container name.
     private let containerName: String
+
+    /// The store's author.
+    private let author = "mimeo-ios-app"
 
     /// The store's persistent container.
     lazy var persistentContainer: NSPersistentCloudKitContainer = {
@@ -36,7 +50,7 @@ public final class Store {
         )
 
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        container.viewContext.transactionAuthor = "mimeo-ios-app"
+        container.viewContext.transactionAuthor = author
         container.viewContext.automaticallyMergesChangesFromParent = true
 
         do {
@@ -109,6 +123,8 @@ extension Store {
                 return
             }
 
+            historyFetchRequest.predicate = NSPredicate(format: "author != %@", author)
+
             let historyChangeFetchRequest = NSPersistentHistoryChangeRequest.fetchHistory(
                 after: self.persistentHistoryTokenStore.lastKnownToken
             )
@@ -126,6 +142,14 @@ extension Store {
             guard !transactions.isEmpty else {
                 return
             }
+
+            NotificationCenter.default.post(
+                name: .didRecieveRemoteTransactions,
+                object: self,
+                userInfo: [
+                    Self.transactionsUserInfoKey: transactions
+                ]
+            )
 
             defer {
                 persistentHistoryTokenStore.lastKnownToken = transactions.last?.token
