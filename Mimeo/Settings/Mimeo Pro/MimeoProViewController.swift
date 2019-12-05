@@ -6,8 +6,7 @@
 //  Copyright © 2019 Jack Mousseau. All rights reserved.
 //
 
-import Foundation
-import Purchases
+import UIKit
 
 public final class MimeoProViewController: StaticTableViewController {
 
@@ -109,7 +108,7 @@ extension MimeoProViewController: SubscribeCellDelegate {
     private func makeSubscribedAlert() -> UIAlertController {
         let alert = UIAlertController(
             title: "Subscribed",
-            message: "Thank you for subscribing to Mimeo Pro.",
+            message: "Thank you for subscribing to Mimeo Copy Pro.",
             preferredStyle: .alert
         )
 

@@ -12,11 +12,11 @@ public final class MimeoProNavigationCell: SettingCell {
 
     public init(presenter: UIViewController) {
         super.init(
-            title: "Mimeo Pro",
+            title: "Mimeo Copy Pro",
             action: {
                 let mimeoProViewController = MimeoProViewController()
                 mimeoProViewController.view.tintColor = .mimeoYellow
-                mimeoProViewController.navigationItem.title = "Mimeo Pro"
+                mimeoProViewController.navigationItem.title = "Mimeo Copy Pro"
                 presenter.navigationController?.pushViewController(
                     mimeoProViewController,
                     animated: true
