@@ -140,9 +140,7 @@ public final class MimeoViewController: UIViewController {
         appIconFetchedResultsController = preferencesStore.fetchedResultController(
             for: AppIcon.self,
             didChange: {
-                UIApplication.shared.set(
-                    appIcon: self.preferencesStore.get(AppIcon.self)
-                )
+                UIApplication.shared.appIcon = self.preferencesStore.get(AppIcon.self)
             }
         )
 
@@ -151,6 +149,17 @@ public final class MimeoViewController: UIViewController {
 
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // When the app is installed for the first time and CloudKit is synced,
+        // the fetched results controller will not call `didChange`. For most
+        // preferences, that is OK because the correct preference value will be
+        // shown in the UI for subsequent sessions. In the case of the App Icon,
+        // we always need to ensure the current app icon is correct on launch.
+        UIApplication.shared.appIcon = preferencesStore.get(AppIcon.self)
     }
 
 }

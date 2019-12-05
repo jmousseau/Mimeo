@@ -11,6 +11,9 @@ import Foundation
 /// An app icon.
 public enum AppIcon: String, PreferenceStorable, CaseIterable {
 
+    /// The dark app icon asset name.
+    private static let darkAssetName = "iPhone App Dark"
+
     /// The app icon preference key.
     public static var preferenceKey: String = "app-icon"
 
@@ -36,6 +39,14 @@ public enum AppIcon: String, PreferenceStorable, CaseIterable {
         }
     }
 
+    public init(assetName: String?) {
+        if let assetName = assetName {
+            self = assetName == Self.darkAssetName ? .dark : .light
+        } else {
+            self = .light
+        }
+    }
+
     /// The app icon's asset name.
     public var assetName: String? {
         switch self {
@@ -43,7 +54,7 @@ public enum AppIcon: String, PreferenceStorable, CaseIterable {
             return nil
 
         case .dark:
-            return "iPhone App Dark"
+            return Self.darkAssetName
         }
     }
 

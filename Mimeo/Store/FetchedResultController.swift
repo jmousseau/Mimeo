@@ -21,6 +21,7 @@ public final class FetchedResultController<
     /// The fetched result controller's internal controller.
     private let controller: NSFetchedResultsController<ManagedObject>
 
+    // FIXME: Did change is not called after initial installation sync.
     /// The fetched result controller's change closure.
     private let didChange: () -> Void
 

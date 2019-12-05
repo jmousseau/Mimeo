@@ -10,10 +10,19 @@ import UIKit
 
 extension UIApplication {
 
-    /// Set the application's app icon.
-    /// - Parameter appIcon: The desired application app icon.
-    public func set(appIcon: AppIcon) {
-        setAlternateIconName(appIcon.assetName)
+    /// The application's app icon.
+    ///
+    /// Setting the app icon to the same icon will have no effect.
+    public var appIcon: AppIcon {
+        get {
+            AppIcon(assetName: alternateIconName)
+        }
+
+        set {
+            if (appIcon != newValue) {
+                setAlternateIconName(newValue.assetName)
+            }
+        }
     }
 
 }
