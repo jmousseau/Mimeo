@@ -89,10 +89,7 @@ extension MimeoProViewController: SubscribeCellDelegate {
 
     public func subscribeCellDidUpdate(status: MimeoProSubscription.Status) {
         switch status {
-        case .subscribed:
-            present(makeSubscribedAlert(), animated: true)
-
-        case .notSubscribed, .cancelled:
+        case .subscribed, .notSubscribed, .cancelled:
             break
 
         case .failed(let error):
@@ -103,21 +100,6 @@ extension MimeoProViewController: SubscribeCellDelegate {
         }
 
         reload(for: status)
-    }
-
-    private func makeSubscribedAlert() -> UIAlertController {
-        let alert = UIAlertController(
-            title: "Subscribed",
-            message: "Thank you for subscribing to Mimeo Copy Pro.",
-            preferredStyle: .alert
-        )
-
-        alert.addAction(UIAlertAction(
-            title: "OK",
-            style: .default
-        ))
-
-        return alert
     }
 
     public override func tableView(
