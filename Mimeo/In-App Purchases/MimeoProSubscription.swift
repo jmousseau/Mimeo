@@ -11,6 +11,8 @@ import Purchases
 
 public struct MimeoProSubscription {
 
+    public static let settingsURL = URL(string: "https://apps.apple.com/account/subscriptions")!
+
     private static let productIdentifier = "mimeopro"
 
     public enum Status {

@@ -72,6 +72,7 @@
 		04AD6D652387C9830075ACCB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD6D642387C9830075ACCB /* Store.swift */; };
 		04B8598623883BD20058D2F3 /* PersistentHistoryTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B8598523883BD20058D2F3 /* PersistentHistoryTokenStore.swift */; };
 		04D23B462398A94900BCDC8B /* RestorePurchasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D23B452398A94900BCDC8B /* RestorePurchasesCell.swift */; };
+		04D23B482398AD9600BCDC8B /* CancelSubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D23B472398AD9600BCDC8B /* CancelSubscriptionCell.swift */; };
 		04DE719B2397779E0018A966 /* MimeoProSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE719A2397779E0018A966 /* MimeoProSubscription.swift */; };
 		04E3B34223773D3B00F7E991 /* RecognitionLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B34123773D3B00F7E991 /* RecognitionLanguageViewController.swift */; };
 		04E3B34523773DDB00F7E991 /* StaticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3B34423773DDB00F7E991 /* StaticTableViewController.swift */; };
@@ -189,6 +190,7 @@
 		04AD6D642387C9830075ACCB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		04B8598523883BD20058D2F3 /* PersistentHistoryTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryTokenStore.swift; sourceTree = "<group>"; };
 		04D23B452398A94900BCDC8B /* RestorePurchasesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePurchasesCell.swift; sourceTree = "<group>"; };
+		04D23B472398AD9600BCDC8B /* CancelSubscriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelSubscriptionCell.swift; sourceTree = "<group>"; };
 		04DE719A2397779E0018A966 /* MimeoProSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoProSubscription.swift; sourceTree = "<group>"; };
 		04E3B34123773D3B00F7E991 /* RecognitionLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionLanguageViewController.swift; sourceTree = "<group>"; };
 		04E3B34423773DDB00F7E991 /* StaticTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableViewController.swift; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 		0477BD2523976F8F00A6E089 /* Mimeo Pro */ = {
 			isa = PBXGroup;
 			children = (
+				04D23B472398AD9600BCDC8B /* CancelSubscriptionCell.swift */,
 				0477BD2623976FAC00A6E089 /* MimeoProViewController.swift */,
 				04D23B452398A94900BCDC8B /* RestorePurchasesCell.swift */,
 				043B419A23977410009FD2C2 /* SubscribeCell.swift */,
@@ -737,6 +740,7 @@
 			files = (
 				046770602377614C00192D2E /* ApplicationVersionCell.swift in Sources */,
 				04DE719B2397779E0018A966 /* MimeoProSubscription.swift in Sources */,
+				04D23B482398AD9600BCDC8B /* CancelSubscriptionCell.swift in Sources */,
 				045296FA238B23AE009A87AC /* Secrets.swift in Sources */,
 				04193BD6235AACD900AD04F5 /* KeyValueStore.swift in Sources */,
 				041C543023768AE000A6BFB8 /* Bundle.swift in Sources */,

@@ -39,6 +39,7 @@ public final class MimeoProViewController: StaticTableViewController {
     private func makeSubscribedSection() -> Section {
         Section(
             cells: [
+                CancelSubscriptionCell(),
                 RestorePurchasesCell(delegate: self)
             ]
         )
