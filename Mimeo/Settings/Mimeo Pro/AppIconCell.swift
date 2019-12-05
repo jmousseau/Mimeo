@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class AppIconCell: MimeoProSettingCell {
+public final class AppIconCell: SettingCell, MimeoProSettingCell {
 
     private var fetchedResultController: AnyFetchedResultController?
 
@@ -60,7 +60,6 @@ public final class AppIconCell: MimeoProSettingCell {
             }
         )
 
-        imageView?.image =  UIImage(systemName: "app")
         detailTextLabel?.text = preferencesStore.get(AppIcon.self).name
     }
 

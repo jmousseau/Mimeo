@@ -70,6 +70,8 @@
 		048DD365239637EC0041DBE9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 048DD364239637EC0041DBE9 /* StoreKit.framework */; };
 		049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049842FB2341199C0002AB6D /* CameraViewController.swift */; };
 		04A1924B2398B1FE00176A27 /* MimeoProSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A1924A2398B1FE00176A27 /* MimeoProSettingCell.swift */; };
+		04A1924D2398B56200176A27 /* RecognitionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A1924C2398B56200176A27 /* RecognitionHistory.swift */; };
+		04A1924F2398B6BD00176A27 /* RecognitionHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A1924E2398B6BD00176A27 /* RecognitionHistoryCell.swift */; };
 		04AD6D652387C9830075ACCB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD6D642387C9830075ACCB /* Store.swift */; };
 		04B8598623883BD20058D2F3 /* PersistentHistoryTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B8598523883BD20058D2F3 /* PersistentHistoryTokenStore.swift */; };
 		04D23B462398A94900BCDC8B /* RestorePurchasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D23B452398A94900BCDC8B /* RestorePurchasesCell.swift */; };
@@ -194,6 +196,8 @@
 		048DD364239637EC0041DBE9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		049842FB2341199C0002AB6D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		04A1924A2398B1FE00176A27 /* MimeoProSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoProSettingCell.swift; sourceTree = "<group>"; };
+		04A1924C2398B56200176A27 /* RecognitionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionHistory.swift; sourceTree = "<group>"; };
+		04A1924E2398B6BD00176A27 /* RecognitionHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionHistoryCell.swift; sourceTree = "<group>"; };
 		04AD6D642387C9830075ACCB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		04B8598523883BD20058D2F3 /* PersistentHistoryTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryTokenStore.swift; sourceTree = "<group>"; };
 		04D23B452398A94900BCDC8B /* RestorePurchasesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePurchasesCell.swift; sourceTree = "<group>"; };
@@ -393,6 +397,8 @@
 				04D23B472398AD9600BCDC8B /* CancelSubscriptionCell.swift */,
 				04A1924A2398B1FE00176A27 /* MimeoProSettingCell.swift */,
 				0477BD2623976FAC00A6E089 /* MimeoProViewController.swift */,
+				04A1924C2398B56200176A27 /* RecognitionHistory.swift */,
+				04A1924E2398B6BD00176A27 /* RecognitionHistoryCell.swift */,
 				04D23B452398A94900BCDC8B /* RestorePurchasesCell.swift */,
 				043B419A23977410009FD2C2 /* SubscribeCell.swift */,
 			);
@@ -776,8 +782,10 @@
 				0477BD2723976FAC00A6E089 /* MimeoProViewController.swift in Sources */,
 				04193BDF235AAD3D00AD04F5 /* ResultsLayout.swift in Sources */,
 				04193BD7235AACD900AD04F5 /* Mimeo.xcdatamodeld in Sources */,
+				04A1924F2398B6BD00176A27 /* RecognitionHistoryCell.swift in Sources */,
 				04193BE0235AAD3D00AD04F5 /* ResultsTableView.swift in Sources */,
 				041C54342377347400A6BFB8 /* RecognitionLanguageNavigationCell.swift in Sources */,
+				04A1924D2398B56200176A27 /* RecognitionHistory.swift in Sources */,
 				0466B9862389A02600215B80 /* DataDetectionTypeCell.swift in Sources */,
 				042AB4EB236FAB29003EE5FF /* ViewDissolver.swift in Sources */,
 				046770622377615900192D2E /* ApplicationBuildNumberCell.swift in Sources */,

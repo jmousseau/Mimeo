@@ -24,11 +24,8 @@ public final class MimeoProViewController: StaticTableViewController {
         case .subscribed:
             sections = [makeSubscribedSection()]
 
-        case .notSubscribed:
+        case .notSubscribed, .cancelled, .failed:
             sections = [makeNotSubscribedSection()]
-
-        case .cancelled, .failed:
-            break
         }
 
         sections.append(contentsOf: [
@@ -38,7 +35,8 @@ public final class MimeoProViewController: StaticTableViewController {
                     AppIconCell(
                         presenter: self,
                         preferencesStore: preferencesStore
-                    )
+                    ),
+                    RecognitionHistoryCell(preferencesStore: preferencesStore)
                 ]
             )
         ])
@@ -121,6 +119,29 @@ extension MimeoProViewController: SubscribeCellDelegate {
         ))
 
         return alert
+    }
+
+    public override func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+
+        if cell is MimeoProSettingCell {
+            MimeoProSubscription.status { status in
+                switch status {
+                case .subscribed:
+                    cell.isUserInteractionEnabled = true
+                    cell.contentView.alpha = 1
+
+                case .notSubscribed, .cancelled, .failed:
+                    cell.isUserInteractionEnabled = false
+                    cell.contentView.alpha = 0.4
+                }
+            }
+        }
+
+        return cell
     }
 
 }
