@@ -76,6 +76,15 @@ public final class MimeoViewController: UIViewController {
         return button
     }()
 
+    private lazy var buttonsStackView: UIStackView = {
+        let buttonsStackView = UIStackView()
+        buttonsStackView.distribution = .equalSpacing
+        buttonsStackView.addArrangedSubview(settingsButton)
+        buttonsStackView.addArrangedSubview(recognitionHistoryButton)
+        buttonsStackView.addArrangedSubview(importButton)
+        return buttonsStackView
+    }()
+
     private lazy var settingsImage: UIImage? = {
         let configuration = UIImage.SymbolConfiguration(scale: .large)
         return UIImage(
@@ -90,6 +99,22 @@ public final class MimeoViewController: UIViewController {
         settingsButton.setImage(settingsImage, for: .normal)
         settingsButton.addTarget(self, action: #selector(presentSettings), for: .touchUpInside)
         return settingsButton
+    }()
+
+    private lazy var recognitionHistoryImage: UIImage? = {
+        let configuration = UIImage.SymbolConfiguration(scale: .large)
+        return UIImage(
+            systemName: "book",
+            withConfiguration: configuration
+        )
+    }()
+
+    private lazy var recognitionHistoryButton: UIButton = {
+        let recognitionHistoryButton = UIButton()
+        recognitionHistoryButton.tintColor = .mimeoYellow
+        recognitionHistoryButton.setImage(recognitionHistoryImage, for: .normal)
+        recognitionHistoryButton.addTarget(self, action: #selector(presentSettings), for: .touchUpInside)
+        return recognitionHistoryButton
     }()
 
     private lazy var importImage: UIImage? = {
@@ -122,9 +147,8 @@ public final class MimeoViewController: UIViewController {
         addCameraViewController()
         addCameraOverlayView()
 
+        addButtonsStackView()
         addShutterButton()
-        addSettingsButton()
-        addImportButton()
         addResultsViewController()
 
         appIconFetchedResultsController = preferencesStore.fetchedResultController(
@@ -205,7 +229,7 @@ extension MimeoViewController {
         cameraShutterButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             topLayoutGuide.heightAnchor.constraint(equalTo: bottomLayoutGuide.heightAnchor, multiplier: 0.5),
-            topLayoutGuide.topAnchor.constraint(equalTo: cameraOverlayView.bottomAnchor),
+            topLayoutGuide.topAnchor.constraint(equalTo: buttonsStackView.bottomAnchor),
             topLayoutGuide.bottomAnchor.constraint(equalTo: cameraShutterButton.topAnchor),
             bottomLayoutGuide.topAnchor.constraint(equalTo: cameraShutterButton.bottomAnchor),
             bottomLayoutGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -215,43 +239,23 @@ extension MimeoViewController {
         ])
     }
 
-    private func addSettingsButton() {
-        let leftLayoutGuide = UILayoutGuide()
-        let rightLayoutGuide = UILayoutGuide()
+    private func addButtonsStackView() {
+        view.addSubview(buttonsStackView)
 
-        settingsButton.addLayoutGuide(leftLayoutGuide)
-        settingsButton.addLayoutGuide(rightLayoutGuide)
-
-        view.addSubview(settingsButton)
-
-        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            leftLayoutGuide.widthAnchor.constraint(equalTo: rightLayoutGuide.widthAnchor),
-            leftLayoutGuide.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            leftLayoutGuide.trailingAnchor.constraint(equalTo: settingsButton.leadingAnchor),
-            rightLayoutGuide.leadingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
-            rightLayoutGuide.trailingAnchor.constraint(equalTo: cameraShutterButton.leadingAnchor),
-            settingsButton.centerYAnchor.constraint(equalTo: cameraShutterButton.centerYAnchor)
-        ])
-    }
-
-    private func addImportButton() {
-        let leftLayoutGuide = UILayoutGuide()
-        let rightLayoutGuide = UILayoutGuide()
-
-        importButton.addLayoutGuide(leftLayoutGuide)
-        importButton.addLayoutGuide(rightLayoutGuide)
-
-        view.addSubview(importButton)
-
-        importButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            leftLayoutGuide.widthAnchor.constraint(equalTo: rightLayoutGuide.widthAnchor),
-            leftLayoutGuide.leadingAnchor.constraint(equalTo: cameraShutterButton.trailingAnchor),
-            leftLayoutGuide.trailingAnchor.constraint(equalTo: importButton.leadingAnchor),
-            rightLayoutGuide.leadingAnchor.constraint(equalTo: importButton.trailingAnchor),
-            rightLayoutGuide.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            importButton.centerYAnchor.constraint(equalTo: cameraShutterButton.centerYAnchor)
+            buttonsStackView.topAnchor.constraint(
+                equalTo: cameraOverlayView.bottomAnchor,
+                constant: 20
+            ),
+            buttonsStackView.leadingAnchor.constraint(
+                equalTo: view.layoutMarginsGuide.leadingAnchor,
+                constant: 20
+            ),
+            buttonsStackView.trailingAnchor.constraint(
+                equalTo: view.layoutMarginsGuide.trailingAnchor,
+                constant: -20
+            )
         ])
     }
 
