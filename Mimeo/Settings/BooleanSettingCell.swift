@@ -36,7 +36,10 @@ public class BooleanSettingCell: UITableViewCell {
         onToggle: ((_ isOn: Bool) -> Void)? = nil
     ) {
         self.title = title
-        self.onToggle = onToggle
+        self.onToggle = { isOn in
+            preferenceStore.set(isOn ? P.enabledCase : P.disabledCase)
+            onToggle?(isOn)
+        }
 
         super.init(style: .default, reuseIdentifier: Self.identifier)
 
