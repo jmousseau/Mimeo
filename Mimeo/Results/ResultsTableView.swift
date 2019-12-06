@@ -151,7 +151,7 @@ public final class ResultsTableView: UITableView {
     ) = (.notStarted, .plain) {
         didSet {
             switch state {
-            case (.notStarted,  _):
+            case (.notStarted, _), (.failed, _):
                 recognizedText = []
                 cachedGroupedRecognizedText = nil
                 backgroundView = nil

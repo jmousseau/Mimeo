@@ -118,7 +118,7 @@ public final class ResultsViewController: UIViewController {
             resultsTableView.state = (recognitionState, resultsLayout)
 
             switch recognitionState {
-            case .notStarted:
+            case .notStarted, .failed:
                 view.alpha = 0
                 activityIndicator.alpha = 0
                 activityIndicator.stopAnimating()

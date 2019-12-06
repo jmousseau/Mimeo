@@ -15,10 +15,13 @@ import Vision
 @available(iOS 13.0, *)
 public final class TextRecognizer {
 
+    /// A recognized text result.
     public struct RecognizedTextResult: Equatable {
 
+        /// The recognized text result's observations.
         public let observations: [VNRecognizedTextObservation]
 
+        /// The recognized text result's font classification.
         public fileprivate(set) var fontClassification: FontClassifier.Classification? = nil
 
     }
@@ -35,11 +38,63 @@ public final class TextRecognizer {
         /// The recognition process completed.
         case complete(result: RecognizedTextResult)
 
+        /// The recognition process failed.
+        case failed
+
+    }
+
+    /// Recognized text in an image.
+    /// - Parameters:
+    ///   - minimumConfidence: The minimum confidence required for a text
+    ///     recognition result to be included in the output.
+    ///   - recognitionLevel: The recognition level with which to recognize
+    ///     text.
+    ///   - usesLanguageCorrection: Should language correction be performed on
+    ///     the recognized text.
+    ///   - completion: The completion handler called when recognition state
+    ///     changes.
+    @discardableResult public static func recognizedTextObservationsRequest(
+        minimumConfidence: Float = 0.49,
+        recognitionLevel: VNRequestTextRecognitionLevel = .accurate,
+        usesLanguageCorrection: Bool = true,
+        completion: @escaping (RecognitionState) -> Void
+    ) -> VNRecognizeTextRequest {
+        let request = VNRecognizeTextRequest { request, error in
+            guard error == nil else {
+                return
+            }
+
+            guard let results = request.results as? [VNRecognizedTextObservation] else {
+                return
+            }
+
+            let recognizedTextObservations = results.filter({ recognizedTextObservation in
+                guard let topCandidate = recognizedTextObservation.topCandidate else {
+                    return false
+                }
+
+                return topCandidate.confidence > minimumConfidence
+            })
+
+            completion(.complete(
+                result: RecognizedTextResult(
+                    observations: recognizedTextObservations
+                )
+            ))
+        }
+
+        request.recognitionLevel = recognitionLevel
+        request.usesLanguageCorrection = usesLanguageCorrection
+
+        completion(.inProgress)
+
+        return request
     }
 
     /// The text recognizer's recognition queue.
     private let textRecognitionQueue = DispatchQueue(
         label: "Text Recognition Queue",
+        qos: .userInitiated,
         attributes: .concurrent
     )
 
@@ -58,6 +113,22 @@ public final class TextRecognizer {
         fontClassifier = try FontClassifier(model: fontClassifierModel)
     }
 
+    // TODO: Ideally, this would just construct the necessary Vision image based
+    // requests. However, the font classifier does not itself construct a
+    // request.
+
+    /// Recognized text in a given image.
+    /// - Parameters:
+    ///   - image: The image in which to recognized text
+    ///   - orientation: The image's orientation.
+    ///   - minimumConfidence: The minimum confidence required for a text
+    ///     recognition result to be included in the output.
+    ///   - recognitionLevel: The recognition level with which to recognize
+    ///     text.
+    ///   - usesLanguageCorrection: Should language correction be performed on
+    ///     the recognized text.
+    ///   - completion: The completion handler called when the recognition state
+    ///     changes.
     @discardableResult public func recognizeText(
         in image: CGImage,
         orientation: CGImagePropertyOrientation,
@@ -65,16 +136,14 @@ public final class TextRecognizer {
         recognitionLevel: VNRequestTextRecognitionLevel = .accurate,
         usesLanguageCorrection: Bool = true,
         completion: @escaping (RecognitionState) -> Void
-    ) throws -> [VNImageBasedRequest] {
+    ) -> [VNImageBasedRequest] {
         let dispatchGroup = DispatchGroup()
 
         var fontClassifications = [FontClassifier.Classification]()
         var recognizedTextResult: RecognizedTextResult?
 
         dispatchGroup.enter()
-        let textObservationsRequest = try textObservations(
-            in: image,
-            orientation: orientation,
+        let textObservationsRequest = TextDetector.textObservationsRequest(
             minimumConfidence: minimumConfidence,
             completion: { textObservations in
                 defer {
@@ -87,7 +156,11 @@ public final class TextRecognizer {
 
                 dispatchGroup.enter()
                 FontClassifier.sampleCharacterImages(
-                    in: UIImage(cgImage: image, scale: 1, orientation: orientation.imageOrientation),
+                    in: UIImage(
+                        cgImage: image,
+                        scale: 1,
+                        orientation: orientation.imageOrientation
+                    ),
                     with: textObservations,
                     characterImageSize: CGSize(width: 300, height: 300),
                     characterImageSampleCount: 5
@@ -120,15 +193,13 @@ public final class TextRecognizer {
         )
 
         dispatchGroup.enter()
-        let recognizedTextObservationsRequest = try recognizedTextObservations(
-            in: image,
-            orientation: orientation,
+        let recognizedTextObservationsRequest = Self.recognizedTextObservationsRequest(
             minimumConfidence: minimumConfidence,
             recognitionLevel: recognitionLevel,
             usesLanguageCorrection: usesLanguageCorrection,
             completion: { recognitionState in
                 switch recognitionState {
-                case .notStarted, .inProgress:
+                case .notStarted, .inProgress, .failed:
                     completion(recognitionState)
 
                 case .complete(let result):
@@ -148,104 +219,23 @@ public final class TextRecognizer {
             completion(.complete(result: recognizedTextResult!))
         }
 
-        return [textObservationsRequest, recognizedTextObservationsRequest]
-    }
-
-    /// Returns the text recognized in the specified `image` as a concatination
-    /// of all recognized strings with a confidence greater than
-    /// `minimumConfidence`, sorted left to right, top to bottom.
-    ///
-    /// - Parameter image: The image in which to recognize text.
-    /// - Parameter orientation: The `image`'s orientation
-    /// - Parameter minimumConfidence: The minimum confidence required for a
-    ///   text recognition result to be included in the output.
-    /// - Parameter completion: The completion handler called when recognition
-    ///   state changes.
-    @discardableResult public func recognizedTextObservations(
-        in image: CGImage,
-        orientation: CGImagePropertyOrientation,
-        minimumConfidence: Float = 0.49,
-        recognitionLevel: VNRequestTextRecognitionLevel = .accurate,
-        usesLanguageCorrection: Bool = true,
-        completion: @escaping (RecognitionState) -> Void
-    ) throws -> VNRecognizeTextRequest {
-        let handler = VNImageRequestHandler(cgImage: image, orientation: orientation)
-        let request = VNRecognizeTextRequest { request, error in
-            guard error == nil else {
-                return
-            }
-
-            guard let results = request.results as? [VNRecognizedTextObservation] else {
-                return
-            }
-
-            let recognizedTextObservations = results.filter({ recognizedTextObservation in
-                guard let topCandidate = recognizedTextObservation.topCandidate else {
-                    return false
-                }
-
-                return topCandidate.confidence > minimumConfidence
-            })
-
-            completion(.complete(
-                result: RecognizedTextResult(
-                    observations: recognizedTextObservations
-                )
-            ))
-        }
-
-        request.recognitionLevel = recognitionLevel
-        request.usesLanguageCorrection = usesLanguageCorrection
-
-        completion(.inProgress)
+        let textRecognitionRequests = [
+            textObservationsRequest,
+            recognizedTextObservationsRequest
+        ]
 
         textRecognitionQueue.async {
-            try? handler.perform([request])
-        }
-
-        return request
-    }
-
-    /// Detect text rectangles in an image.
-    ///
-    /// Results include character boxes.
-    ///
-    /// - Parameter image: The image in which to detect text rectangles.
-    /// - Parameter orientation: The image's orientation.
-    /// - Parameter minimumConfidence: The minimum confidence required for a
-    ///   text rectangle result to be included in the output.
-    /// - Parameter completion: The completion handler call when the detection
-    ///   is complete.
-    @discardableResult private func textObservations(
-        in image: CGImage,
-        orientation: CGImagePropertyOrientation,
-        minimumConfidence: Float = 0.49,
-        completion: @escaping ([VNTextObservation]) -> Void
-    ) throws -> VNDetectTextRectanglesRequest {
-        let handler = VNImageRequestHandler(cgImage: image, orientation: orientation)
-        let request = VNDetectTextRectanglesRequest { request, error in
-            guard error == nil else {
-                return
+            do {
+                try VNImageRequestHandler(
+                    cgImage: image,
+                    orientation: orientation
+                ).perform(textRecognitionRequests)
+            } catch {
+                completion(.failed)
             }
-
-            guard let results = request.results as? [VNTextObservation] else {
-                return
-            }
-
-            let textObservations = results.filter({ textObservation in
-                return textObservation.confidence > minimumConfidence
-            })
-
-            completion(textObservations)
         }
 
-        request.reportCharacterBoxes = true
-
-        textRecognitionQueue.async {
-            try? handler.perform([request])
-        }
-
-        return request
+        return textRecognitionRequests
     }
 
 }

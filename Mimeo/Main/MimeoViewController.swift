@@ -58,15 +58,6 @@ public final class MimeoViewController: UIViewController {
         return imagePickerViewController
     }()
 
-    private lazy var instructionsLabel: UILabel = {
-        let instructionsLabel = UILabel()
-        instructionsLabel.numberOfLines = 0
-        instructionsLabel.text = "Photograph printed text."
-        instructionsLabel.textAlignment = .center
-        instructionsLabel.textColor = .white
-        return instructionsLabel
-    }()
-
     private lazy var cameraOverlayView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
@@ -131,7 +122,6 @@ public final class MimeoViewController: UIViewController {
         addCameraViewController()
         addCameraOverlayView()
 
-        addInstructionsLabel()
         addShutterButton()
         addSettingsButton()
         addImportButton()
@@ -187,14 +177,10 @@ extension MimeoViewController {
 
         cameraOverlayView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cameraOverlayView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor),
+            cameraOverlayView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             cameraOverlayView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cameraOverlayView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             cameraOverlayView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor),
-            cameraOverlayView.centerYAnchor.constraint(
-                equalTo: view.centerYAnchor,
-                constant: CameraOverlayVerticalOffset
-            ),
             NSLayoutConstraint(
                 item: cameraOverlayView,
                 attribute: .height,
@@ -204,18 +190,6 @@ extension MimeoViewController {
                 multiplier: 4 / 3,
                 constant: 0
             )
-        ])
-    }
-
-    private func addInstructionsLabel() {
-        view.addSubview(instructionsLabel)
-
-        instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            instructionsLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            instructionsLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            instructionsLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            instructionsLabel.bottomAnchor.constraint(equalTo: cameraOverlayView.topAnchor)
         ])
     }
 
@@ -420,7 +394,7 @@ extension MimeoViewController {
     ) {
         let uiImage = UIImage(cgImage: image, scale: 1, orientation: orientation.imageOrientation)
 
-        imageRequests = try! textRecognizer.recognizeText(
+        imageRequests = textRecognizer.recognizeText(
             in: uiImage.orientedUp()!.cgImage!,
             orientation: .up,
             recognitionLevel: preferencesStore.get(QuickRecognitionSetting.self).recognitionLevel,
@@ -440,7 +414,7 @@ extension MimeoViewController {
             cameraShutterButton.image = nil
             cameraShutterButton.addTarget(self, action: #selector(capturePhoto), for: .touchUpInside)
 
-        case .inProgress, .complete:
+        case .inProgress, .complete, .failed:
             cameraShutterButton.image = cancelImage
             cameraShutterButton.removeTarget(self, action: #selector(capturePhoto), for: .touchUpInside)
             cameraShutterButton.addTarget(self, action: #selector(cancelRecognizeTextRequest), for: .touchUpInside)

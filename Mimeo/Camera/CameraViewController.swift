@@ -10,6 +10,7 @@ import AVFoundation
 import Iris
 import MimeoKit
 import UIKit
+import Vision
 
 /// The camera view controller delegate.
 public protocol CameraViewControllerDelegate: class {
@@ -83,6 +84,10 @@ public final class CameraViewController: UIViewController {
 
         addVideoPreview()
         addAutocropButton()
+        addInstructionsView()
+
+        // Update to default instructions label state.
+        updateInstructionsLabel(animated: false)
     }
 
     required init?(coder: NSCoder) {
@@ -305,14 +310,14 @@ public final class CameraViewController: UIViewController {
 
         videoPreviewView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            videoPreviewView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             videoPreviewView.leftAnchor.constraint(equalTo: view.leftAnchor),
             videoPreviewView.rightAnchor.constraint(equalTo: view.rightAnchor),
             videoPreviewView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            videoPreviewView.centerYAnchor.constraint(
-                equalTo: view.centerYAnchor,
-                constant: CameraOverlayVerticalOffset
-            ),
-            videoPreviewView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 4.0 / 3.0)
+            videoPreviewView.heightAnchor.constraint(
+                equalTo: view.widthAnchor,
+                multiplier: 4.0 / 3.0
+            )
         ])
     }
 
@@ -532,6 +537,93 @@ public final class CameraViewController: UIViewController {
         layer.add(fadeOutAnimation, forKey: "fadeOutAnimation")
     }
 
+    // MARK: - Instructions
+
+    private var framesWithText = [Double](repeating: 0, count: 60)
+
+    private var textExistsInVideoPreview: Bool = false {
+        didSet {
+            if oldValue != textExistsInVideoPreview {
+                DispatchQueue.main.async {
+                    self.updateInstructionsLabel(animated: true)
+                }
+            }
+        }
+    }
+
+    private lazy var instructionsLabel: UILabel = {
+        let instructionsLabel = UILabel()
+        instructionsLabel.numberOfLines = 0
+        instructionsLabel.text = "Photograph printed text"
+        instructionsLabel.textAlignment = .center
+        instructionsLabel.textColor = .white
+        return instructionsLabel
+    }()
+
+    private lazy var instructionsView: UIView = {
+        let instructionsView = UIView()
+        instructionsView.backgroundColor = .secondarySystemBackground
+        instructionsView.layer.cornerRadius = 8
+        return instructionsView
+    }()
+
+    private func addInstructionsView() {
+        instructionsView.addSubview(instructionsLabel)
+
+        instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            instructionsLabel.leadingAnchor.constraint(
+                equalTo: instructionsView.leadingAnchor,
+                constant: 8
+            ),
+            instructionsLabel.topAnchor.constraint(
+                equalTo: instructionsView.topAnchor,
+                constant: 8
+            ),
+            instructionsLabel.trailingAnchor.constraint(
+                equalTo: instructionsView.trailingAnchor,
+                constant: -8
+            ),
+            instructionsLabel.bottomAnchor.constraint(
+                equalTo: instructionsView.bottomAnchor,
+                constant: -8
+            ),
+        ])
+
+        videoPreviewView.addSubview(instructionsView)
+
+        instructionsView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            instructionsView.leadingAnchor.constraint(
+                greaterThanOrEqualTo: videoPreviewView.layoutMarginsGuide.leadingAnchor
+            ),
+            instructionsView.topAnchor.constraint(
+                equalTo: videoPreviewView.safeAreaLayoutGuide.topAnchor,
+                constant: 8
+            ),
+            instructionsView.trailingAnchor.constraint(
+                lessThanOrEqualTo: videoPreviewView.layoutMarginsGuide.trailingAnchor
+            ),
+            instructionsView.centerXAnchor.constraint(
+                equalTo: videoPreviewView.centerXAnchor
+            )
+        ].compactMap({ $0 }))
+    }
+
+    private func updateInstructionsLabel(animated: Bool) {
+        let update: () -> Void = {
+            self.instructionsView.alpha = self.textExistsInVideoPreview ? 0 : 1
+            self.view.layoutIfNeeded()
+        }
+
+        if animated {
+            UIView.animate(withDuration: 0.25, animations: update)
+        } else {
+            update()
+        }
+    }
+
     // MARK: - Autocrop
 
     private let autocropRectangleDetectionDispatchGroup = DispatchGroup()
@@ -604,16 +696,16 @@ public final class CameraViewController: UIViewController {
         preferencesStore.set(autocropPreference)
     }
 
-    private func presentAutocropLayer(for pixelBuffer: CVPixelBuffer) {
+    private func autocropLayerRequest() -> VNImageBasedRequest? {
         guard isAutocropEnabled,
             (delegate?.recognitionState ?? .notStarted) == .notStarted else {
             self.removeAutocropOverlay()
-            return
+            return nil
         }
 
         autocropRectangleDetectionDispatchGroup.enter()
 
-        RectangleDetector.detectRectangles(in: pixelBuffer) { quadrilaterals in
+        return RectangleDetector.detectRectanglesRequest() { quadrilaterals in
             DispatchQueue.main.async {
                 defer {
                     self.autocropRectangleDetectionDispatchGroup.leave()
@@ -641,7 +733,10 @@ public final class CameraViewController: UIViewController {
                     videoPreviewLayer.addSublayer(self.autocropOverlay)
                 }
 
+
+                /// The image overlay requires an up orientation.
                 self.autocropOverlay.path = quadrilateral
+                    .rotatedFromRightToUp()
                     .denormalizeInCoordinateSpace(of: videoPreviewLayer)
                     .path.cgPath
             }
@@ -707,7 +802,26 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             return
         }
 
-        presentAutocropLayer(for: pixelBuffer)
+        var imageRequests = [VNImageBasedRequest]()
+
+        if let rectangleDetectionRequest = autocropLayerRequest() {
+            imageRequests.append(rectangleDetectionRequest)
+        }
+
+        imageRequests.append(TextDetector
+            .textExistsRequest() { textExistsInVideoPreview in
+            self.framesWithText.removeFirst()
+            self.framesWithText.append(textExistsInVideoPreview ? 1 : 0)
+            self.textExistsInVideoPreview =
+                self.framesWithText.reduce(.zero, +) / Double(self.framesWithText.count) > 0.5
+        })
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            try? VNImageRequestHandler(
+                cvPixelBuffer: pixelBuffer,
+                orientation: .right
+            ).perform(imageRequests)
+        }
     }
 
 }

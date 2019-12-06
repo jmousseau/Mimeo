@@ -1,5 +1,6 @@
 import Iris
 import UIKit
+import Vision
 
 // A rectangle cropper.
 public struct ImageCropper {
@@ -32,9 +33,8 @@ public struct ImageCropper {
             return
         }
 
-        RectangleDetector.detectRectangles(
-            in: cgImage
-        ) { quadrilaterals in
+        let rectangleDetectionRequest = RectangleDetector
+            .detectRectanglesRequest() { quadrilaterals in
             guard let quadrilateral = quadrilaterals.sorted(by: { lhs, rhs in
                 switch comparisonMethod {
                 case .area:
@@ -57,6 +57,13 @@ public struct ImageCropper {
             }
 
             completion(autocroppedImage)
+        }
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            try? VNImageRequestHandler(
+                cgImage: cgImage,
+                options: [:]
+            ).perform([rectangleDetectionRequest])
         }
     }
 

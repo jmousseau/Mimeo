@@ -31,30 +31,31 @@ public final class RecognizeTextIntentHandler: NSObject, RecognizeTextIntentHand
         let shouldGroup = intent.shouldGroup as? Bool ?? false
         let textRecognizer = TextRecognizer()
 
-        do {
-            try textRecognizer.recognizeText(
-                in: cgImage,
-                orientation: CGImagePropertyOrientation(image.imageOrientation),
-                recognitionLevel: .fast,
-                usesLanguageCorrection: false
-            ) { recognitionState in
-                switch (recognitionState, shouldGroup) {
-                case (.notStarted, _), (.inProgress, _):
-                    break
+        textRecognizer.recognizeText(
+            in: cgImage,
+            orientation: CGImagePropertyOrientation(image.imageOrientation),
+            recognitionLevel: .fast,
+            usesLanguageCorrection: false
+        ) { recognitionState in
+            switch (recognitionState, shouldGroup) {
+            case (.notStarted, _), (.inProgress, _):
+                break
 
-                case (.complete(let result), false):
-                    let response = RecognizeTextIntentResponse(code: .success, userActivity: nil)
-                    response.text = result.observations.plainText()
-                    completion(response)
+            case (.complete(let result), false):
+                let response = RecognizeTextIntentResponse(code: .success, userActivity: nil)
+                response.text = result.observations.plainText()
+                completion(response)
 
-                case (.complete(let result), true):
-                    let response = RecognizeTextIntentResponse(code: .success, userActivity: nil)
-                    response.text = result.observations.groupedText().joined(separator: "\n")
-                    completion(response)
-                }
+            case (.complete(let result), true):
+                let response = RecognizeTextIntentResponse(code: .success, userActivity: nil)
+                response.text = result.observations.groupedText().joined(separator: "\n")
+                completion(response)
+
+            case (.failed, _):
+                completion(RecognizeTextIntentResponse(
+                    code: .failure, userActivity: nil
+                ))
             }
-        } catch {
-            completion(RecognizeTextIntentResponse(code: .failure, userActivity: nil))
         }
     }
 

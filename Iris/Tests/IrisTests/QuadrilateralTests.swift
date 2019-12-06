@@ -143,4 +143,33 @@ final class QuadrilateralTests: XCTestCase {
         XCTAssertEqual(floor(denormalizedQuadrilateral.bottomLeft.y * 10), 3)
     }
 
+    func testRotatedFromRightToUp() {
+        let normalizedQuadrilateral = FourSidedFigure(
+            topLeft: CGPoint(x: 0.1, y: 0.2),
+            topRight: CGPoint(x: 0.2, y: 0.3),
+            bottomRight: CGPoint(x: 0.4, y: 0.5),
+            bottomLeft: CGPoint(x: 0.6, y: 0.7)
+        )
+
+        let upQuadrilateral = normalizedQuadrilateral.rotatedFromRightToUp()
+
+        XCTAssertEqual(
+            upQuadrilateral.topLeft,
+            CGPoint(x: 0.8, y: 0.1)
+        )
+
+        XCTAssertEqual(
+            upQuadrilateral.topRight,
+            CGPoint(x: 0.7, y: 0.2)
+        )
+
+        XCTAssertEqual(
+            upQuadrilateral.bottomRight,
+            CGPoint(x: 0.5, y: 0.4)
+        )
+
+        XCTAssertEqual(floor(upQuadrilateral.bottomLeft.x * 10), 3)
+        XCTAssertEqual(upQuadrilateral.bottomLeft.y, 0.6)
+    }
+
 }

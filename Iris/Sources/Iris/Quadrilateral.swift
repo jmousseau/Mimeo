@@ -91,6 +91,16 @@ extension Quadrilateral {
         )
     }
 
+    /// Rotate the quadrilateral from a right orientation to up orienation.
+    public func rotatedFromRightToUp() -> Quadrilateral {
+        FourSidedFigure(
+            topLeft:  CGPoint(x: 1 - topLeft.y, y: topLeft.x),
+            topRight: CGPoint(x: 1 - topRight.y, y: topRight.x),
+            bottomRight: CGPoint(x: 1 - bottomRight.y, y: bottomRight.x),
+            bottomLeft: CGPoint(x: 1 - bottomLeft.y, y: bottomLeft.x)
+        )
+    }
+
 }
 
 /// A generic quadrilateral structure.
