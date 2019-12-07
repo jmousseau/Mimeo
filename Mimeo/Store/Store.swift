@@ -41,6 +41,11 @@ public final class Store {
     /// The store's persistent container.
     lazy var persistentContainer: NSPersistentCloudKitContainer = {
         let container = NSPersistentCloudKitContainer(name: containerName)
+        container.loadPersistentStores(completionHandler: { (_, error) in
+            if let error = error as NSError? {
+                fatalError("Unable to load persisten stores: \(error)")
+            }
+        })
 
         guard let description = container.persistentStoreDescriptions.first else {
             fatalError("Container is missing store description")
@@ -65,12 +70,6 @@ public final class Store {
         } catch {
             fatalError("Unabled to set query generation: \(error)")
         }
-
-        container.loadPersistentStores(completionHandler: { (_, error) in
-            if let error = error as NSError? {
-                fatalError("Unable to load persisten stores: \(error)")
-            }
-        })
 
         NotificationCenter.default.addObserver(
             self,
