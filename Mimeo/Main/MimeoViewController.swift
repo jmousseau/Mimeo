@@ -158,6 +158,16 @@ public final class MimeoViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+
+        MimeoProSubscription.status { status in
+            if status == .notSubscribed {
+                MimeoProSubscription.resetProSettings()
+            }
+        }
+    }
+
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 

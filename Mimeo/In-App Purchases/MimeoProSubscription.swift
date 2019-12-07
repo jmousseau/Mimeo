@@ -92,6 +92,12 @@ public struct MimeoProSubscription {
         }
     }
 
+    public static func resetProSettings() {
+        let preferencesStore = PreferencesStore.default()
+        preferencesStore.set(AppIcon.light)
+        preferencesStore.set(RecognitionHistory.off)
+    }
+
     private static func status(
         for purchaseInfo: Purchases.PurchaserInfo?,
         error: Error?
