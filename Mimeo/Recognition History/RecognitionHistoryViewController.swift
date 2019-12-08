@@ -85,9 +85,20 @@ public final class RecognitionHistoryViewController: UITableViewController {
         return centerTableViewLabel
     }()
 
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.searchBar.autocapitalizationType = .none
+        searchController.definesPresentationContext = true
+        searchController.obscuresBackgroundDuringPresentation = false
+        return searchController
+    }()
+
     public init() {
         super.init(style: .plain)
 
+        navigationItem.searchController = searchController
         navigationItem.title = "History"
         navigationItem.rightBarButtonItem = .makeDoneButton(
             target: self,
@@ -115,6 +126,37 @@ public final class RecognitionHistoryViewController: UITableViewController {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        navigationItem.hidesSearchBarWhenScrolling = true
+    }
+
+    private func updateCenterTableViewLabel<Result: NSFetchRequestResult>(
+        for controller: NSFetchedResultsController<Result>
+    ) {
+        if let recognitionResultCount = controller.sections?.first?.numberOfObjects,
+            recognitionResultCount == 0 {
+            if self.searchController.isActive {
+                self.updateCenterTableViewLabel(
+                    text: "No results found"
+                )
+            } else {
+                self.updateCenterTableViewLabel(
+                    text: "Your recognition history is empty"
+                )
+            }
+        } else {
+            self.updateCenterTableViewLabel(text: nil)
+        }
     }
 
     private func updateCenterTableViewLabel(text: String?) {
@@ -262,16 +304,54 @@ extension RecognitionHistoryViewController: NSFetchedResultsControllerDelegate {
     public func controllerDidChangeContent(
         _ controller: NSFetchedResultsController<NSFetchRequestResult>
     ) {
-        if let recognitionResultCount = controller.sections?.first?.numberOfObjects,
-            recognitionResultCount == 0 {
-            self.updateCenterTableViewLabel(
-                text: "Your recognition history is empty."
-            )
-        } else {
-            self.updateCenterTableViewLabel(text: nil)
+        updateCenterTableViewLabel(for: controller)
+        tableView.endUpdates()
+    }
+
+}
+
+// MARK: - Search
+
+extension RecognitionHistoryViewController: UISearchBarDelegate {
+
+    public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
+}
+
+extension RecognitionHistoryViewController: UISearchResultsUpdating {
+
+    public func updateSearchResults(for searchController: UISearchController) {
+        guard let searchString = searchController.searchBar.text?.trimmingCharacters(
+            in: .whitespaces
+        ) else {
+            return
         }
 
-        tableView.endUpdates()
+        defer {
+            try? recognitionHistoryFetchedResultsController.performFetch()
+            updateCenterTableViewLabel(for: recognitionHistoryFetchedResultsController)
+            tableView.reloadData()
+        }
+
+        guard !searchString.isEmpty else {
+            recognitionHistoryFetchedResultsController.fetchRequest.predicate = nil
+            return
+        }
+
+        let textExpression = NSExpression(forKeyPath: \RecognitionResult.text)
+        let searchStringExpression = NSExpression(forConstantValue: searchString)
+
+        let textSearchComparisionPredicate = NSComparisonPredicate(
+            leftExpression: textExpression,
+            rightExpression: searchStringExpression,
+            modifier: .direct,
+            type: .contains,
+            options: [.caseInsensitive, .diacriticInsensitive]
+        )
+
+        recognitionHistoryFetchedResultsController.fetchRequest.predicate = textSearchComparisionPredicate
     }
 
 }
