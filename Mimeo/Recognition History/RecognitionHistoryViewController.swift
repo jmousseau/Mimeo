@@ -149,11 +149,11 @@ public final class RecognitionHistoryViewController: UITableViewController {
             recognitionResultCount == 0 {
             if self.searchController.isActive {
                 self.updateCenterTableViewLabel(
-                    text: "No results found"
+                    text: "No Results"
                 )
             } else {
                 self.updateCenterTableViewLabel(
-                    text: "Your recognition history is empty"
+                    text: "Your recognition history is empty."
                 )
             }
         } else {
