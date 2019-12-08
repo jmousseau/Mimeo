@@ -16,7 +16,11 @@ public final class DataDetectionTypeCell: UITableViewCell {
         super.init(style: .default, reuseIdentifier: Self.identifier)
 
         let (title, imageName) = cellItems(for: dataDetectorType)
-        imageView?.image = UIImage(systemName: imageName)
+        let configuration = UIImage.SymbolConfiguration(textStyle: .body)
+        imageView?.image = UIImage(
+            systemName: imageName,
+            withConfiguration: configuration
+        )
         textLabel?.text = title
     }
 

@@ -18,7 +18,8 @@ public final class RecognitionHistoryViewController: UITableViewController {
         fileprivate lazy var textView: UITextView = {
             let textView = LinkResponsiveTextView()
             textView.backgroundColor = .clear
-            textView.font = .systemFont(ofSize: 17)
+            textView.font = .preferredFont(forTextStyle: .body)
+            textView.adjustsFontForContentSizeCategory = true
             textView.tintColor = .mimeoYellow
             return textView
         }()
@@ -39,7 +40,7 @@ public final class RecognitionHistoryViewController: UITableViewController {
         public override func prepareForReuse() {
             textView.text = nil
             textView.textColor = .label
-            textView.font = .systemFont(ofSize: 17)
+            textView.font = .preferredFont(forTextStyle: .body)
         }
 
         private func addTextView() {
@@ -218,7 +219,7 @@ extension RecognitionHistoryViewController {
             cell.textView.text = text
             cell.textView.highlight(
                 string: searchString,
-                highlightFont: .boldSystemFont(ofSize: 17),
+                highlightFont: .boldSystemFont(ofSize: cell.textView.font!.pointSize),
                 highlightColor: .label
             )
         }

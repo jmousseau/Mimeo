@@ -557,6 +557,8 @@ public final class CameraViewController: UIViewController {
         instructionsLabel.text = "Photograph printed text"
         instructionsLabel.textAlignment = .center
         instructionsLabel.textColor = .white
+        instructionsLabel.font = .preferredFont(forTextStyle: .body)
+        instructionsLabel.adjustsFontForContentSizeCategory = true
         return instructionsLabel
     }()
 
@@ -631,7 +633,10 @@ public final class CameraViewController: UIViewController {
     private var autocropController: AnyFetchedResultController?
 
     private lazy var autocropImage: UIImage? = {
-        let configuration = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
+        let configuration = UIImage.SymbolConfiguration(
+            pointSize: UIFont.preferredFont(forTextStyle: .body).pointSize,
+            weight: .semibold
+        )
         return UIImage(
             systemName: "crop",
             withConfiguration: configuration
@@ -655,7 +660,10 @@ public final class CameraViewController: UIViewController {
         let autocropButton = UIButton()
         autocropButton.setImage(autocropImage, for: .normal)
         autocropButton.setTitle(autocropButtonTitle, for: .normal)
-        autocropButton.titleLabel?.font = .monospacedSystemFont(ofSize: 15, weight: .semibold)
+        autocropButton.titleLabel?.font = .monospacedSystemFont(
+            ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize,
+            weight: .semibold
+        )
         autocropButton.setContentEdgeInsets(
             UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 8),
             withTitlePadding: 4

@@ -75,7 +75,10 @@ public final class MimeoViewController: UIViewController {
     }()
 
     private lazy var settingsImage: UIImage? = {
-        let configuration = UIImage.SymbolConfiguration(scale: .large)
+        let configuration = UIImage.SymbolConfiguration(
+            font: .preferredFont(forTextStyle: .body),
+            scale: .large
+        )
         return UIImage(
             systemName: "gear",
             withConfiguration: configuration
@@ -95,7 +98,10 @@ public final class MimeoViewController: UIViewController {
     }()
 
     private lazy var recognitionHistoryImage: UIImage? = {
-        let configuration = UIImage.SymbolConfiguration(scale: .large)
+        let configuration = UIImage.SymbolConfiguration(
+            font: .preferredFont(forTextStyle: .body),
+            scale: .large
+        )
         return UIImage(
             systemName: "book",
             withConfiguration: configuration
@@ -111,7 +117,10 @@ public final class MimeoViewController: UIViewController {
     }()
 
     private lazy var importImage: UIImage? = {
-        let configuration = UIImage.SymbolConfiguration(scale: .large)
+        let configuration = UIImage.SymbolConfiguration(
+            font: .preferredFont(forTextStyle: .body),
+            scale: .large
+        )
         return UIImage(
             systemName: "square.and.arrow.down",
             withConfiguration: configuration

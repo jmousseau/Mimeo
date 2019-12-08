@@ -28,9 +28,12 @@ public final class ResultsTableView: UITableView {
 
         fileprivate static let identifier = "results-cell"
 
-        private let serifFont = UIFont(name: "NewYorkSmall-Regular", size: 17)
+        private let serifFont = UIFont(
+            name: "NewYorkSmall-Regular",
+            size: UIFont.preferredFont(forTextStyle: .body).pointSize
+        )
 
-        private let sansSerifFont = UIFont.systemFont(ofSize: 17)
+        private let sansSerifFont = UIFont.preferredFont(forTextStyle: .body)
 
         fileprivate lazy var textView: UITextView = {
             let textView = UITextView()
@@ -38,6 +41,7 @@ public final class ResultsTableView: UITableView {
             textView.isEditable = false
             textView.backgroundColor = .clear
             textView.font = fontClassification == .serif ? serifFont : sansSerifFont
+            textView.adjustsFontForContentSizeCategory = true
             textView.tintColor = .mimeoYellow
             return textView
         }()
