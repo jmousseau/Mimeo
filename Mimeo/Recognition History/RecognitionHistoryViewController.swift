@@ -38,6 +38,8 @@ public final class RecognitionHistoryViewController: UITableViewController {
 
         public override func prepareForReuse() {
             textView.text = nil
+            textView.textColor = .label
+            textView.font = .systemFont(ofSize: 17)
         }
 
         private func addTextView() {
@@ -206,8 +208,20 @@ extension RecognitionHistoryViewController {
             .get(DataDetectionSetting.self)
             .enabledDataDetectorTypes
 
-        cell.textView.text = recognitionHistoryFetchedResultsController
-            .object(at: indexPath).text
+        let searchString = searchController.searchBar.text ?? ""
+
+        if !searchString.isEmpty {
+            cell.textView.textColor = .secondaryLabel
+        }
+
+        if let text = recognitionHistoryFetchedResultsController.object(at: indexPath).text {
+            cell.textView.text = text
+            cell.textView.highlight(
+                string: searchString,
+                highlightFont: .boldSystemFont(ofSize: 17),
+                highlightColor: .label
+            )
+        }
 
         return cell
     }

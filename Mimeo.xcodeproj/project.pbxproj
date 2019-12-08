@@ -78,6 +78,7 @@
 		04A1924F2398B6BD00176A27 /* RecognitionHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A1924E2398B6BD00176A27 /* RecognitionHistoryCell.swift */; };
 		04AD6D652387C9830075ACCB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD6D642387C9830075ACCB /* Store.swift */; };
 		04B8598623883BD20058D2F3 /* PersistentHistoryTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B8598523883BD20058D2F3 /* PersistentHistoryTokenStore.swift */; };
+		04B9BCA8239D882B00C5A66B /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B9BCA7239D882B00C5A66B /* UITextView.swift */; };
 		04D23B462398A94900BCDC8B /* RestorePurchasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D23B452398A94900BCDC8B /* RestorePurchasesCell.swift */; };
 		04D23B482398AD9600BCDC8B /* CancelSubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D23B472398AD9600BCDC8B /* CancelSubscriptionCell.swift */; };
 		04D23B4A2398B09800BCDC8B /* AppIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D23B492398B09800BCDC8B /* AppIconCell.swift */; };
@@ -208,6 +209,7 @@
 		04A1924E2398B6BD00176A27 /* RecognitionHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionHistoryCell.swift; sourceTree = "<group>"; };
 		04AD6D642387C9830075ACCB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		04B8598523883BD20058D2F3 /* PersistentHistoryTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryTokenStore.swift; sourceTree = "<group>"; };
+		04B9BCA7239D882B00C5A66B /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		04D23B452398A94900BCDC8B /* RestorePurchasesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePurchasesCell.swift; sourceTree = "<group>"; };
 		04D23B472398AD9600BCDC8B /* CancelSubscriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelSubscriptionCell.swift; sourceTree = "<group>"; };
 		04D23B492398B09800BCDC8B /* AppIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconCell.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				041C542923767F6100A6BFB8 /* UIColor.swift */,
 				04193BE3235AAD8700AD04F5 /* UIDevice.swift */,
 				0463CBDF239C7BD200DDD3A9 /* UITableView.swift */,
+				04B9BCA7239D882B00C5A66B /* UITextView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -819,6 +822,7 @@
 				04D23B462398A94900BCDC8B /* RestorePurchasesCell.swift in Sources */,
 				041C543223768B7600A6BFB8 /* SendFeedbackCell.swift in Sources */,
 				04B8598623883BD20058D2F3 /* PersistentHistoryTokenStore.swift in Sources */,
+				04B9BCA8239D882B00C5A66B /* UITextView.swift in Sources */,
 				045428F3237BC2AC0074F576 /* UIButton.swift in Sources */,
 				049842FC2341199C0002AB6D /* CameraViewController.swift in Sources */,
 				0463CBE0239C7BD200DDD3A9 /* UITableView.swift in Sources */,
