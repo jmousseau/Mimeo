@@ -562,7 +562,7 @@ public final class CameraViewController: UIViewController {
 
     private lazy var instructionsView: UIView = {
         let instructionsView = UIView()
-        instructionsView.backgroundColor = .secondarySystemBackground
+        instructionsView.backgroundColor = .black
         instructionsView.layer.cornerRadius = 8
         return instructionsView
     }()

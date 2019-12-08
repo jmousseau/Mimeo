@@ -104,7 +104,7 @@ public final class MimeoViewController: UIViewController {
 
     private lazy var recognitionHistoryButton: UIButton = {
         let recognitionHistoryButton = UIButton()
-        recognitionHistoryButton.tintColor = .mimeoYellow
+        recognitionHistoryButton.tintColor = .mimeoYellowDark
         recognitionHistoryButton.setImage(recognitionHistoryImage, for: .normal)
         recognitionHistoryButton.addTarget(self, action: #selector(presentRecognitionHistory), for: .touchUpInside)
         return recognitionHistoryButton
