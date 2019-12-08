@@ -56,7 +56,7 @@ public final class RecognitionHistoryViewController: UITableViewController {
 
     private let preferencesStore = PreferencesStore.default()
 
-    private lazy var recognitionHistoryFetchedResultsControler: NSFetchedResultsController<
+    private lazy var recognitionHistoryFetchedResultsController: NSFetchedResultsController<
         RecognitionResult
     > = {
         let fetchRequest: NSFetchRequest<RecognitionResult> = RecognitionResult.fetchRequest()
@@ -103,7 +103,7 @@ public final class RecognitionHistoryViewController: UITableViewController {
         MimeoProSubscription.status { status in
             switch status {
             case .subscribed:
-                try? self.recognitionHistoryFetchedResultsControler.performFetch()
+                try? self.recognitionHistoryFetchedResultsController.performFetch()
 
             case .notSubscribed, .cancelled, .failed:
                 self.updateCenterTableViewLabel(
@@ -139,14 +139,14 @@ public final class RecognitionHistoryViewController: UITableViewController {
 extension RecognitionHistoryViewController {
 
     public override func numberOfSections(in tableView: UITableView) -> Int {
-        recognitionHistoryFetchedResultsControler.sections?.count ?? 0
+        recognitionHistoryFetchedResultsController.sections?.count ?? 0
     }
 
     public override func tableView(
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        recognitionHistoryFetchedResultsControler.sections![section].numberOfObjects
+        recognitionHistoryFetchedResultsController.sections![section].numberOfObjects
     }
 
     public override func tableView(
@@ -164,7 +164,7 @@ extension RecognitionHistoryViewController {
             .get(DataDetectionSetting.self)
             .enabledDataDetectorTypes
 
-        cell.textView.text = recognitionHistoryFetchedResultsControler
+        cell.textView.text = recognitionHistoryFetchedResultsController
             .object(at: indexPath).text
 
         return cell
@@ -180,7 +180,7 @@ extension RecognitionHistoryViewController {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        guard let text = recognitionHistoryFetchedResultsControler
+        guard let text = recognitionHistoryFetchedResultsController
             .object(at: indexPath).text else {
             return
         }
@@ -195,6 +195,22 @@ extension RecognitionHistoryViewController {
         }
 
         present(activityViewController, animated: true)
+    }
+
+    public override func tableView(
+        _ tableView: UITableView,
+        commit editingStyle: UITableViewCell.EditingStyle,
+        forRowAt indexPath: IndexPath
+    ) {
+        if editingStyle == .delete {
+            let recognitionResult = recognitionHistoryFetchedResultsController
+                .object(at: indexPath)
+
+            recognitionHistoryFetchedResultsController
+                .managedObjectContext.delete(recognitionResult)
+            try? recognitionHistoryFetchedResultsController
+                .managedObjectContext.save()
+        }
     }
 
 }
