@@ -39,6 +39,9 @@
 		042AB4EB236FAB29003EE5FF /* ViewDissolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4EA236FAB29003EE5FF /* ViewDissolver.swift */; };
 		042AB4EE236FAB73003EE5FF /* ViewDissolverShaders.h in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4ED236FAB73003EE5FF /* ViewDissolverShaders.h */; };
 		042AB4F0236FABBB003EE5FF /* ViewDissolverShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 042AB4EF236FABBB003EE5FF /* ViewDissolverShaders.metal */; };
+		043928ED23CED0970028EB6C /* InAppWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043928EC23CED0970028EB6C /* InAppWebViewController.swift */; };
+		043928EF23CED1DE0028EB6C /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043928EE23CED1DE0028EB6C /* TermsOfUseViewController.swift */; };
+		043928F123CED2340028EB6C /* TermsOfUseNavigationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043928F023CED2340028EB6C /* TermsOfUseNavigationCell.swift */; };
 		043B419B23977410009FD2C2 /* SubscribeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043B419A23977410009FD2C2 /* SubscribeCell.swift */; };
 		04422E1A2378FD9400014263 /* FetchedResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422E192378FD9400014263 /* FetchedResultController.swift */; };
 		044C59932380D66A00621C56 /* NewYorkSmall-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 044C59922380D66A00621C56 /* NewYorkSmall-Regular.otf */; };
@@ -163,6 +166,9 @@
 		042AB4EC236FAB72003EE5FF /* Mimeo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mimeo-Bridging-Header.h"; sourceTree = "<group>"; };
 		042AB4ED236FAB73003EE5FF /* ViewDissolverShaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewDissolverShaders.h; sourceTree = "<group>"; };
 		042AB4EF236FABBB003EE5FF /* ViewDissolverShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ViewDissolverShaders.metal; sourceTree = "<group>"; };
+		043928EC23CED0970028EB6C /* InAppWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppWebViewController.swift; sourceTree = "<group>"; };
+		043928EE23CED1DE0028EB6C /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
+		043928F023CED2340028EB6C /* TermsOfUseNavigationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseNavigationCell.swift; sourceTree = "<group>"; };
 		043B419A23977410009FD2C2 /* SubscribeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeCell.swift; sourceTree = "<group>"; };
 		04422E192378FD9400014263 /* FetchedResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultController.swift; sourceTree = "<group>"; };
 		044C59922380D66A00621C56 /* NewYorkSmall-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NewYorkSmall-Regular.otf"; sourceTree = "<group>"; };
@@ -348,7 +354,7 @@
 				0467705B237760E700192D2E /* About */,
 				0466B9802389934900215B80 /* Data Detection */,
 				0477BD2523976F8F00A6E089 /* Mimeo Pro */,
-				045296FD238B5A6F009A87AC /* Privacy Policy */,
+				045296FD238B5A6F009A87AC /* Legal */,
 				041C5435237735B600A6BFB8 /* Recognition Language */,
 			);
 			path = Settings;
@@ -382,12 +388,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		045296FD238B5A6F009A87AC /* Privacy Policy */ = {
+		045296FD238B5A6F009A87AC /* Legal */ = {
 			isa = PBXGroup;
 			children = (
+				043928EC23CED0970028EB6C /* InAppWebViewController.swift */,
 				04529701238B5AA7009A87AC /* PrivacyPolicyViewController.swift */,
+				043928EE23CED1DE0028EB6C /* TermsOfUseViewController.swift */,
 			);
-			path = "Privacy Policy";
+			path = Legal;
 			sourceTree = "<group>";
 		};
 		0466B9802389934900215B80 /* Data Detection */ = {
@@ -422,6 +430,7 @@
 				04A1924E2398B6BD00176A27 /* RecognitionHistoryCell.swift */,
 				04D23B452398A94900BCDC8B /* RestorePurchasesCell.swift */,
 				043B419A23977410009FD2C2 /* SubscribeCell.swift */,
+				043928F023CED2340028EB6C /* TermsOfUseNavigationCell.swift */,
 			);
 			path = "Mimeo Pro";
 			sourceTree = "<group>";
@@ -831,14 +840,17 @@
 				04D23B4A2398B09800BCDC8B /* AppIconCell.swift in Sources */,
 				041C542A23767F6100A6BFB8 /* UIColor.swift in Sources */,
 				04A1924B2398B1FE00176A27 /* MimeoProSettingCell.swift in Sources */,
+				043928ED23CED0970028EB6C /* InAppWebViewController.swift in Sources */,
 				04422E1A2378FD9400014263 /* FetchedResultController.swift in Sources */,
 				04E3B34523773DDB00F7E991 /* StaticTableViewController.swift in Sources */,
+				043928EF23CED1DE0028EB6C /* TermsOfUseViewController.swift in Sources */,
 				04193BE6235AAD8700AD04F5 /* CGRect.swift in Sources */,
 				041C54372377370300A6BFB8 /* RecognitionLanguage.swift in Sources */,
 				043B419B23977410009FD2C2 /* SubscribeCell.swift in Sources */,
 				04D23B4C2398B0D100BCDC8B /* AppIcon.swift in Sources */,
 				04193BD8235AACD900AD04F5 /* PreferencesStore.swift in Sources */,
 				04529702238B5AA7009A87AC /* PrivacyPolicyViewController.swift in Sources */,
+				043928F123CED2340028EB6C /* TermsOfUseNavigationCell.swift in Sources */,
 				04818306234987CB00379B52 /* CameraShutterButton.swift in Sources */,
 				042AB4F0236FABBB003EE5FF /* ViewDissolverShaders.metal in Sources */,
 				04193C2E235BD15A00AD04F5 /* SettingsViewController.swift in Sources */,

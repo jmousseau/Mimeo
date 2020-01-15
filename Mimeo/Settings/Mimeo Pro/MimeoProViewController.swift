@@ -42,6 +42,12 @@ public final class MimeoProViewController: StaticTableViewController {
                     ),
                     RecognitionHistoryCell(preferencesStore: preferencesStore)
                 ]
+            ),
+            Section(
+                cells: [
+                    PrivacyPolicyNavigationCell(presenter: self),
+                    TermsOfUseNavigationCell(presenter: self)
+                ]
             )
         ])
 
