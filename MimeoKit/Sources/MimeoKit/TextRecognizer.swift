@@ -225,14 +225,10 @@ public final class TextRecognizer {
         ]
 
         textRecognitionQueue.async {
-            do {
-                try VNImageRequestHandler(
-                    cgImage: image,
-                    orientation: orientation
-                ).perform(textRecognitionRequests)
-            } catch {
-                completion(.failed)
-            }
+            try? VNImageRequestHandler(
+                cgImage: image,
+                orientation: orientation
+            ).perform(textRecognitionRequests)
         }
 
         return textRecognitionRequests
