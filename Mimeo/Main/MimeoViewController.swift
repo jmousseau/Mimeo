@@ -22,7 +22,8 @@ public final class MimeoViewController: UIViewController {
 
     private lazy var textRecognizer: TextRecognizer = {
         do {
-            return try TextRecognizer(fontClassifierModel: FontClassifierV1().model)
+            let fontClassifier = try FontClassifierV1(configuration: .init())
+            return try TextRecognizer(fontClassifierModel:fontClassifier.model)
         } catch {
             return TextRecognizer()
         }
