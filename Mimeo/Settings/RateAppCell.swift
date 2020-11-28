@@ -44,7 +44,11 @@ public struct AppReviewRequest: PreferenceStorable, Codable {
         })
 
         if requestDates.count < AppReviewRequestMaximumAlertCount {
-            SKStoreReviewController.requestReview()
+            guard let scene = UIApplication.shared.windows.first?.windowScene else {
+                return
+            }
+
+            SKStoreReviewController.requestReview(in: scene)
 
             if requestDates.count == AppReviewRequestMaximumAlertCount {
                 requestDates = requestDates.sorted()

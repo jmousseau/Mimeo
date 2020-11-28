@@ -1,4 +1,4 @@
-platform :ios, '13.1'
+platform :ios, '14.2'
 
 target 'Mimeo' do
   use_frameworks!
