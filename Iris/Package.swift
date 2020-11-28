@@ -15,7 +15,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.1.0")
+        .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.10.0")
     ],
     targets: [
         .target(
