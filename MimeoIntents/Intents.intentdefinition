@@ -3,17 +3,155 @@
 <plist version="1.0">
 <dict>
 	<key>INEnums</key>
-	<array/>
+	<array>
+		<dict>
+			<key>INEnumDisplayName</key>
+			<string>Language</string>
+			<key>INEnumDisplayNameID</key>
+			<string>WWbHKB</string>
+			<key>INEnumGeneratesHeader</key>
+			<true/>
+			<key>INEnumName</key>
+			<string>Language</string>
+			<key>INEnumType</key>
+			<string>Regular</string>
+			<key>INEnumValues</key>
+			<array>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Unknown</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>9Zmt3V</string>
+					<key>INEnumValueName</key>
+					<string>unknown</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>English (United States)</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>5tipCJ</string>
+					<key>INEnumValueIndex</key>
+					<integer>1</integer>
+					<key>INEnumValueName</key>
+					<string>en_US</string>
+					<key>INEnumValueSynonyms</key>
+					<array>
+						<dict>
+							<key>INEnumValueSynonymSynonym</key>
+							<string>English</string>
+							<key>INEnumValueSynonymSynonymID</key>
+							<string>XipoHn</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>German (Germany)</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>sp4soJ</string>
+					<key>INEnumValueIndex</key>
+					<integer>2</integer>
+					<key>INEnumValueName</key>
+					<string>de_DE</string>
+					<key>INEnumValueSynonyms</key>
+					<array>
+						<dict>
+							<key>INEnumValueSynonymSynonym</key>
+							<string>German</string>
+							<key>INEnumValueSynonymSynonymID</key>
+							<string>jorn0Q</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Spanish (Spain)</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>Tfc92b</string>
+					<key>INEnumValueIndex</key>
+					<integer>3</integer>
+					<key>INEnumValueName</key>
+					<string>es_ES</string>
+					<key>INEnumValueSynonyms</key>
+					<array>
+						<dict>
+							<key>INEnumValueSynonymSynonym</key>
+							<string>Spanish</string>
+							<key>INEnumValueSynonymSynonymID</key>
+							<string>5Fh61d</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>French (France)</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>zHQdrL</string>
+					<key>INEnumValueIndex</key>
+					<integer>4</integer>
+					<key>INEnumValueName</key>
+					<string>fr_FR</string>
+					<key>INEnumValueSynonyms</key>
+					<array>
+						<dict>
+							<key>INEnumValueSynonymSynonym</key>
+							<string>French</string>
+							<key>INEnumValueSynonymSynonymID</key>
+							<string>rDldt3</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Italian (Italy)</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>0pRIB4</string>
+					<key>INEnumValueIndex</key>
+					<integer>5</integer>
+					<key>INEnumValueName</key>
+					<string>it_IT</string>
+					<key>INEnumValueSynonyms</key>
+					<array>
+						<dict>
+							<key>INEnumValueSynonymSynonym</key>
+							<string>Italian</string>
+							<key>INEnumValueSynonymSynonymID</key>
+							<string>AMM5yi</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Portuguese (Brazil)</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>PTjzFG</string>
+					<key>INEnumValueIndex</key>
+					<integer>6</integer>
+					<key>INEnumValueName</key>
+					<string>pt_BR</string>
+					<key>INEnumValueSynonyms</key>
+					<array>
+						<dict>
+							<key>INEnumValueSynonymSynonym</key>
+							<string>Portuguese</string>
+							<key>INEnumValueSynonymSynonymID</key>
+							<string>V6Lhfe</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+	</array>
 	<key>INIntentDefinitionModelVersion</key>
-	<string>1.1</string>
+	<string>1.2</string>
 	<key>INIntentDefinitionNamespace</key>
 	<string>TTe9eW</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>19A582a</string>
+	<string>20B29</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>11A1027</string>
+	<string>12B45b</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>11.1</string>
+	<string>12.2</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -32,15 +170,15 @@
 			<key>INIntentKeyParameter</key>
 			<string>image</string>
 			<key>INIntentLastParameterTag</key>
-			<integer>5</integer>
+			<integer>7</integer>
 			<key>INIntentManagedParameterCombinations</key>
 			<dict>
-				<key>image,shouldGroup</key>
+				<key>image,shouldGroup,language</key>
 				<dict>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>Recognize text in ${image}</string>
+					<string>Recognize ${language} text in ${image}</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>qSI0iz</string>
 					<key>INIntentParameterCombinationUpdatesLinked</key>
@@ -52,6 +190,8 @@
 			<key>INIntentParameters</key>
 			<array>
 				<dict>
+					<key>INIntentParameterConfigurable</key>
+					<true/>
 					<key>INIntentParameterDisplayName</key>
 					<string>Image</string>
 					<key>INIntentParameterDisplayNameID</key>
@@ -86,12 +226,78 @@
 					<string>File</string>
 				</dict>
 				<dict>
+					<key>INIntentParameterConfigurable</key>
+					<true/>
+					<key>INIntentParameterCustomDisambiguation</key>
+					<true/>
+					<key>INIntentParameterDisplayName</key>
+					<string>Language</string>
+					<key>INIntentParameterDisplayNameID</key>
+					<string>dQvpke</string>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>2</integer>
+					<key>INIntentParameterEnumType</key>
+					<string>Language</string>
+					<key>INIntentParameterEnumTypeNamespace</key>
+					<string>TTe9eW</string>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataDefaultValue</key>
+						<string>en_US</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>language</string>
+					<key>INIntentParameterPromptDialogs</key>
+					<array>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Configuration</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Primary</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>There are ${count} options matching ‘${language}’.</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>o6YP53</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>DisambiguationIntroduction</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>Just to confirm, you wanted ‘${language}’?</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>IwGyOo</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Confirmation</string>
+						</dict>
+					</array>
+					<key>INIntentParameterSupportsResolution</key>
+					<true/>
+					<key>INIntentParameterTag</key>
+					<integer>7</integer>
+					<key>INIntentParameterType</key>
+					<string>Integer</string>
+				</dict>
+				<dict>
+					<key>INIntentParameterConfigurable</key>
+					<true/>
 					<key>INIntentParameterDisplayName</key>
 					<string>Cluster</string>
 					<key>INIntentParameterDisplayNameID</key>
 					<string>ovJiRI</string>
 					<key>INIntentParameterDisplayPriority</key>
-					<integer>2</integer>
+					<integer>3</integer>
 					<key>INIntentParameterMetadata</key>
 					<dict>
 						<key>INIntentParameterMetadataFalseDisplayName</key>

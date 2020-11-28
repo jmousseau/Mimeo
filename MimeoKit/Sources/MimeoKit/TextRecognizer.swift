@@ -56,6 +56,7 @@ public final class TextRecognizer {
     @discardableResult public static func recognizedTextObservationsRequest(
         minimumConfidence: Float = 0.49,
         recognitionLevel: VNRequestTextRecognitionLevel = .accurate,
+        recognitionLanguage: String,
         usesLanguageCorrection: Bool = true,
         completion: @escaping (RecognitionState) -> Void
     ) -> VNRecognizeTextRequest {
@@ -83,6 +84,7 @@ public final class TextRecognizer {
             ))
         }
 
+        request.revision = VNRecognizeTextRequestRevision2
         request.recognitionLevel = recognitionLevel
         request.usesLanguageCorrection = usesLanguageCorrection
 
@@ -134,6 +136,7 @@ public final class TextRecognizer {
         orientation: CGImagePropertyOrientation,
         minimumConfidence: Float = 0.49,
         recognitionLevel: VNRequestTextRecognitionLevel = .accurate,
+        recognitionLanguage: String,
         usesLanguageCorrection: Bool = true,
         completion: @escaping (RecognitionState) -> Void
     ) -> [VNImageBasedRequest] {
@@ -196,6 +199,7 @@ public final class TextRecognizer {
         let recognizedTextObservationsRequest = Self.recognizedTextObservationsRequest(
             minimumConfidence: minimumConfidence,
             recognitionLevel: recognitionLevel,
+            recognitionLanguage: recognitionLanguage,
             usesLanguageCorrection: usesLanguageCorrection,
             completion: { recognitionState in
                 switch recognitionState {

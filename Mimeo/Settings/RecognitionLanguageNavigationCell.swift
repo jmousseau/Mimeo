@@ -10,10 +10,11 @@ import UIKit
 
 public final class RecognitionLanguageNavigationCell: SettingCell {
 
-    private let preferencesStore = PreferencesStore.default()
+    private var recognitionLanguageController: AnyFetchedResultController?
 
     public init(
-        presenter: UIViewController & RecognitionLanguageViewControllerDelegate
+        presenter: UIViewController & RecognitionLanguageViewControllerDelegate,
+        preferencesStore: PreferencesStore
     ) {
         super.init(
             title: "Recognition Language",
@@ -32,6 +33,13 @@ public final class RecognitionLanguageNavigationCell: SettingCell {
 
         accessoryType = .disclosureIndicator
         detailTextLabel?.text = preferencesStore.get(RecognitionLanguage.self).description
+
+        recognitionLanguageController = preferencesStore.fetchedResultController(
+            for: RecognitionLanguage.self,
+            didChange: {
+                self.detailTextLabel?.text = preferencesStore.get(RecognitionLanguage.self).description
+            }
+        )
     }
 
     required init?(coder: NSCoder) {

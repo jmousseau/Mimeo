@@ -432,6 +432,7 @@ extension MimeoViewController {
             in: uiImage.orientedUp()!.cgImage!,
             orientation: .up,
             recognitionLevel: preferencesStore.get(QuickRecognitionSetting.self).recognitionLevel,
+            recognitionLanguage: preferencesStore.get(RecognitionLanguage.self).rawValue,
             completion: { recognitionState in
                 DispatchQueue.main.async {
                     self.didUpdate(recognitionState: recognitionState)

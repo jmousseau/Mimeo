@@ -35,6 +35,7 @@ public final class RecognizeTextIntentHandler: NSObject, RecognizeTextIntentHand
             in: cgImage,
             orientation: CGImagePropertyOrientation(image.imageOrientation),
             recognitionLevel: .fast,
+            recognitionLanguage: intent.language.recognitionLanguage,
             usesLanguageCorrection: false
         ) { recognitionState in
             switch (recognitionState, shouldGroup) {
@@ -70,11 +71,48 @@ public final class RecognizeTextIntentHandler: NSObject, RecognizeTextIntentHand
         completion(.success(with: image))
     }
 
+    public func resolveLanguage(
+        for intent: RecognizeTextIntent,
+        with completion: @escaping (LanguageResolutionResult) -> Void
+    ) {
+        completion(.success(with: intent.language))
+    }
+
     public func resolveShouldGroup(
         for intent: RecognizeTextIntent,
         with completion: @escaping (INBooleanResolutionResult) -> Void
     ) {
         completion(.success(with: intent.shouldGroup as? Bool ?? false))
+    }
+
+}
+
+extension Language {
+
+    // The recognition language used for text recognition.
+    var recognitionLanguage: String {
+        switch self {
+        case .unknown:
+            return "en-US"
+
+        case .de_DE:
+            return "de-DE"
+
+        case .en_US:
+            return "en-US"
+
+        case .es_ES:
+            return "es-ES"
+
+        case .fr_FR:
+            return "fr-FR"
+
+        case .it_IT:
+            return "it-IT"
+
+        case .pt_BR:
+            return "pt-BR"
+        }
     }
 
 }

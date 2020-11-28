@@ -28,7 +28,10 @@ public final class SettingsViewController: StaticTableViewController {
         sections = [
             Section(
                 cells: [
-                    RecognitionLanguageNavigationCell(presenter: self)
+                    RecognitionLanguageNavigationCell(
+                        presenter: self,
+                        preferencesStore: preferencesStore
+                    )
                 ]
             ),
             Section(
