@@ -1,6 +1,5 @@
 import AVFoundation
 import CoreGraphics
-import UIKit
 
 /// A quadrilateral.
 public protocol Quadrilateral {
@@ -19,6 +18,10 @@ public protocol Quadrilateral {
 
 }
 
+#if os(iOS) || os(tvOS) || os(watchOS)
+
+import UIKit
+
 extension Quadrilateral {
 
     /// The quadrilateral's path.
@@ -31,6 +34,31 @@ extension Quadrilateral {
         path.close()
         return path
     }
+
+}
+
+#elseif os(macOS)
+
+import Cocoa
+
+extension Quadrilateral {
+
+    /// The quadrilateral's path.
+    public var path: NSBezierPath {
+        let path = NSBezierPath()
+        path.move(to: topLeft)
+        path.line(to: topRight)
+        path.line(to: bottomRight)
+        path.line(to: bottomLeft)
+        path.close()
+        return path
+    }
+
+}
+
+#endif
+
+extension Quadrilateral {
 
     /// The quadrilateral's perimeter.
     public var perimeter: CGFloat {
