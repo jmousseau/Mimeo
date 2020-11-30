@@ -68,8 +68,6 @@
 		04789F212341138E006656E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F202341138E006656E4 /* SceneDelegate.swift */; };
 		04789F2823411393006656E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04789F2723411393006656E4 /* Assets.xcassets */; };
 		04789F2E23411393006656E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04789F2C23411393006656E4 /* LaunchScreen.storyboard */; };
-		04789F3923411393006656E4 /* MimeoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F3823411393006656E4 /* MimeoTests.swift */; };
-		04789F4423411393006656E4 /* MimeoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04789F4323411393006656E4 /* MimeoUITests.swift */; };
 		047F9267239A310100155408 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F9266239A310100155408 /* UIBarButtonItem.swift */; };
 		048183012349674200379B52 /* MimeoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048183002349674200379B52 /* MimeoViewController.swift */; };
 		04818306234987CB00379B52 /* CameraShutterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04818305234987CB00379B52 /* CameraShutterButton.swift */; };
@@ -103,20 +101,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 04193BEA235AB00E00AD04F5;
 			remoteInfo = MimeoIntents;
-		};
-		04789F3523411393006656E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04789F132341138D006656E4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 04789F1A2341138D006656E4;
-			remoteInfo = Mimeo;
-		};
-		04789F4023411393006656E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04789F132341138D006656E4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 04789F1A2341138D006656E4;
-			remoteInfo = Mimeo;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -198,12 +182,6 @@
 		04789F2723411393006656E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04789F2D23411393006656E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04789F2F23411393006656E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		04789F3423411393006656E4 /* MimeoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimeoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		04789F3823411393006656E4 /* MimeoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoTests.swift; sourceTree = "<group>"; };
-		04789F3A23411393006656E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		04789F3F23411393006656E4 /* MimeoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimeoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		04789F4323411393006656E4 /* MimeoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoUITests.swift; sourceTree = "<group>"; };
-		04789F4523411393006656E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		047F9266239A310100155408 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		048183002349674200379B52 /* MimeoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeoViewController.swift; sourceTree = "<group>"; };
 		04818305234987CB00379B52 /* CameraShutterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraShutterButton.swift; sourceTree = "<group>"; };
@@ -250,20 +228,6 @@
 				0455A0802377F06F009FFAEA /* CloudKit.framework in Frameworks */,
 				048DD365239637EC0041DBE9 /* StoreKit.framework in Frameworks */,
 				F78DF9328EC682D7070B0F66 /* Pods_Mimeo.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04789F3123411393006656E4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04789F3C23411393006656E4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,8 +403,6 @@
 			isa = PBXGroup;
 			children = (
 				04789F1D2341138D006656E4 /* Mimeo */,
-				04789F3723411393006656E4 /* MimeoTests */,
-				04789F4223411393006656E4 /* MimeoUITests */,
 				04193BEC235AB00E00AD04F5 /* MimeoIntents */,
 				04789F1C2341138D006656E4 /* Products */,
 				04111E3C235AA9B000F73084 /* Frameworks */,
@@ -452,8 +414,6 @@
 			isa = PBXGroup;
 			children = (
 				04789F1B2341138D006656E4 /* Mimeo.app */,
-				04789F3423411393006656E4 /* MimeoTests.xctest */,
-				04789F3F23411393006656E4 /* MimeoUITests.xctest */,
 				04193BEB235AB00E00AD04F5 /* MimeoIntents.appex */,
 			);
 			name = Products;
@@ -478,24 +438,6 @@
 				04E92D8F234114D600877507 /* Assets */,
 			);
 			path = Mimeo;
-			sourceTree = "<group>";
-		};
-		04789F3723411393006656E4 /* MimeoTests */ = {
-			isa = PBXGroup;
-			children = (
-				04789F3A23411393006656E4 /* Info.plist */,
-				04789F3823411393006656E4 /* MimeoTests.swift */,
-			);
-			path = MimeoTests;
-			sourceTree = "<group>";
-		};
-		04789F4223411393006656E4 /* MimeoUITests */ = {
-			isa = PBXGroup;
-			children = (
-				04789F4523411393006656E4 /* Info.plist */,
-				04789F4323411393006656E4 /* MimeoUITests.swift */,
-			);
-			path = MimeoUITests;
 			sourceTree = "<group>";
 		};
 		04855D7C2354244A00ACB0A2 /* Views */ = {
@@ -627,42 +569,6 @@
 			productReference = 04789F1B2341138D006656E4 /* Mimeo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		04789F3323411393006656E4 /* MimeoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 04789F4B23411393006656E4 /* Build configuration list for PBXNativeTarget "MimeoTests" */;
-			buildPhases = (
-				04789F3023411393006656E4 /* Sources */,
-				04789F3123411393006656E4 /* Frameworks */,
-				04789F3223411393006656E4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				04789F3623411393006656E4 /* PBXTargetDependency */,
-			);
-			name = MimeoTests;
-			productName = MimeoTests;
-			productReference = 04789F3423411393006656E4 /* MimeoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		04789F3E23411393006656E4 /* MimeoUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 04789F4E23411393006656E4 /* Build configuration list for PBXNativeTarget "MimeoUITests" */;
-			buildPhases = (
-				04789F3B23411393006656E4 /* Sources */,
-				04789F3C23411393006656E4 /* Frameworks */,
-				04789F3D23411393006656E4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				04789F4123411393006656E4 /* PBXTargetDependency */,
-			);
-			name = MimeoUITests;
-			productName = MimeoUITests;
-			productReference = 04789F3F23411393006656E4 /* MimeoUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -680,14 +586,6 @@
 						CreatedOnToolsVersion = 11.1;
 						LastSwiftMigration = 1120;
 					};
-					04789F3323411393006656E4 = {
-						CreatedOnToolsVersion = 11.1;
-						TestTargetID = 04789F1A2341138D006656E4;
-					};
-					04789F3E23411393006656E4 = {
-						CreatedOnToolsVersion = 11.1;
-						TestTargetID = 04789F1A2341138D006656E4;
-					};
 				};
 			};
 			buildConfigurationList = 04789F162341138D006656E4 /* Build configuration list for PBXProject "Mimeo" */;
@@ -704,8 +602,6 @@
 			projectRoot = "";
 			targets = (
 				04789F1A2341138D006656E4 /* Mimeo */,
-				04789F3323411393006656E4 /* MimeoTests */,
-				04789F3E23411393006656E4 /* MimeoUITests */,
 				04193BEA235AB00E00AD04F5 /* MimeoIntents */,
 			);
 		};
@@ -728,20 +624,6 @@
 				04D23B532398B17D00BCDC8B /* iPhone App Dark@2x.png in Resources */,
 				04789F2E23411393006656E4 /* LaunchScreen.storyboard in Resources */,
 				04789F2823411393006656E4 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04789F3223411393006656E4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04789F3D23411393006656E4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,22 +759,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		04789F3023411393006656E4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				04789F3923411393006656E4 /* MimeoTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04789F3B23411393006656E4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				04789F4423411393006656E4 /* MimeoUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -900,16 +766,6 @@
 			isa = PBXTargetDependency;
 			target = 04193BEA235AB00E00AD04F5 /* MimeoIntents */;
 			targetProxy = 04193BF0235AB00E00AD04F5 /* PBXContainerItemProxy */;
-		};
-		04789F3623411393006656E4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 04789F1A2341138D006656E4 /* Mimeo */;
-			targetProxy = 04789F3523411393006656E4 /* PBXContainerItemProxy */;
-		};
-		04789F4123411393006656E4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 04789F1A2341138D006656E4 /* Mimeo */;
-			targetProxy = 04789F4023411393006656E4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -929,7 +785,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LVFKAL5KFM;
 				INFOPLIST_FILE = MimeoIntents/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -937,7 +793,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.Mimeo.MimeoIntents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -950,7 +806,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LVFKAL5KFM;
 				INFOPLIST_FILE = MimeoIntents/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -958,7 +814,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.Mimeo.MimeoIntents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1091,7 +947,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Mimeo/Mimeo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LVFKAL5KFM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Mimeo/Info.plist;
@@ -1099,7 +955,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.Mimeo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mimeo/Mimeo-Bridging-Header.h";
@@ -1117,7 +973,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Mimeo/Mimeo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LVFKAL5KFM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Mimeo/Info.plist;
@@ -1125,96 +981,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.Mimeo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mimeo/Mimeo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		04789F4C23411393006656E4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LVFKAL5KFM;
-				INFOPLIST_FILE = MimeoTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.MimeoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mimeo.app/Mimeo";
-			};
-			name = Debug;
-		};
-		04789F4D23411393006656E4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LVFKAL5KFM;
-				INFOPLIST_FILE = MimeoTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.MimeoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mimeo.app/Mimeo";
-			};
-			name = Release;
-		};
-		04789F4F23411393006656E4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LVFKAL5KFM;
-				INFOPLIST_FILE = MimeoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.MimeoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Mimeo;
-			};
-			name = Debug;
-		};
-		04789F5023411393006656E4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LVFKAL5KFM;
-				INFOPLIST_FILE = MimeoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jmousseau.MimeoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Mimeo;
 			};
 			name = Release;
 		};
@@ -1244,24 +1016,6 @@
 			buildConfigurations = (
 				04789F4923411393006656E4 /* Debug */,
 				04789F4A23411393006656E4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		04789F4B23411393006656E4 /* Build configuration list for PBXNativeTarget "MimeoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				04789F4C23411393006656E4 /* Debug */,
-				04789F4D23411393006656E4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		04789F4E23411393006656E4 /* Build configuration list for PBXNativeTarget "MimeoUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				04789F4F23411393006656E4 /* Debug */,
-				04789F5023411393006656E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
